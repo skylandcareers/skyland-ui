@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Header } from './components/Header';
+import { Topbar } from "./components/Topbar";
+import Banner from "./components/Banner";
+import Footer  from "./components/Footer";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +32,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+
+        <Topbar phone="9032420020" email="info@skylandimmigration.com" hours="Mon - Fri: 9:00 AM - 6:00 PM" />
+        <Banner
+          title="Flash Sale! 30% off all services today only."
+          cta={{ text: 'Claim Offer', url: '/offer' }}
+        />
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
