@@ -20,6 +20,54 @@ interface CountryData {
 // Map country slugs to CountryData
 const countryDetails: CountryData[] = [
   {
+    slug: 'slovakia',
+    name: 'Slovakia',
+    description:
+      'Work in Slovakia, a country offering diverse job opportunities and pathways to permanent residency.',
+    keyBenefits: [
+      'Low cost of living',
+      'High quality of life',
+      'Strong economy',
+      'High quality of life and safety',
+    ],
+    processingTime: '6-12 months',
+    costEstimate: 'EUR 250-1,500 (visa fees) + relocation',
+    popularJobs: ['Software Developer', 'Nurse', 'Engineer', 'Truck Driver'],
+    image: '/images/slovakia-placeholder.jpg',
+  },
+  {
+    slug: 'singapore',
+    name: 'Singapore',
+    description:
+      'Work in Singapore, a country offering diverse job opportunities and pathways to permanent residency.',
+    keyBenefits: [
+      'Low cost of living',
+      'High quality of life',
+      'Strong economy',
+      'High quality of life',
+    ],
+    processingTime: '6-12 months',
+    costEstimate: 'SGD 250-1,500 (visa fees) + relocation',
+    popularJobs: ['Software Developer', 'Nurse', 'Engineer', 'Truck Driver'],
+    image: '/images/singapore-placeholder.jpg',
+  },
+  {
+    slug: 'russia',
+    name: 'Russia',
+    description:
+      'Work in Russia, a country offering diverse job opportunities and pathways to permanent residency.',
+    keyBenefits: [
+      'Low cost of living',
+      'High quality of life',
+      'Strong economy',
+      'High quality of life',
+    ],
+    processingTime: '6-12 months',
+    costEstimate: 'RUB 250-1,500 (visa fees) + relocation',
+    popularJobs: ['Software Developer', 'Nurse', 'Engineer', 'Truck Driver'],
+    image: '/images/russia-placeholder.jpg',
+  },
+  {
     slug: 'canada',
     name: 'Canada',
     description:
@@ -119,14 +167,14 @@ const countryDetails: CountryData[] = [
 
 export default function WorkVisaPage() {
   return (
-    <div className="min-h-screen bg-white text-gray-800 px-4 py-8 max-w-6xl mx-auto">
+    <div className="min-h-screen bg-white text-gray-800">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Work Visa Services
           </h1>
-          <p className="text-xl text-blue-100 mb-8 text-center max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-blue-100 mb-8 max-w-4xl mx-auto leading-relaxed">
             Launch your international career with our expert work visa services. We guide you through the process to work in top global destinations.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

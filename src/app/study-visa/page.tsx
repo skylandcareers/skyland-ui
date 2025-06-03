@@ -1,27 +1,28 @@
 'use client';
 
-import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Calendar, DollarSign, BookOpen } from 'lucide-react';
+import { FaGraduationCap, FaCalendarAlt, FaMoneyBillWave, FaGlobeAmericas, FaUserTie, FaFileAlt } from 'react-icons/fa';
+import { Globe, Calendar } from 'lucide-react';
 
 // Define types for Country data
 interface CountryData {
   slug: string;
   name: string;
+  flag: string;
   description: string;
   keyBenefits: string[];
   processingTime: string;
   costEstimate: string;
   popularPrograms: string[];
-  image: string; // Placeholder for image URL or path
+  image: string;
 }
 
-// Map country slugs to CountryData
 const countryDetails: CountryData[] = [
   {
     slug: 'canada',
     name: 'Canada',
+    flag: '🇨🇦',
     description:
       'Study in Canada, known for its world-class universities, welcoming environment, and post-graduation work opportunities.',
     keyBenefits: [
@@ -38,6 +39,7 @@ const countryDetails: CountryData[] = [
   {
     slug: 'usa',
     name: 'USA',
+    flag: '🇺🇸',
     description:
       'Pursue your dreams in the USA, home to top-ranked universities and cutting-edge research opportunities.',
     keyBenefits: [
@@ -54,6 +56,7 @@ const countryDetails: CountryData[] = [
   {
     slug: 'uk',
     name: 'United Kingdom',
+    flag: '🇬🇧',
     description:
       'Experience world-renowned education in the UK, with historic universities and a rich cultural heritage.',
     keyBenefits: [
@@ -70,6 +73,7 @@ const countryDetails: CountryData[] = [
   {
     slug: 'australia',
     name: 'Australia',
+    flag: '🇦🇺',
     description:
       'Study in Australia, offering a perfect blend of quality education and a relaxed lifestyle.',
     keyBenefits: [
@@ -86,6 +90,7 @@ const countryDetails: CountryData[] = [
   {
     slug: 'germany',
     name: 'Germany',
+    flag: '🇩🇪',
     description:
       'Benefit from tuition-free or low-cost education in Germany, a hub for innovation and engineering.',
     keyBenefits: [
@@ -102,6 +107,7 @@ const countryDetails: CountryData[] = [
   {
     slug: 'new-zealand',
     name: 'New Zealand',
+    flag: '🇳🇿',
     description:
       'Study in New Zealand, known for its stunning landscapes and high-quality, student-focused education.',
     keyBenefits: [
@@ -117,183 +123,229 @@ const countryDetails: CountryData[] = [
   },
 ];
 
+const requirements = [
+  {
+    icon: <FaFileAlt className="text-blue-600 text-2xl" />,
+    title: "Academic Documents",
+    details: "Transcripts, degrees, and standardized test scores (IELTS/TOEFL)"
+  },
+  {
+    icon: <FaMoneyBillWave className="text-blue-600 text-2xl" />,
+    title: "Financial Proof",
+    details: "Bank statements showing sufficient funds for tuition and living expenses"
+  },
+  {
+    icon: <FaGraduationCap className="text-blue-600 text-2xl" />,
+    title: "University Acceptance",
+    details: "Offer letter from an approved educational institution"
+  },
+  {
+    icon: <FaCalendarAlt className="text-blue-600 text-2xl" />,
+    title: "Study Plan",
+    details: "Detailed letter explaining your educational goals and future plans"
+  },
+  {
+    icon: <FaGlobeAmericas className="text-blue-600 text-2xl" />,
+    title: "Language Proficiency",
+    details: "IELTS, TOEFL, or other language test scores as required"
+  },
+  {
+    icon: <FaUserTie className="text-blue-600 text-2xl" />,
+    title: "Work Experience",
+    details: "Resume and work certificates (if applicable)"
+  }
+];
+
+const processSteps = [
+  {
+    step: 1,
+    title: "University Selection",
+    description: "We help you choose the right university and program based on your profile"
+  },
+  {
+    step: 2,
+    title: "Application Submission",
+    description: "Our experts assist with university applications and required documents"
+  },
+  {
+    step: 3,
+    title: "Visa Documentation",
+    description: "Complete assistance with visa application and supporting documents"
+  },
+  {
+    step: 4,
+    title: "Interview Preparation",
+    description: "Mock interviews and guidance for visa interview success"
+  },
+  {
+    step: 5,
+    title: "Pre-Departure Support",
+    description: "Comprehensive briefing on travel, accommodation, and student life"
+  }
+];
+
 export default function StudyVisaPage() {
   return (
-    <div className="min-h-screen bg-white text-gray-800 px-4 py-8 max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gray-50 text-gray-800">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center">
+      <section className="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-16 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.h1 
+            className="text-4xl md:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Study Visa Services
-          </h1>
-          <p className="text-xl text-blue-100 mb-8 text-center max-w-4xl mx-auto leading-relaxed">
-            Unlock your global education journey with our expert study visa services. We guide you through every step to study in your dream country.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          </motion.h1>
+          <motion.p 
+            className="text-xl md:text-2xl max-w-3xl mx-auto mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Expert guidance for international education and student visas to top study destinations worldwide
+          </motion.p>
+          <motion.div
+            className="flex flex-wrap justify-center gap-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
             <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full flex items-center">
               <Calendar className="w-4 h-4 mr-2" />
-              Fast-track your application
+              Fast-track applications
             </div>
             <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full flex items-center">
               <Globe className="w-4 h-4 mr-2" />
-              Multiple destinations
+              Global universities
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-6xl mx-auto px-6 py-12 space-y-16">
-        {/* Quick Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
-            <Globe className="w-8 h-8 text-blue-600 mb-3" />
-            <h3 className="font-semibold text-gray-800 mb-2">Expert Guidance</h3>
-            <p className="text-gray-600">Personalized support for visa applications.</p>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-green-500">
-            <DollarSign className="w-8 h-8 text-green-600 mb-3" />
-            <h3 className="font-semibold text-gray-800 mb-2">Affordable Services</h3>
-            <p className="text-gray-600">Transparent fees with no hidden costs.</p>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-purple-500">
-            <BookOpen className="w-8 h-8 text-purple-600 mb-3" />
-            <h3 className="font-semibold text-gray-800 mb-2">University Support</h3>
-            <p className="text-gray-600">Assistance with university admissions.</p>
-          </div>
-        </div>
+      {/* Countries Grid */}
+      <motion.section
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-16 max-w-6xl mx-auto px-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        {countryDetails.map((country) => (
+          <a
+            key={country.slug}
+            href={`/study-visa/${country.slug}`}
+            className="border border-blue-100 p-5 rounded-xl shadow-sm hover:shadow-md hover:border-blue-300 transition bg-blue-50"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xl font-semibold text-blue-800">{country.name}</h3>
+              <span className="text-2xl">{country.flag}</span>
+            </div>
+            <p className="text-gray-700 text-sm mb-3">{country.description}</p>
+            <div className="text-sm text-gray-600">
+              <p>Processing: {country.processingTime}</p>
+              <p>Popular: {country.popularPrograms[0]}, {country.popularPrograms[1]}</p>
+            </div>
+          </a>
+        ))}
+      </motion.section>
 
-        {/* Countries List */}
-        <motion.section
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
-          <h2 className="text-3xl font-semibold text-blue-700 mb-6 flex items-center">
-            <svg className="w-8 h-8 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-2-5a3 3 0 01-3-3 3 3 0 013-3 3 3 0 013 3 3 3 0 01-3 3zm0-2a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-            </svg>
-            Explore Study Destinations
-          </h2>
+      {/* Requirements Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12 text-blue-800"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Study Visa Requirements
+          </motion.h2>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {countryDetails.map((country, index) => (
+            {requirements.map((req, index) => (
               <motion.div
-                key={country.slug}
-                className="bg-white p-6 rounded-lg shadow-md border border-blue-100 hover:shadow-lg transition"
+                key={index}
+                className="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-gray-100"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                <div className="relative h-48 mb-4">
-                  <Image
-                    src={country.image}
-                    alt={country.name}
-                    fill
-                    className="object-cover rounded-lg"
-                  />
+                <div className="flex items-center mb-4">
+                  {req.icon}
+                  <h3 className="text-lg font-semibold ml-3">{req.title}</h3>
                 </div>
-                <h3 className="text-xl font-bold text-blue-800 mb-2">{country.name}</h3>
-                <p className="text-gray-600 mb-4">{country.description}</p>
-                <ul className="space-y-2 mb-4">
-                  {country.keyBenefits.slice(0, 3).map((benefit, i) => (
-                    <li key={i} className="flex items-start">
-                      <svg
-                        className="w-4 h-4 text-blue-500 mt-1 mr-2 flex-shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-gray-700">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex justify-between items-center">
-                  <a
-                    href={`/study-visa/${country.slug}`}
-                    className="text-blue-600 font-semibold hover:underline"
-                  >
-                    Learn More
-                  </a>
-                  <a
-                    href="/contact"
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
-                  >
-                    Apply Now
-                  </a>
-                </div>
+                <p className="text-gray-600">{req.details}</p>
               </motion.div>
             ))}
           </div>
-        </motion.section>
+        </div>
+      </section>
 
-        {/* Why Choose Us */}
-        <motion.section
-          className="mb-12 bg-blue-50 p-6 rounded-xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <h2 className="text-3xl font-semibold text-blue-700 mb-6 flex items-center">
-            <svg className="w-8 h-8 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-                clipRule="evenodd"
-              />
-            </svg>
-            Why Choose Our Visa Services?
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              '98% visa success rate with expert consultants',
-              'End-to-end support from application to arrival',
-              'Personalized counseling for university and program selection',
-              'Fast and accurate document preparation',
-              'Mock visa interviews to boost confidence',
-              'Transparent process with regular updates',
-            ].map((benefit, index) => (
-              <div
+      {/* Process Steps */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2 
+            className="text-3xl font-bold text-center mb-12 text-blue-800"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Our Process
+          </motion.h2>
+          
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {processSteps.map((step, index) => (
+              <motion.div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-md border border-blue-100 hover:shadow-lg transition"
+                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-gray-100"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                <div className="text-blue-600 mb-3">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4">
+                  {step.step}
                 </div>
-                <p className="font-medium text-gray-800">{benefit}</p>
-              </div>
+                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+                <p className="text-gray-600 text-sm">{step.description}</p>
+              </motion.div>
             ))}
           </div>
-        </motion.section>
+        </div>
+      </section>
 
-        {/* Enrollment CTA */}
-        <motion.section
-          id="enroll"
-          className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-xl text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-        >
-          <h2 className="text-3xl font-bold mb-4">Ready to Study Abroad?</h2>
-          <p className="text-xl mb-6 max-w-2xl mx-auto">
-            Start your journey today with our expert visa consultants. Limited consultation slots available!
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+      {/* CTA Section */}
+      <section className="py-16 px-4 bg-gradient-to-r from-blue-800 to-blue-600 text-white">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.h2 
+            className="text-3xl font-bold mb-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Ready to Start Your Educational Journey?
+          </motion.h2>
+          <motion.p 
+            className="text-xl mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            Book a free consultation with our education experts today!
+          </motion.p>
+          <motion.div
+            className="flex flex-col sm:flex-row justify-center gap-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
             <a
               href="/contact"
               className="bg-white text-blue-800 px-8 py-3 rounded-lg hover:bg-gray-100 transition font-semibold text-lg"
             >
-              Book a Free Consultation
+              Book Free Consultation
             </a>
             <a
               href="tel:+919876543210"
@@ -301,9 +353,9 @@ export default function StudyVisaPage() {
             >
               Call Now: +91 98765 43210
             </a>
-          </div>
-        </motion.section>
-      </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }
