@@ -2,16 +2,16 @@
 'use client';
 
 import React from 'react';
-import Hero from './components/Hero';
-import WhyChoose from './components/WhyChoose';
-import OurServices from './components/OurServices';
-import Contact from './components/Contact';
-import Testimonials from './components/Testimonials';
-import Process from './components/Process';
-import FAQ from './components/FAQ';
-import ImpactStats from './components/ImpactStats';
-import FeaturedArticles from './components/FeaturedArticles';
-import VideoSection from './components/VideoSection';
+import Hero from '../components/Hero';
+import WhyChoose from '../components/WhyChoose';
+import OurServices from '../components/OurServices';
+import Contact from '../components/Contact';
+import Testimonials from '../components/Testimonials';
+import Process from '../components/Process';
+import FAQ from '../components/FAQ';
+import ImpactStats from '../components/ImpactStats';
+import FeaturedArticles from '../components/FeaturedArticles';
+import VideoSection from '../components/VideoSection';
 
 
 export default function Home() {
