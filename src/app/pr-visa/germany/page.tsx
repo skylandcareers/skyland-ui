@@ -13,7 +13,6 @@ import {
   FileText,
   Clock,
   Briefcase,
-  Calendar,
   Languages,
   ChevronUp,
   ChevronDown,
@@ -24,8 +23,8 @@ import {
   Laptop,
 } from 'lucide-react';
 import { 
-  canadaPRContent, 
-  canadaPRFAQs, 
+  germanyPRContent, 
+  germanyPRFAQs, 
   cityComparisons,
   jobMarketStats,
   lifestyleGuide,
@@ -68,9 +67,9 @@ const lifestyleContent = [
   }
 ];
 
-const CanadaPRPage = () => {
+const GermanyPRPage = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const [showPointsCalculator, setShowPointsCalculator] = useState(false);
+  const [showEligibilityCalculator, setShowEligibilityCalculator] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedBenefit, setSelectedBenefit] = useState<string | null>(null);
 
@@ -107,33 +106,33 @@ const CanadaPRPage = () => {
             >
               <h1 className="text-2xl md:text-4xl font-bold leading-tight">
                 Your Journey to{' '}
-                <span className="text-blue-200">Canadian Permanent Residency</span>{' '}
+                <span className="text-yellow-400">German Permanent Residency</span>{' '}
                 Starts Here
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
-                Get expert guidance on Express Entry, CRS calculator, and visa requirements. 
-                98% success rate with personalized support throughout your application process.
+                Get expert guidance on EU Blue Card, visa requirements, and the German immigration process. 
+                98% success rate with personalized support throughout your application.
               </p>
               <div className="space-y-4 bg-blue-500/30 p-5 rounded-xl">
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-200 flex-shrink-0" />
-                  <span className="text-blue-50 text-base">Express Entry profile optimization</span>
+                  <span className="text-blue-50 text-base">EU Blue Card application support</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-200 flex-shrink-0" />
-                  <span className="text-blue-50 text-base">CRS score maximization strategies</span>
+                  <span className="text-blue-50 text-base">German language preparation</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle2 className="w-5 h-5 text-blue-200 flex-shrink-0" />
-                  <span className="text-blue-50 text-base">End-to-end application support</span>
+                  <span className="text-blue-50 text-base">End-to-end visa assistance</span>
                 </div>
               </div>
               <div className="flex items-center gap-5 pt-3">
                 <button 
-                  onClick={() => setShowPointsCalculator(true)}
+                  onClick={() => setShowEligibilityCalculator(true)}
                   className="inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-2.5 rounded-lg font-medium hover:bg-blue-50 transition-colors text-base"
                 >
-                  Calculate CRS Score
+                  Check Eligibility
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <a 
@@ -165,7 +164,7 @@ const CanadaPRPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Eligibility Requirements</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {Object.entries(canadaPRContent.visaRequirements).map(([key, requirement], index) => (
+              {Object.entries(germanyPRContent.visaRequirements).map(([key, requirement], index) => (
                 <motion.div 
                   key={key}
                   className="bg-white rounded-lg p-4 shadow-lg hover:shadow transition-shadow border border-gray-200 hover:border-gray-300"
@@ -174,10 +173,10 @@ const CanadaPRPage = () => {
                   transition={{ delay: index * 0.1 }}
                 >
                   <div className="text-blue-600 mb-3">
-                    {key === 'ageLimit' && <Calendar className="w-6 h-6" />}
-                    {key === 'englishProficiency' && <Languages className="w-6 h-6" />}
-                    {key === 'skillAssessment' && <GraduationCap className="w-6 h-6" />}
-                    {key === 'workExperience' && <Briefcase className="w-6 h-6" />}
+                    {key === 'residencePermit' && <FileText className="w-6 h-6" />}
+                    {key === 'languageSkills' && <Languages className="w-6 h-6" />}
+                    {key === 'financialStability' && <Activity className="w-6 h-6" />}
+                    {key === 'integrationCourse' && <GraduationCap className="w-6 h-6" />}
                   </div>
                   <h3 className="text-base font-medium text-gray-900 mb-2">{requirement.title}</h3>
                   <p className="text-sm text-gray-600">{requirement.description}</p>
@@ -190,7 +189,7 @@ const CanadaPRPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Application Process</h2>
             <div className="space-y-4">
-              {canadaPRContent.applicationProcess.map((step, index) => (
+              {germanyPRContent.applicationProcess.map((step, index) => (
                 <motion.div 
                   key={index}
                   className="flex items-start gap-4 bg-white rounded-lg p-4 shadow-lg border border-gray-200 hover:border-gray-300"
@@ -224,7 +223,7 @@ const CanadaPRPage = () => {
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">{city.name}</h3>
-                      <p className="text-gray-600">{city.province}</p>
+                      <p className="text-gray-600">{city.state}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-sm text-gray-500">Population</p>
@@ -489,7 +488,7 @@ const CanadaPRPage = () => {
             <div className="mt-12 bg-white rounded-lg p-6 shadow-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
               <div className="space-y-4">
-                {canadaPRFAQs.map((faq, index) => (
+                {germanyPRFAQs.map((faq, index) => (
                   <div key={index} className="border-b border-gray-200 last:border-0 pb-4">
                     <button
                       onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
@@ -653,42 +652,20 @@ const CanadaPRPage = () => {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <h3 className="text-xl font-bold mb-3">Ready to Start Your Journey?</h3>
-            <p className="text-base text-blue-100 mb-4">Get expert guidance on your Canada PR visa application</p>
+            <p className="text-base text-blue-100 mb-4">Get expert guidance on your German PR visa application</p>
             <button 
-              onClick={() => setShowPointsCalculator(true)}
+              onClick={() => setShowEligibilityCalculator(true)}
               className="w-full bg-white text-blue-600 font-medium py-2.5 px-4 rounded-lg text-base hover:bg-blue-50 transition-colors"
             >
               Book a Consultation
             </button>
           </motion.div>
 
-          {/* Points Calculator Card */}
-          <div className="bg-white rounded-lg p-6 shadow-lg">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">CRS Points Calculator</h3>
-            <div className="space-y-4">
-              {canadaPRContent.pointsSystem.categories.map((category, index) => (
-                <div key={index} className="border-b border-gray-200 pb-4 last:border-0">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="font-medium text-gray-900">{category.category}</span>
-                    <span className="text-blue-600 font-medium">Max {category.maxPoints} pts</span>
-                  </div>
-                  <p className="text-sm text-gray-600">{category.description}</p>
-                </div>
-              ))}
-            </div>
-            <button
-              onClick={() => setShowPointsCalculator(true)}
-              className="mt-4 w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Calculate Your Points
-            </button>
-          </div>
-
           {/* Benefits Card */}
           <div className="bg-white rounded-lg p-6 shadow hover:shadow-md">
-            <h3 className="text-xl font-bold text-gray-900 mb-5">Benefits of Canada PR</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-5">Benefits of German PR</h3>
             <div className="space-y-5">
-              {canadaPRContent.mainBenefits.map((benefit, index) => (
+              {germanyPRContent.mainBenefits.map((benefit, index) => (
                 <div key={index} className="flex items-start gap-4">
                   <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                   <div>
@@ -705,16 +682,16 @@ const CanadaPRPage = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Latest Updates</h3>
             <div className="space-y-4">
               <div className="border-l-4 border-blue-600 pl-3">
-                <p className="text-sm text-gray-600">Latest CRS Score Cut-off</p>
-                <p className="font-medium text-gray-900">489 points (Latest Draw)</p>
+                <p className="text-sm text-gray-600">Integration Course Fee</p>
+                <p className="font-medium text-gray-900">€1,365 (Standard Course)</p>
               </div>
               <div className="border-l-4 border-blue-600 pl-3">
-                <p className="text-sm text-gray-600">Next Draw Expected</p>
-                <p className="font-medium text-gray-900">Every 2 weeks</p>
+                <p className="text-sm text-gray-600">Processing Time</p>
+                <p className="font-medium text-gray-900">3-6 months average</p>
               </div>
               <div className="border-l-4 border-blue-600 pl-3">
-                <p className="text-sm text-gray-600">Total Invitations</p>
-                <p className="font-medium text-gray-900">4,750 (Latest Draw)</p>
+                <p className="text-sm text-gray-600">Language Requirement</p>
+                <p className="font-medium text-gray-900">B1 German (CEFR)</p>
               </div>
             </div>
           </div>
@@ -782,23 +759,23 @@ const CanadaPRPage = () => {
                 </button>
               </div>
               <div className="prose prose-blue max-w-none">
-                {canadaPRContent.mainBenefits.find(b => b.title === selectedBenefit)?.description}
+                {germanyPRContent.mainBenefits.find(b => b.title === selectedBenefit)?.description}
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
-      {/* Points Calculator Modal */}
+      {/* Eligibility Calculator Modal */}
       <AnimatePresence>
-        {showPointsCalculator && (
+        {showEligibilityCalculator && (
           <>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black bg-opacity-50 z-40 backdrop-blur-sm"
-              onClick={() => setShowPointsCalculator(false)}
+              onClick={() => setShowEligibilityCalculator(false)}
             />
             <motion.div
               initial={{ opacity: 0, y: "100%" }}
@@ -807,29 +784,58 @@ const CanadaPRPage = () => {
               className="fixed inset-x-0 bottom-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-2xl md:w-full bg-white rounded-t-lg md:rounded-lg p-6 shadow-lg z-50"
             >
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold text-gray-900">CRS Points Calculator</h3>
+                <h3 className="text-xl font-bold text-gray-900">Check Your Eligibility</h3>
                 <button
-                  onClick={() => setShowPointsCalculator(false)}
+                  onClick={() => setShowEligibilityCalculator(false)}
                   className="text-gray-500 hover:text-gray-700 p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="space-y-5">
-                {canadaPRContent.pointsSystem.categories.map((category, index) => (
-                  <div key={index} className="border-b border-gray-200 pb-5">
-                    <div className="flex justify-between items-center mb-2">
-                      <h4 className="text-base font-medium text-gray-900">{category.category}</h4>
-                      <span className="text-base text-blue-600 font-medium">Max {category.maxPoints} points</span>
-                    </div>
-                    <p className="text-base text-gray-600">{category.description}</p>
-                  </div>
-                ))}
-                <div className="bg-blue-50 p-5 rounded-lg">
-                  <p className="text-base text-blue-800">
-                    {canadaPRContent.pointsSystem.description}
-                  </p>
+              <div className="space-y-6">
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <h4 className="font-medium text-blue-900 mb-2">Key Requirements for German PR</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-blue-800">
+                      <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                      <span>5 years of legal residence in Germany</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-blue-800">
+                      <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                      <span>B1 level German language proficiency</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-blue-800">
+                      <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                      <span>Stable income to support yourself</span>
+                    </li>
+                    <li className="flex items-center gap-2 text-blue-800">
+                      <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                      <span>Integration course completion</span>
+                    </li>
+                  </ul>
                 </div>
+                <div className="space-y-4">
+                  <h4 className="font-medium text-gray-900">Special Cases</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="border-l-4 border-blue-600 pl-3">
+                      <p className="text-sm text-gray-600">EU Blue Card Holders</p>
+                      <p className="font-medium text-gray-900">33 months (21 with B1 German)</p>
+                    </div>
+                    <div className="border-l-4 border-blue-600 pl-3">
+                      <p className="text-sm text-gray-600">Self-Employed</p>
+                      <p className="font-medium text-gray-900">3 years with successful business</p>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  onClick={() => {
+                    setShowEligibilityCalculator(false);
+                    // Add contact form or consultation booking logic here
+                  }}
+                >
+                  Book a Free Consultation
+                </button>
               </div>
             </motion.div>
           </>
@@ -841,7 +847,7 @@ const CanadaPRPage = () => {
         className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg lg:hidden"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setShowPointsCalculator(true)}
+        onClick={() => setShowEligibilityCalculator(true)}
       >
         <Calculator className="w-6 h-6" />
       </motion.button>
@@ -849,4 +855,4 @@ const CanadaPRPage = () => {
   );
 };
 
-export default CanadaPRPage;
+export default GermanyPRPage;

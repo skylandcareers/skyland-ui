@@ -1,4 +1,4 @@
-// Content types and data for Canada PR page
+// Content types and data for UK PR
 
 export interface MainBenefit {
   title: string;
@@ -18,7 +18,7 @@ export interface ProcessStep {
 
 export interface City {
   name: string;
-  province: string;
+  region: string;
   population: string;
   medianHousePrice: string;
   averageSalary: string;
@@ -64,7 +64,7 @@ export interface PointsSystem {
   description: string;
 }
 
-interface FAQ {
+export interface FAQ {
   question: string;
   answer: string;
 }
@@ -75,157 +75,119 @@ interface TimelinePhase {
   tasks: string[];
 }
 
-export const canadaPRContent = {
+export const ukPRContent = {
   mainBenefits: [
     {
-      title: "Universal Healthcare",
-      description: "Access to Canada's world-renowned public healthcare system for you and your family."
+      title: "Free Healthcare (NHS)",
+      description: "Access to the UK's National Health Service, providing comprehensive healthcare coverage for you and your family."
     },
     {
-      title: "Quality Education",
-      description: "Access to high-quality education at all levels, with subsidized rates for permanent residents."
+      title: "Education Benefits",
+      description: "Access to state education for children and subsidized rates for higher education as a home student."
     },
     {
-      title: "Social Benefits",
-      description: "Eligibility for social security benefits, pension plans, and child care benefits."
+      title: "Social Security Access",
+      description: "Eligibility for various UK benefits and social security programs after qualifying period."
     },
     {
-      title: "Career Opportunities",
-      description: "Access to a strong job market with opportunities across various sectors."
+      title: "Work Freedom",
+      description: "Unrestricted right to work, start a business, or be self-employed in the UK."
+    },
+    {
+      title: "Path to Citizenship",
+      description: "Eligibility to apply for British citizenship after holding ILR for 12 months."
     }
   ],
   visaRequirements: {
-    ageLimit: {
-      title: "Age Requirement",
-      description: "Maximum age of 45 years at the time of application for optimal points."
+    residencyPeriod: {
+      title: "Continuous Residence",
+      description: "Must have lived in the UK for 5 years under an eligible visa category."
     },
-    englishProficiency: {
-      title: "Language Skills",
-      description: "Minimum CLB 7 in English or French (IELTS 6.0 or equivalent)."
+    englishLanguage: {
+      title: "English Proficiency",
+      description: "Must pass English language test at B1 CEFR level or higher, unless exempt."
     },
-    skillAssessment: {
-      title: "Education Assessment",
-      description: "Educational Credential Assessment (ECA) from a designated organization."
+    knowledgeTest: {
+      title: "Life in the UK Test",
+      description: "Must pass the Life in the UK test demonstrating knowledge of British culture and history."
     },
-    workExperience: {
-      title: "Work Experience",
-      description: "Minimum 1 year of skilled work experience in NOC category 0, A, or B."
+    absenceLimit: {
+      title: "Absence Restrictions",
+      description: "No more than 180 days absence in any 12-month period during the 5-year qualifying period."
     }
   },
   applicationProcess: [
     {
       step: 1,
-      title: "Express Entry Profile",
-      description: "Create an Express Entry profile and enter the pool of candidates."
+      title: "Eligibility Check",
+      description: "Verify you meet residence, English language, and other requirements."
     },
     {
       step: 2,
-      title: "CRS Score Calculation",
-      description: "Receive a Comprehensive Ranking System (CRS) score based on your profile."
+      title: "Life in the UK Test",
+      description: "Book and pass the Life in the UK test at an approved center."
     },
     {
       step: 3,
-      title: "ITA Receipt",
-      description: "Receive an Invitation to Apply if your CRS score meets the cut-off."
+      title: "Document Preparation",
+      description: "Gather required documents including residence proof and language certificates."
     },
     {
       step: 4,
-      title: "PR Application",
-      description: "Submit a complete PR application within 60 days of receiving ITA."
+      title: "Application Submission",
+      description: "Submit online application, pay fees, and provide biometrics."
     }
-  ],
-  processingTimes: {
-    timeframes: {
-      expressEntry: "6-8 months",
-      provincialNominee: "12-18 months",
-      familySponsorship: "12 months"
-    }
-  },
-  visaCosts: {
-    baseApplicationFee: "CAD 1,325",
-    rightOfPermanentResidence: "CAD 500",
-    dependentFees: "CAD 225 per child"
-  },
-  pointsSystem: {
-    categories: [
-      {
-        category: "Age",
-        maxPoints: 12,
-        description: "Maximum points for candidates aged 18-35. Points decrease after age 35."
-      },
-      {
-        category: "Education",
-        maxPoints: 25,
-        description: "Points based on level of education and Canadian equivalency."
-      },
-      {
-        category: "Language Skills",
-        maxPoints: 28,
-        description: "Points for English and/or French proficiency in reading, writing, speaking, and listening."
-      },
-      {
-        category: "Work Experience",
-        maxPoints: 15,
-        description: "Points for years of skilled work experience in NOC 0, A, or B categories."
-      },
-      {
-        category: "Adaptability",
-        maxPoints: 10,
-        description: "Additional points for spouse's qualifications, Canadian education/work experience, etc."
-      }
-    ],
-    description: "The Comprehensive Ranking System (CRS) is used to assess and score your profile. The maximum score is 1,200 points. Regular draws select candidates with the highest scores."
-  }
+  ]
 };
 
 export const cityComparisons: Record<string, City> = {
-  toronto: {
-    name: "Toronto",
-    province: "Ontario",
-    population: "2.93 million",
-    medianHousePrice: "CAD 1.1M",
-    averageSalary: "CAD 75,000",
-    keyIndustries: ["Finance", "Technology", "Media", "Healthcare"],
+  london: {
+    name: "London",
+    region: "Greater London",
+    population: "9 million",
+    medianHousePrice: "£650,000",
+    averageSalary: "£45,000",
+    keyIndustries: ["Finance", "Technology", "Media", "Professional Services"],
     lifestyle: {
-      highlights: ["Cultural Diversity", "Entertainment Hub", "Public Transit", "Food Scene"]
+      highlights: ["Cultural Hub", "Global Business Center", "Historic Sites", "Diverse Communities"]
     },
-    universities: ["University of Toronto", "York University", "Ryerson University"]
+    universities: ["Imperial College", "UCL", "LSE", "King's College"]
   },
-  vancouver: {
-    name: "Vancouver",
-    province: "British Columbia",
-    population: "675,000",
-    medianHousePrice: "CAD 1.4M",
-    averageSalary: "CAD 72,000",
-    keyIndustries: ["Film Industry", "Tech Startups", "Tourism", "Green Technology"],
+  manchester: {
+    name: "Manchester",
+    region: "North West England",
+    population: "2.8 million",
+    medianHousePrice: "£250,000",
+    averageSalary: "£35,000",
+    keyIndustries: ["Digital Tech", "Media", "Manufacturing", "Healthcare"],
     lifestyle: {
-      highlights: ["Natural Beauty", "Outdoor Activities", "Mild Climate", "Quality of Life"]
+      highlights: ["Affordable Living", "Rich Culture", "Sports Scene", "Tech Hub"]
     },
-    universities: ["UBC", "Simon Fraser University", "BCIT"]
+    universities: ["University of Manchester", "Manchester Metropolitan", "Salford University"]
   },
-  montreal: {
-    name: "Montreal",
-    province: "Quebec",
-    population: "1.78 million",
-    medianHousePrice: "CAD 500,000",
-    averageSalary: "CAD 65,000",
-    keyIndustries: ["Gaming", "AI", "Aerospace", "Cultural Industries"],
+  birmingham: {
+    name: "Birmingham",
+    region: "West Midlands",
+    population: "2.6 million",
+    medianHousePrice: "£230,000",
+    averageSalary: "£33,000",
+    keyIndustries: ["Manufacturing", "Business Services", "Digital", "Life Sciences"],
     lifestyle: {
-      highlights: ["Arts Scene", "European Charm", "Affordable Living", "Festivals"]
+      highlights: ["Cultural Diversity", "Central Location", "Shopping", "Urban Renewal"]
     },
-    universities: ["McGill University", "Université de Montréal", "Concordia University"]
+    universities: ["University of Birmingham", "Aston University", "Birmingham City University"]
   },
-  calgary: {
-    name: "Calgary",
-    province: "Alberta",
-    population: "1.34 million",
-    medianHousePrice: "CAD 450,000",
-    averageSalary: "CAD 70,000",
-    keyIndustries: ["Energy", "Agriculture", "Technology", "Finance"],
+  edinburgh: {
+    name: "Edinburgh",
+    region: "Scotland",
+    population: "500,000",
+    medianHousePrice: "£300,000",
+    averageSalary: "£38,000",
+    keyIndustries: ["Finance", "Tourism", "Tech Startups", "Education"],
     lifestyle: {
-      highlights: ["Low Tax Rates", "Clean City", "Mountain Access", "Family Friendly"]
+      highlights: ["Historic City", "Festival City", "Quality of Life", "Natural Beauty"]
     },
-    universities: ["University of Calgary", "Mount Royal University", "SAIT"]
+    universities: ["University of Edinburgh", "Heriot-Watt University", "Edinburgh Napier"]
   }
 };
 
@@ -233,388 +195,377 @@ export const jobMarketStats = {
   highDemandSectors: [
     {
       sector: "Technology",
-      growth: "+15% annually",
-      topRoles: ["Software Developer", "Data Scientist", "Cloud Engineer"],
+      growth: "+12% annually",
+      topRoles: ["Software Engineer", "Data Scientist", "Cloud Architect"],
       averageSalaries: {
-        entry: "CAD 65,000",
-        mid: "CAD 95,000",
-        senior: "CAD 130,000"
+        entry: "£35,000",
+        mid: "£60,000",
+        senior: "£90,000"
       }
     },
     {
       sector: "Healthcare",
-      growth: "+12% annually",
-      topRoles: ["Registered Nurse", "Medical Technologist", "Healthcare Administrator"],
+      growth: "+8% annually",
+      topRoles: ["NHS Doctors", "Specialist Nurses", "Healthcare Managers"],
       averageSalaries: {
-        entry: "CAD 60,000",
-        mid: "CAD 85,000",
-        senior: "CAD 110,000"
+        entry: "£30,000",
+        mid: "£45,000",
+        senior: "£70,000"
       }
     },
     {
       sector: "Finance",
-      growth: "+8% annually",
-      topRoles: ["Financial Analyst", "Investment Advisor", "Risk Manager"],
+      growth: "+6% annually",
+      topRoles: ["Financial Analyst", "Investment Manager", "Fintech Developer"],
       averageSalaries: {
-        entry: "CAD 55,000",
-        mid: "CAD 90,000",
-        senior: "CAD 125,000"
+        entry: "£40,000",
+        mid: "£65,000",
+        senior: "£100,000"
       }
     }
   ],
   employmentTrends: {
     remoteWork: {
-      percentage: "32% of workforce",
-      growthRate: "+25% year over year",
-      popularIndustries: ["Technology", "Finance", "Education", "Consulting"]
+      percentage: "35% of workforce",
+      growthRate: "+20% year over year",
+      popularIndustries: ["Technology", "Finance", "Professional Services", "Media"]
     },
     contractWork: {
       percentage: "15% of positions",
       growthRate: "+10% annually",
       benefits: [
-        "Higher hourly rates",
-        "Flexible schedules",
-        "Multiple client opportunities",
-        "Skill development"
+        "Higher daily rates",
+        "Flexible working",
+        "Project variety",
+        "Work-life balance"
       ]
     }
   }
 };
 
-export const canadaPRFAQs: FAQ[] = [
+export const ukPRFAQs: FAQ[] = [
   {
-    question: "What is Canada's Express Entry system?",
-    answer: "Express Entry is Canada's main immigration system for skilled workers. It manages applications for three federal programs: Federal Skilled Worker Program, Federal Skilled Trades Program, and Canadian Experience Class. The system uses a points-based system called the Comprehensive Ranking System (CRS) to rank candidates."
+    question: "What is Indefinite Leave to Remain (ILR)?",
+    answer: "ILR is the UK equivalent of permanent residency, allowing you to live and work in the UK without any immigration restrictions. It's a step before British citizenship and removes most visa conditions."
   },
   {
-    question: "What is the minimum CRS score needed for Canada PR?",
-    answer: "The CRS score cutoff varies with each draw, typically ranging from 450-500 points. However, Provincial Nominee Program candidates may qualify with lower scores. Recent draws have seen cutoffs as low as 365 points for specific program streams."
+    question: "How long do I need to live in the UK before applying for ILR?",
+    answer: "Generally, you need to have lived in the UK for 5 years under an eligible visa category. However, some routes like Global Talent or Investor visas may qualify for accelerated 2-3 year routes."
   },
   {
-    question: "How long is the Canada PR visa valid?",
-    answer: "A Canadian Permanent Resident (PR) card is typically valid for 5 years. You must maintain residency obligations (stay in Canada for at least 730 days in every 5-year period) to renew your PR status."
+    question: "What are the main eligibility requirements for ILR?",
+    answer: "Key requirements include: continuous residence of 5 years, no excessive absences (max 180 days per year), passing the Life in the UK test, meeting English language requirements (B1 level), and having a valid visa status."
   },
   {
-    question: "Can I bring my family with me on a Canada PR visa?",
-    answer: "Yes, you can include your spouse/common-law partner and dependent children in your PR application. They will receive PR status along with you. Dependent children must be under 22 years old and not married or in a common-law relationship."
+    question: "How much does an ILR application cost?",
+    answer: "As of 2024, the standard ILR application fee is £2,404 per person. Additional costs include the Life in the UK test (£50), English language test (varies), and optional priority services."
   },
   {
-    question: "What documents are required for Canada PR application?",
-    answer: "Key documents include passport, education credentials, language test results (IELTS/CELPIP/TEF), police certificates, medical exam results, proof of funds, reference letters from employers, and Educational Credential Assessment (ECA) report."
+    question: "What is the Life in the UK test?",
+    answer: "It's a computer-based test covering British history, culture, laws, and traditions. You need to score 75% or higher to pass. The test costs £50 and contains 24 questions to be completed in 45 minutes."
   },
   {
-    question: "How much money do I need to show for Canada PR?",
-    answer: "As of 2024, a single applicant needs to show CAD 20,000 in settlement funds. The amount increases with family size: CAD 24,900 for 2 people, CAD 30,600 for 3 people, etc. These funds aren't required if you're already working in Canada or have a valid job offer."
+    question: "What level of English is required for ILR?",
+    answer: "You need to demonstrate English language ability at CEFR level B1 or higher through an approved test (IELTS, Trinity, etc.) or a degree taught in English. Some nationalities and age groups are exempt."
   },
   {
-    question: "What is the age limit for Canada PR?",
-    answer: "There's no strict age limit for Canada PR, but the CRS points system favors candidates between 20-29 years (maximum 100 points). Points decrease gradually after age 30, with zero points awarded for age after 45 years."
+    question: "How is the continuous residence period calculated?",
+    answer: "The 5-year period is counted backward from your application date. You must not have been outside the UK for more than 180 days in any 12-month period during these 5 years."
   },
   {
-    question: "Can I apply for Canada PR without IELTS?",
-    answer: "While IELTS is the most common, you can also prove language proficiency through CELPIP (English) or TEF/TCF (French). At least CLB 7 (equivalent to IELTS 6.0) is required for most programs."
+    question: "Can I apply for ILR if I've changed employers?",
+    answer: "Yes, changing employers doesn't affect your ILR eligibility as long as you maintained valid visa status throughout and met all other requirements."
   },
   {
-    question: "What is the processing time for Canada PR?",
-    answer: "Express Entry PR applications are typically processed within 6-8 months. Provincial Nominee Programs may take 12-18 months. Processing times can vary based on application volume and completeness of documentation."
+    question: "What happens if I fail the Life in the UK test?",
+    answer: "You can retake the test as many times as needed, but must pay the fee each time. It's recommended to wait at least 7 days before retaking and use this time to study areas where you struggled."
   },
   {
-    question: "What is a Provincial Nomination Program (PNP)?",
-    answer: "PNPs allow Canadian provinces to nominate immigrants based on their specific economic needs. A provincial nomination adds 600 points to your CRS score, virtually guaranteeing an ITA for PR."
+    question: "Do I need to maintain my income level for ILR?",
+    answer: "While specific income requirements vary by visa route, you generally need to show you can maintain yourself without public funds. Skilled Worker visa holders must meet the relevant salary threshold."
   },
   {
-    question: "Do I need a job offer for Canada PR?",
-    answer: "A job offer is not mandatory for PR, but it can add significant points to your CRS score. A valid job offer can add 50-200 points depending on the skill level of the position."
+    question: "Can my family members apply for ILR with me?",
+    answer: "Yes, dependent family members can apply together if they meet the eligibility criteria. Each applicant pays separate fees and must meet individual requirements like the English language test."
   },
   {
-    question: "Can I work anywhere in Canada with PR?",
-    answer: "Yes, PR holders have the freedom to live, work, or study anywhere in Canada. However, some PNP streams may require you to live in the nominating province for a certain period."
+    question: "What documents are needed for an ILR application?",
+    answer: "Key documents include passport, BRP, proof of continuous residence, employment records, Life in the UK test pass certificate, English language evidence, and tax records. Specific requirements vary by visa route."
   },
   {
-    question: "What healthcare benefits do PR holders get?",
-    answer: "PR holders are eligible for Canada's universal healthcare system, which covers most medical services. Coverage begins after a short waiting period (up to 3 months) in most provinces."
+    question: "How long does ILR processing take?",
+    answer: "Standard processing takes 6 months. Super Priority service (24 hours) and Priority service (5 working days) are available for additional fees, subject to availability."
   },
   {
-    question: "Can I study while on PR in Canada?",
-    answer: "Yes, PR holders can study at any Canadian institution with domestic student status, meaning lower tuition fees compared to international students. They're also eligible for student loans and grants."
+    question: "Can I travel while my ILR application is pending?",
+    answer: "It's not recommended as leaving the UK during processing could invalidate your application. If travel is essential, consult an immigration advisor first."
   },
   {
-    question: "How can I maintain my PR status?",
-    answer: "To maintain PR status, you must live in Canada for at least 730 days (2 years) in every 5-year period. Time spent traveling with a Canadian spouse or working abroad for a Canadian company may count towards this requirement."
+    question: "What are the benefits of having ILR?",
+    answer: "Benefits include: unrestricted work rights, access to NHS, education benefits, social security access, ability to start a business, and eligibility for British citizenship after 12 months."
   },
   {
-    question: "What is the difference between PR and citizenship?",
-    answer: "PR holders have most rights except voting and holding certain jobs. They must maintain residency obligations and renew PR cards. Citizens have unrestricted rights, can vote, and don't need to maintain residency requirements."
+    question: "Can ILR be lost or revoked?",
+    answer: "Yes, ILR can be lost if you spend more than 2 consecutive years outside the UK, commit serious crimes, or obtained it through deception. Regular visits to the UK help maintain status."
   },
   {
-    question: "Can I sponsor my parents after getting PR?",
-    answer: "Yes, after becoming a PR, you can sponsor parents and grandparents through the Parent and Grandparent Program (PGP). However, this program has limited spots and specific income requirements."
+    question: "Do I need to pass the English test if I have a UK degree?",
+    answer: "No, if your degree was taught in English and is recognized by UK NARIC. You'll need to provide evidence of the qualification and its teaching language."
   },
   {
-    question: "What happens if my PR application is rejected?",
-    answer: "If rejected, you can appeal to the Immigration Appeal Division within 30 days. Alternatively, you can address the reasons for rejection and submit a new application."
+    question: "Can I apply for ILR before my 5 years are complete?",
+    answer: "You can apply up to 28 days before completing your qualifying period. Applications made too early will be rejected with no fee refund."
   },
   {
-    question: "Can I travel outside Canada with PR status?",
-    answer: "Yes, PR holders can travel freely with a valid PR card. However, you must maintain residency obligations and use your PR card or Permanent Resident Travel Document to return to Canada."
+    question: "What if I've had multiple visa types during my 5 years?",
+    answer: "Different visa combinations may affect eligibility. Some visa types can be combined, while others must be completed separately. Professional advice is recommended for complex cases."
   },
   {
-    question: "What is the NOC code and why is it important?",
-    answer: "The National Occupational Classification (NOC) code categorizes jobs in Canada. Your NOC code determines eligibility for immigration programs and affects CRS points for work experience."
+    question: "How does maternity leave affect ILR applications?",
+    answer: "Authorized maternity leave doesn't negatively impact your application. Keep evidence of your leave period and maintain contact with your employer."
   },
   {
-    question: "How does education affect PR application?",
-    answer: "Education can contribute up to 150 CRS points. Foreign credentials must be assessed through an ECA. Canadian education gives additional points, with more points for higher levels of education."
+    question: "Can I apply for ILR with criminal convictions?",
+    answer: "Minor offenses may not affect your application, but serious crimes can lead to rejection. All convictions must be declared, and legal advice is strongly recommended."
   },
   {
-    question: "What is the cost of living in major Canadian cities?",
-    answer: "Costs vary significantly: Toronto and Vancouver are most expensive (average 1-bedroom rent: CAD 2,000+), while Montreal and Calgary are more affordable (CAD 1,200-1,500). Factor in utilities, transport, and food costs."
+    question: "What happens if my ILR application is refused?",
+    answer: "You may be able to reapply, addressing the reasons for refusal, or appeal the decision if eligible. Your current visa status remains until its expiry date."
   },
   {
-    question: "Can I start a business with PR status?",
-    answer: "Yes, PR holders can start businesses, be self-employed, or buy existing businesses. They have the same business rights as citizens, except in certain regulated industries."
+    question: "Can I use my ILR to work in other countries?",
+    answer: "ILR only grants rights within the UK. For EU/EEA countries, you'll need to follow their specific immigration rules."
   },
   {
-    question: "What social benefits do PR holders receive?",
-    answer: "PR holders can access Employment Insurance, Canada Pension Plan, Old Age Security, Canada Child Benefit, and other social benefits, subject to eligibility criteria."
+    question: "Do I need to pay the Immigration Health Surcharge for ILR?",
+    answer: "No, the IHS is not required for ILR applications. Once granted ILR, you have free access to the NHS."
   },
   {
-    question: "How does the Express Entry pool work?",
-    answer: "Candidates enter the pool by creating profiles. Draws typically occur every 2 weeks, inviting highest-ranking candidates. Profiles remain valid for 12 months if not selected."
+    question: "Can I apply for benefits with ILR?",
+    answer: "Yes, ILR holders have access to public funds and benefits, subject to the same eligibility criteria as British citizens."
   },
   {
-    question: "What is a bridge open work permit?",
-    answer: "A bridge open work permit allows PR applicants to continue working in Canada while their PR application is processing, bridging the gap between expiring work permits and PR status."
+    question: "How soon can I apply for citizenship after ILR?",
+    answer: "You can apply for British citizenship 12 months after receiving ILR, provided you meet other citizenship requirements."
   },
   {
-    question: "Can I apply for PR while outside Canada?",
-    answer: "Yes, you can apply through Express Entry from outside Canada. However, some programs like Canadian Experience Class require Canadian work experience."
+    question: "What is the difference between ILR and citizenship?",
+    answer: "ILR grants permanent residence rights but can be lost after long absences. Citizenship provides additional rights like a British passport and cannot be lost through absence."
   },
   {
-    question: "What happens if I lose your job during PR processing?",
-    answer: "Losing your job during processing generally doesn't affect your application if you've already received an ITA. However, you must still show required settlement funds."
+    question: "Can I sponsor family members after getting ILR?",
+    answer: "Yes, ILR holders can sponsor eligible family members under the family visa route, subject to meeting financial and other requirements."
   },
   {
-    question: "Can I include my spouse's points in my application?",
-    answer: "Yes, spouse/partner can contribute up to 40 points through language skills, education, and Canadian work experience. Their adaptability factors can add more points."
+    question: "Do I need to inform UKVI if I change address with ILR?",
+    answer: "No, once you have ILR, you don't need to report address changes to UKVI. However, keep your BRP safe and report if lost."
   },
   {
-    question: "What is the minimum language score for PR?",
-    answer: "Most programs require minimum CLB 7 (IELTS: Listening 6.0, Reading 6.0, Writing 6.0, Speaking 6.0). Higher scores earn more CRS points."
+    question: "Can I start a business after getting ILR?",
+    answer: "Yes, ILR holders have no restrictions on starting businesses or being self-employed in the UK."
   },
   {
-    question: "Can I apply for multiple PR programs simultaneously?",
-    answer: "Yes, you can apply for Express Entry and PNP streams simultaneously. This strategy increases chances of success but may require multiple application fees."
+    question: "What if I can't meet the English language requirement?",
+    answer: "Exemptions exist for certain nationalities, those over 65, and those with physical/mental conditions. Evidence must be provided for exemptions."
   },
   {
-    question: "What is the medical exam requirement?",
-    answer: "A medical exam by an approved physician is mandatory. Results valid for 12 months. Basic health screening ensures no excessive demand on healthcare system."
+    question: "How do I prove continuous residence?",
+    answer: "Through bank statements, utility bills, council tax letters, employment records, and P60s covering the 5-year period. Gaps must be explained."
   },
   {
-    question: "How does Canadian work experience help?",
-    answer: "Canadian work experience adds significant CRS points (up to 80). It also qualifies you for Canadian Experience Class and some PNP streams."
+    question: "Can I apply for ILR if I'm unemployed?",
+    answer: "It depends on your visa type. Some routes require continuous employment, while others don't. Seek professional advice for your specific situation."
   },
   {
-    question: "What are the tax implications of PR status?",
-    answer: "PR holders must file Canadian tax returns on worldwide income. Tax treaties may prevent double taxation. Social benefits often tied to tax filing."
+    question: "What if I've been on benefits during my qualifying period?",
+    answer: "Legal benefit claims (e.g., during maternity leave) shouldn't affect your application. Unauthorized public funds use can lead to refusal."
   },
   {
-    question: "Can I buy property as a PR holder?",
-    answer: "Yes, PR holders have same property rights as citizens. No restrictions on type or number of properties. May access same mortgages and home buyer programs."
+    question: "Do I need to maintain private health insurance with ILR?",
+    answer: "No, ILR holders have full access to the NHS and don't need private insurance, though you may choose to maintain it."
   },
   {
-    question: "What is the significance of NOC skill level?",
-    answer: "NOC skill level (0, A, B, C, D) determines program eligibility. Higher skill levels (0, A, B) qualify for more programs and may earn more points."
+    question: "Can I use my foreign driving license with ILR?",
+    answer: "You can use a foreign license for up to 12 months after becoming resident. After that, you need to obtain a UK license."
   },
   {
-    question: "How do I prove my work experience?",
-    answer: "Reference letters from employers must include job title, duties, dates, hours worked, and salary. Pay stubs, tax documents, and contracts provide supporting evidence."
+    question: "What happens to my ILR if I get divorced?",
+    answer: "ILR granted independently of marriage is unaffected by divorce. If ILR was granted as a spouse, seek legal advice about your status."
   },
   {
-    question: "What happens if my circumstances change during processing?",
-    answer: "Must notify IRCC of material changes (marriage, children, job loss, address). Some changes may affect eligibility or points calculation."
+    question: "Can I apply for ILR if I've claimed asylum?",
+    answer: "Yes, after 5 years of refugee status. Different rules apply for asylum seekers and refugees."
   },
   {
-    question: "Can I apply for PR with a criminal record?",
-    answer: "Minor offenses may not disqualify you, but serious crimes likely will. Must declare all convictions. Rehabilitation process available for some cases."
+    question: "Do I need a lawyer for my ILR application?",
+    answer: "While not mandatory, professional help is recommended for complex cases or if you're unsure about eligibility or documentation."
   },
   {
-    question: "What is the role of immigration consultants?",
-    answer: "Licensed consultants can provide advice, review applications, and communicate with IRCC. Not mandatory but helpful for complex cases."
+    question: "What if I've been outside the UK due to COVID-19?",
+    answer: "UKVI may show flexibility for COVID-related absences. Keep evidence of why travel was necessary or prevented return."
   },
   {
-    question: "How does Express Entry ranking work?",
-    answer: "CRS points awarded for core factors (age, education, language, experience) and additional factors (Canadian education, job offer, nomination). Total determines rank."
+    question: "Can I apply for ILR from outside the UK?",
+    answer: "Generally no, ILR applications must be made while in the UK. Returning residents may apply to resume their ILR status."
   },
   {
-    question: "What are the language test options?",
-    answer: "IELTS or CELPIP for English, TEF or TCF for French. Must test all abilities (reading, writing, speaking, listening). Results valid for 2 years."
+    question: "What is the SET(O) form?",
+    answer: "SET(O) is the application form for ILR under various work and residence categories. Different forms exist for family or protection routes."
   },
   {
-    question: "Can I work while waiting for PR?",
-    answer: "Need valid work permit unless applying through CEC or have bridge open work permit. Some PR streams include work permits."
+    question: "Do I need to take the Life in the UK test in English?",
+    answer: "Yes, the test is only available in English, Welsh, or Scottish Gaelic. Translation or interpretation is not permitted."
   },
   {
-    question: "What is the impact of having children on PR application?",
-    answer: "Children under 22 can be included as dependents. Affects proof of funds requirement. May impact processing time. Consider education and healthcare needs."
+    question: "Can I work during my ILR application processing?",
+    answer: "Yes, you can continue working under your current visa conditions while your ILR application is being processed."
   },
   {
-    question: "How do I prove relationship for spouse inclusion?",
-    answer: "Marriage certificate or common-law evidence required. Photos, joint accounts, shared residence, communication records help prove genuine relationship."
+    question: "What if I need to travel urgently during processing?",
+    answer: "You can request your passport back by withdrawing your application, but this may delay processing and require a new application fee."
   },
   {
-    question: "What are the residency obligations after getting PR?",
-    answer: "Must spend 730 days in Canada every 5 years. Time abroad with Canadian spouse or for Canadian employer may count. Keep detailed travel records."
+    question: "Can I study with ILR?",
+    answer: "Yes, ILR holders can study at any level and qualify for home fee status and student finance after three years' residence."
   },
   {
-    question: "Can I apply for citizenship after PR?",
-    answer: "Eligible after 3 years of physical presence as PR. Must file taxes, pass test, prove language skills. Processing takes about 12 months."
+    question: "What if my passport expires during the ILR process?",
+    answer: "You should renew your passport before applying. If it expires during processing, you'll need to update UKVI with new details."
   },
   {
-    question: "What happens to my PR if I divorce?",
-    answer: "PR status independent of marriage once granted. Divorce doesn't affect PR status but may affect citizenship residency calculations."
+    question: "Can I use my ILR to live in Scotland, Wales, or Northern Ireland?",
+    answer: "Yes, ILR grants residence rights throughout the United Kingdom, including all four nations."
   },
   {
-    question: "How do I calculate my CRS score?",
-    answer: "Use official CRS tool on IRCC website. Factors include age, education, language, experience, spouse factors, adaptability. Maximum 1200 points."
+    question: "Do I need to declare all my absences from the UK?",
+    answer: "Yes, you must declare all absences during the qualifying period. Keep accurate records including travel documents and tickets."
   },
   {
-    question: "What is the significance of police certificates?",
-    answer: "Required from countries lived in for 6+ months since age 18. Prove good character. Must be recent (usually within 6 months)."
+    question: "What happens if I make a mistake on my application?",
+    answer: "Minor errors can be corrected during processing. Significant mistakes or omissions could lead to refusal. Be thorough and honest."
   },
   {
-    question: "Can I appeal a PR refusal?",
-    answer: "Some refusals can be appealed to Immigration Appeal Division. 30-day deadline. Legal representation recommended. Success depends on grounds."
+    question: "Can I expedite my ILR application?",
+    answer: "Yes, through Super Priority (24 hours) or Priority (5 working days) services, subject to availability and additional fees."
   },
   {
-    question: "What is the role of biometrics?",
-    answer: "Fingerprints and photo required. Valid for 10 years. Must be done at authorized location. Used for background checks and identity verification."
+    question: "What evidence of income is required for ILR?",
+    answer: "Requirements vary by route but typically include payslips, bank statements, P60s, and employment contracts covering the qualifying period."
+  },
+  {
+    question: "Can I apply for a mortgage with ILR?",
+    answer: "Yes, ILR holders can apply for mortgages and are often viewed more favorably by lenders than those on temporary visas."
   }
 ];
-
-export const additionalResources = {
-  usefulLinks: [
-    {
-      title: "IRCC Official Website",
-      url: "https://www.canada.ca/en/immigration-refugees-citizenship.html",
-      description: "Official government immigration portal with latest updates and resources"
-    },
-    {
-      title: "CRS Calculator Tool",
-      url: "https://www.cic.gc.ca/english/immigrate/skilled/crs-tool.asp",
-      description: "Official tool to calculate your Comprehensive Ranking System score"
-    },
-    {
-      title: "Find an Immigration Consultant",
-      url: "https://college-ic.ca/protecting-the-public/find-an-immigration-consultant",
-      description: "Official registry of licensed immigration consultants"
-    }
-  ],
-  emergencyContacts: {
-    IRCC: "1-888-242-2100",
-    CanadianEmbassy: "Varies by country",
-    EmergencyServices: "911"
-  },
-  processingTools: {
-    applicationStatus: "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-status.html",
-    processingTimes: "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/check-processing-times.html",
-    onlineHelp: "https://www.cic.gc.ca/english/helpcentre/index.asp"
-  }
-};
-
-export const lifestyleGuide = {
-  healthcare: {
-    system: "Universal healthcare through provincial insurance",
-    coverage: ["Doctor visits", "Hospital stays", "Essential medical services"],
-    waiting: "3-month waiting period in most provinces",
-    private: "Optional private insurance for non-covered services"
-  },
-  education: {
-    public: {
-      cost: "Free until grade 12",
-      quality: "High international rankings",
-      language: "English or French depending on province"
-    },
-    postsecondary: {
-      types: ["Universities", "Colleges", "Technical Institutes"],
-      costs: "Domestic rates for PR holders",
-      funding: "Access to government loans and grants"
-    }
-  },
-  housing: {
-    types: ["Apartments", "Condos", "Houses", "Townhouses"],
-    markets: {
-      rental: "Competitive in major cities",
-      purchase: "Various mortgage options available"
-    },
-    costs: {
-      vancouver: "Highest average prices",
-      toronto: "Second highest market",
-      montreal: "More affordable major city",
-      calgary: "Moderate pricing"
-    }
-  },
-  transportation: {
-    public: {
-      availability: "Extensive in major cities",
-      types: ["Bus", "Subway", "Light Rail", "Streetcar"],
-      cost: "Monthly passes available"
-    },
-    driving: {
-      license: "Provincial licensing system",
-      insurance: "Mandatory car insurance",
-      conditions: "Winter driving skills important"
-    }
-  },
-  weather: {
-    seasons: ["Spring", "Summer", "Fall", "Winter"],
-    temperatures: {
-      summer: "20°C to 30°C",
-      winter: "-30°C to 0°C depending on region"
-    },
-    preparation: ["Winter clothing", "Home heating", "Vehicle winterization"]
-  }
-};
 
 export const prVisaTimeline: Record<string, TimelinePhase> = {
   preparation: {
     title: "Preparation Phase",
     duration: "3-6 months",
     tasks: [
-      "Language test preparation and exam",
-      "Educational credential assessment",
-      "Gather documents",
-      "Professional references"
+      "Check eligibility requirements",
+      "Prepare for Life in the UK test",
+      "Take English language test if needed",
+      "Calculate absences from UK"
+    ]
+  },
+  documentation: {
+    title: "Document Collection",
+    duration: "1-2 months",
+    tasks: [
+      "Gather residence proof",
+      "Compile employment history",
+      "Obtain tax records",
+      "Prepare financial documents"
     ]
   },
   application: {
-    title: "Application Phase",
-    duration: "1-2 months",
+    title: "Application Process",
+    duration: "1 month",
     tasks: [
-      "Create Express Entry profile",
-      "Receive ITA",
-      "Submit complete application",
-      "Pay fees"
+      "Complete online application",
+      "Pay application fees",
+      "Book biometric appointment",
+      "Submit supporting documents"
     ]
   },
   processing: {
     title: "Processing Phase",
-    duration: "6-8 months",
+    duration: "6 months standard",
     tasks: [
       "Application review",
-      "Medical examination",
-      "Background checks",
+      "Respond to queries if any",
+      "Biometric residence permit",
       "Final decision"
     ]
+  }
+};
+
+export const lifestyleGuide = {
+  healthcare: {
+    system: "National Health Service (NHS)",
+    coverage: [
+      "GP Services",
+      "Hospital Care",
+      "Emergency Services",
+      "Maternity Care"
+    ],
+    waiting: "Immediate access with ILR",
+    private: "Private healthcare options available"
   },
-  landing: {
-    title: "Landing Phase",
-    duration: "1-2 months",
-    tasks: [
-      "Receive COPR",
-      "Plan arrival",
-      "Initial entry",
-      "Get PR card"
-    ]
+  education: {
+    public: {
+      cost: "Free state education ages 5-18",
+      quality: "High standard curriculum",
+      options: "State and grammar schools"
+    },
+    higher: {
+      types: ["Universities", "Colleges", "Vocational Training"],
+      costs: "Home student fees with ILR",
+      funding: "Access to student loans"
+    }
+  },
+  housing: {
+    types: ["Flats", "Houses", "Terraced Homes", "New Builds"],
+    markets: {
+      rental: "Active rental market in cities",
+      purchase: "Various mortgage options"
+    },
+    regions: {
+      london: "Highest costs",
+      southeast: "Above average prices",
+      north: "More affordable options",
+      scotland: "Varied market"
+    }
+  }
+};
+
+export const additionalResources = {
+  usefulLinks: [
+    {
+      title: "UK Government Visa Portal",
+      url: "https://www.gov.uk/settle-in-the-uk",
+      description: "Official government resource for ILR applications"
+    },
+    {
+      title: "Life in the UK Test Booking",
+      url: "https://www.gov.uk/life-in-the-uk-test",
+      description: "Official test booking service"
+    },
+    {
+      title: "English Language Test Centers",
+      url: "https://www.gov.uk/guidance/prove-your-english-language-abilities-with-a-secure-english-language-test-selt",
+      description: "Approved test center locations"
+    }
+  ],
+  emergencyContacts: {
+    "UKVI Contact Centre": "+44 300 123 2241",
+    "NHS Emergency": "999",
+    "Non-Emergency Healthcare": "111"
+  },
+  processingTools: {
+    applicationStatus: "https://www.gov.uk/track-your-visa-application",
+    processingTimes: "https://www.gov.uk/visa-processing-times",
+    feeCalculator: "https://www.gov.uk/visa-fees"
   }
 }; 

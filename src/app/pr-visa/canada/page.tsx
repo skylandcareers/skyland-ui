@@ -107,7 +107,7 @@ const CanadaPRPage = () => {
             >
               <h1 className="text-2xl md:text-4xl font-bold leading-tight">
                 Your Journey to{' '}
-                <span className="text-blue-200">Canadian Permanent Residency</span>{' '}
+                <span className="text-yellow-400">Canadian Permanent Residency</span>{' '}
                 Starts Here
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">

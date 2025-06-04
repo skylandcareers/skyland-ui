@@ -24,13 +24,14 @@ import {
   Laptop,
 } from 'lucide-react';
 import { 
-  canadaPRContent, 
-  canadaPRFAQs, 
+  newZealandPRContent, 
+  newZealandPRFAQs, 
   cityComparisons,
   jobMarketStats,
   lifestyleGuide,
   prVisaTimeline,
-  additionalResources
+  additionalResources,
+  pointsSystem
 } from './content';
 import LeadForm from '@/components/LeadForm';
 
@@ -39,36 +40,36 @@ const lifestyleContent = [
   {
     icon: <Home className="w-5 h-5" />,
     title: "Housing",
-    description: "Find your ideal home in Canada's diverse housing market, from urban condos to suburban houses."
+    description: "Find your ideal home in New Zealand's diverse housing market, from urban apartments to lifestyle blocks."
   },
   {
     icon: <Building className="w-5 h-5" />,
     title: "Work Culture",
-    description: "Experience Canada's inclusive work environment with excellent work-life balance."
+    description: "Experience New Zealand's balanced work environment with excellent work-life integration."
   },
   {
     icon: <Users className="w-5 h-5" />,
     title: "Community",
-    description: "Join Canada's multicultural society with vibrant communities across the country."
+    description: "Join New Zealand's welcoming society with strong community values and Maori culture."
   },
   {
     icon: <Heart className="w-5 h-5" />,
     title: "Healthcare",
-    description: "Access Canada's universal healthcare system with comprehensive coverage."
+    description: "Access New Zealand's comprehensive public healthcare system (ACC) with universal coverage."
   },
   {
     icon: <Book className="w-5 h-5" />,
     title: "Education",
-    description: "Benefit from world-class education at all levels with subsidized rates."
+    description: "Benefit from New Zealand's world-renowned education system at all levels."
   },
   {
     icon: <Laptop className="w-5 h-5" />,
     title: "Technology",
-    description: "Be part of Canada's growing technology and innovation sectors."
+    description: "Be part of New Zealand's innovative tech sector and digital economy."
   }
 ];
 
-const CanadaPRPage = () => {
+const NewZealandPRPage = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [showPointsCalculator, setShowPointsCalculator] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
@@ -107,7 +108,7 @@ const CanadaPRPage = () => {
             >
               <h1 className="text-2xl md:text-4xl font-bold leading-tight">
                 Your Journey to{' '}
-                <span className="text-blue-200">Canadian Permanent Residency</span>{' '}
+                <span className="text-blue-200">New Zealand Permanent Residency</span>{' '}
                 Starts Here
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
@@ -165,7 +166,7 @@ const CanadaPRPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Eligibility Requirements</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {Object.entries(canadaPRContent.visaRequirements).map(([key, requirement], index) => (
+              {Object.entries(newZealandPRContent.visaRequirements).map(([key, requirement], index) => (
                 <motion.div 
                   key={key}
                   className="bg-white rounded-lg p-4 shadow-lg hover:shadow transition-shadow border border-gray-200 hover:border-gray-300"
@@ -190,7 +191,7 @@ const CanadaPRPage = () => {
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Application Process</h2>
             <div className="space-y-4">
-              {canadaPRContent.applicationProcess.map((step, index) => (
+              {newZealandPRContent.applicationProcess.map((step, index) => (
                 <motion.div 
                   key={index}
                   className="flex items-start gap-4 bg-white rounded-lg p-4 shadow-lg border border-gray-200 hover:border-gray-300"
@@ -224,7 +225,7 @@ const CanadaPRPage = () => {
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">{city.name}</h3>
-                      <p className="text-gray-600">{city.province}</p>
+                      <p className="text-gray-600">{city.region}</p>
                     </div>
                     <div className="text-right">
                       <p className="text-sm text-gray-500">Population</p>
@@ -339,7 +340,7 @@ const CanadaPRPage = () => {
 
           {/* Lifestyle Guide Section */}
           <section className="py-8 md:py-14">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Life in Canada Overview</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">Life in New Zealand Overview</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {lifestyleContent.map((item, index) => (
                 <motion.div
@@ -398,10 +399,10 @@ const CanadaPRPage = () => {
                 <div>
                   <h4 className="font-medium text-gray-900 mb-4">City Comparison</h4>
                   <div className="space-y-4">
-                    {Object.entries(lifestyleGuide.housing.costs).map(([city, cost], i) => (
+                    {Object.entries(lifestyleGuide.housing.regions).map(([city, rent], i) => (
                       <div key={i} className="border-l-4 border-blue-600 pl-3">
                         <p className="text-sm text-gray-600 capitalize">{city}</p>
-                        <p className="font-medium text-gray-900">{cost}</p>
+                        <p className="font-medium text-gray-900">{rent}</p>
                       </div>
                     ))}
                   </div>
@@ -489,7 +490,7 @@ const CanadaPRPage = () => {
             <div className="mt-12 bg-white rounded-lg p-6 shadow-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
               <div className="space-y-4">
-                {canadaPRFAQs.map((faq, index) => (
+                {newZealandPRFAQs.map((faq, index) => (
                   <div key={index} className="border-b border-gray-200 last:border-0 pb-4">
                     <button
                       onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
@@ -653,7 +654,7 @@ const CanadaPRPage = () => {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <h3 className="text-xl font-bold mb-3">Ready to Start Your Journey?</h3>
-            <p className="text-base text-blue-100 mb-4">Get expert guidance on your Canada PR visa application</p>
+            <p className="text-base text-blue-100 mb-4">Get expert guidance on your New Zealand PR visa application</p>
             <button 
               onClick={() => setShowPointsCalculator(true)}
               className="w-full bg-white text-blue-600 font-medium py-2.5 px-4 rounded-lg text-base hover:bg-blue-50 transition-colors"
@@ -666,11 +667,11 @@ const CanadaPRPage = () => {
           <div className="bg-white rounded-lg p-6 shadow-lg">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">CRS Points Calculator</h3>
             <div className="space-y-4">
-              {canadaPRContent.pointsSystem.categories.map((category, index) => (
+              {pointsSystem.categories.map((category, index) => (
                 <div key={index} className="border-b border-gray-200 pb-4 last:border-0">
                   <div className="flex justify-between items-center mb-2">
                     <span className="font-medium text-gray-900">{category.category}</span>
-                    <span className="text-blue-600 font-medium">Max {category.maxPoints} pts</span>
+                    <span className="text-blue-600 font-medium">Max {category.maxPoints} points</span>
                   </div>
                   <p className="text-sm text-gray-600">{category.description}</p>
                 </div>
@@ -686,9 +687,9 @@ const CanadaPRPage = () => {
 
           {/* Benefits Card */}
           <div className="bg-white rounded-lg p-6 shadow hover:shadow-md">
-            <h3 className="text-xl font-bold text-gray-900 mb-5">Benefits of Canada PR</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-5">Benefits of New Zealand PR</h3>
             <div className="space-y-5">
-              {canadaPRContent.mainBenefits.map((benefit, index) => (
+              {newZealandPRContent.mainBenefits.map((benefit, index) => (
                 <div key={index} className="flex items-start gap-4">
                   <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                   <div>
@@ -782,7 +783,7 @@ const CanadaPRPage = () => {
                 </button>
               </div>
               <div className="prose prose-blue max-w-none">
-                {canadaPRContent.mainBenefits.find(b => b.title === selectedBenefit)?.description}
+                {newZealandPRContent.mainBenefits.find(b => b.title === selectedBenefit)?.description}
               </div>
             </motion.div>
           </>
@@ -816,7 +817,7 @@ const CanadaPRPage = () => {
                 </button>
               </div>
               <div className="space-y-5">
-                {canadaPRContent.pointsSystem.categories.map((category, index) => (
+                {pointsSystem.categories.map((category, index) => (
                   <div key={index} className="border-b border-gray-200 pb-5">
                     <div className="flex justify-between items-center mb-2">
                       <h4 className="text-base font-medium text-gray-900">{category.category}</h4>
@@ -827,7 +828,7 @@ const CanadaPRPage = () => {
                 ))}
                 <div className="bg-blue-50 p-5 rounded-lg">
                   <p className="text-base text-blue-800">
-                    {canadaPRContent.pointsSystem.description}
+                    {pointsSystem.description}
                   </p>
                 </div>
               </div>
@@ -849,4 +850,4 @@ const CanadaPRPage = () => {
   );
 };
 
-export default CanadaPRPage;
+export default NewZealandPRPage;
