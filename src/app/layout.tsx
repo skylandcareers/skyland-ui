@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 
 
 export const metadata: Metadata = {
-  title: 'Skyland June',
+  title: 'Skyland Immigration and Careers',
   description: 'Your trusted partner for global mobility solutions',
 };
 
