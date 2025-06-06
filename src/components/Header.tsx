@@ -261,7 +261,7 @@ const visaData: VisaMenuItem[] = [
           { name: 'Schengen', url: '/visit-visa/schengen' },
           { name: 'Canada', url: '/visit-visa/canada' },
           { name: 'Australia', url: '/visit-visa/australia' },
-          { name: 'Dubai', url: '/visit-visa/dubai' }
+          { name: 'UAE', url: '/visit-visa/uae' }
         ]
       },
       {
