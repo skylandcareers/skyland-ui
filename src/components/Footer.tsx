@@ -27,11 +27,11 @@ const Footer = () => {
 
   // Visa Services Data
   const visaServices = [
-    { name: 'Canada PR Visa', path: '/canada-visa' },
+    { name: 'PR Visa', path: '/pr-visa' },
     { name: 'Student Visa', path: '/student-visa' },
     { name: 'Work Permit', path: '/work-visa' },
-    { name: 'Australia Immigration', path: '/australia-visa' },
-    { name: 'Visitor Visa', path: '/visitor-visa' },
+    { name: 'Visit Visa', path: '/visit-visa' },
+    { name: 'Languages Training', path: '/coaching' },
   ];
 
   // Social Media Links
@@ -120,8 +120,7 @@ const Footer = () => {
                 <FaMapMarkerAlt className="text-yellow-400 text-sm" />
               </div>
               <address className="text-sm text-gray-400 not-italic">
-                123, Global Towers, Financial District,<br />
-                Hyderabad, Telangana 500032, India
+              4th Floor Vasavi MPM Grand, Ameerpet, Yella Reddy Guda, Hyderabad, Telangana 500073
               </address>
             </li>
             <li className="flex items-center">
@@ -130,10 +129,10 @@ const Footer = () => {
               </div>
               <div>
                 <a href="tel:+919999999999" className="text-sm text-gray-400 hover:text-yellow-400 transition duration-300 block">
-                  +91 99999 99999
+                  +91 6300191853
                 </a>
                 <a href="tel:+914040404040" className="text-sm text-gray-400 hover:text-yellow-400 transition duration-300 block">
-                  +91 40 4040 4040
+                  +91 9032420020
                 </a>
               </div>
             </li>
@@ -154,18 +153,24 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="bg-gray-800 py-6 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between text-sm">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between text-md">
           <div className="text-gray-400 mb-4 md:mb-0 text-center md:text-left">
             <p>&copy; {currentYear} Skyland Immigration. All rights reserved.</p>
-            <div className="mt-1 text-xs">
+          </div>
+          <div className="mt-1 text-sm">
               <Link href="/privacy-policy" className="hover:text-yellow-400 transition duration-300 mr-3">
                 Privacy Policy
               </Link>
-              <Link href="/terms-of-service" className="hover:text-yellow-400 transition duration-300">
+              <Link href="/terms-of-service" className="hover:text-yellow-400 transition duration-300 mr-3">
                 Terms of Service
               </Link>
+              <Link href="/refund-policy" className="hover:text-yellow-400 transition duration-300 mr-3">
+                Refund Policy
+              </Link>
+              <Link href="/disclaimer" className="hover:text-yellow-400 transition duration-300">
+                Disclaimer
+              </Link>
             </div>
-          </div>
           
           <div className="flex items-center space-x-6">
             <Link 

@@ -113,7 +113,7 @@ const ContactUs = () => {
               </div>
               <div>
                 <h2 className="text-xl font-semibold text-gray-900">Visit Us</h2>
-                <p className="text-gray-700">123 Global Plaza, Mumbai</p>
+                <p className="text-gray-700">4th Floor Vasavi MPM Grand, Ameerpet, Yella Reddy Guda, Hyderabad, Telangana 500073</p>
                 <p className="text-gray-500 text-sm">Open weekdays 9AM - 5PM</p>
               </div>
             </div>
