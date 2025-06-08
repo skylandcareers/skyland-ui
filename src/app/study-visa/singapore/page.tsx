@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import LeadForm from '@/components/LeadForm';
 import {
   CheckCircle2,
   Timer,
@@ -16,7 +17,6 @@ import {
 } from 'lucide-react';
 import { singaporeStudyVisaContent } from './content';
 import type { SingaporeStudyVisaContent } from './content.d';
-import Image from 'next/image';
 
 const contactInfo = {
   phone: "+91-9032420000",
@@ -43,7 +43,7 @@ const SingaporeStudyVisaPage = () => {
                 Get a 1-year diploma with paid internship opportunity after 6 months. 
                 Fast-track your career with practical industry experience in Singapore.
               </p>
-              <div className="space-y-4 bg-blue-500/30 p-5 rounded-xl">
+              <div className="space-y-4 bg-blue-500 p-5 rounded-xl">
                 {content.mainBenefits.map((benefit, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-yellow-300 flex-shrink-0" />
@@ -61,8 +61,8 @@ const SingaporeStudyVisaPage = () => {
                 </button>
               </div>
             </div>
-            <div className="lg:flex justify-end hidden">
-              <Image src="/singapore-study.jpg" alt="Study in Singapore" width={500} height={500} />
+            <div className="bg-white/10 p-4 md:p-6 rounded-xl backdrop-blur-sm">
+              <LeadForm />
             </div>
           </div>
         </div>

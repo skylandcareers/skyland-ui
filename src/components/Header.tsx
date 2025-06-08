@@ -72,7 +72,6 @@ const visaData: NavigationItem[] = [
       {
         name: 'Popular Destinations',
         items: [
-          { name: 'USA', url: '/study-visa/usa' },
           { name: 'UK', url: '/study-visa/uk' },
           { name: 'Canada', url: '/study-visa/canada' },
           { name: 'Australia', url: '/study-visa/australia' },
@@ -81,102 +80,10 @@ const visaData: NavigationItem[] = [
           { name: 'Russia', url: '/study-visa/russia' },
           { name: 'Malta', url: '/study-visa/malta' },
           { name: 'Cyprus', url: '/study-visa/cyprus' },
-        ]
-      },
-      {
-        name: 'Western Europe',
-        items: [
-          { name: 'Austria', url: '/study-visa/austria' },
-          { name: 'Belgium', url: '/study-visa/belgium' },
-          { name: 'France', url: '/study-visa/france' },
-          { name: 'Germany', url: '/study-visa/germany' },
           { name: 'Ireland', url: '/study-visa/ireland' },
-          { name: 'Luxembourg', url: '/study-visa/luxembourg' },
-          { name: 'Netherlands', url: '/study-visa/netherlands' },
-          { name: 'Switzerland', url: '/study-visa/switzerland' },
-          { name: 'UK', url: '/study-visa/uk' }
-        ]
-      },
-      {
-        name: 'Northern Europe',
-        items: [
-          { name: 'Denmark', url: '/study-visa/denmark' },
-          { name: 'Finland', url: '/study-visa/finland' },
-          { name: 'Iceland', url: '/study-visa/iceland' },
-          { name: 'Norway', url: '/study-visa/norway' },
-          { name: 'Sweden', url: '/study-visa/sweden' }
-        ]
-      },
-      {
-        name: 'Southern Europe',
-        items: [
-          { name: 'Cyprus', url: '/study-visa/cyprus' },
-          { name: 'Greece', url: '/study-visa/greece' },
-          { name: 'Italy', url: '/study-visa/italy' },
-          { name: 'Malta', url: '/study-visa/malta' },
-          { name: 'Portugal', url: '/study-visa/portugal' },
-          { name: 'Spain', url: '/study-visa/spain' }
-        ]
-      },
-      {
-        name: 'Eastern Europe',
-        items: [
-          { name: 'Bulgaria', url: '/study-visa/bulgaria' },
-          { name: 'Croatia', url: '/study-visa/croatia' },
-          { name: 'Czech Republic', url: '/study-visa/czech-republic' },
-          { name: 'Estonia', url: '/study-visa/estonia' },
-          { name: 'Hungary', url: '/study-visa/hungary' },
-          { name: 'Latvia', url: '/study-visa/latvia' },
-          { name: 'Lithuania', url: '/study-visa/lithuania' },
-          { name: 'Poland', url: '/study-visa/poland' },
-          { name: 'Romania', url: '/study-visa/romania' },
-          { name: 'Slovakia', url: '/study-visa/slovakia' },
-          { name: 'Slovenia', url: '/study-visa/slovenia' }
-        ]
-      },
-      {
-        name: 'Asia Pacific',
-        items: [
-          { name: 'Australia', url: '/study-visa/australia' },
-          { name: 'China', url: '/study-visa/china' },
-          { name: 'Hong Kong', url: '/study-visa/hong-kong' },
-          { name: 'Japan', url: '/study-visa/japan' },
-          { name: 'Malaysia', url: '/study-visa/malaysia' },
-          { name: 'New Zealand', url: '/study-visa/new-zealand' },
           { name: 'Singapore', url: '/study-visa/singapore' },
-          { name: 'South Korea', url: '/study-visa/south-korea' },
-          { name: 'Taiwan', url: '/study-visa/taiwan' }
         ]
       },
-      {
-        name: 'South & Southeast Asia',
-        items: [
-          { name: 'India', url: '/study-visa/india' },
-          { name: 'Indonesia', url: '/study-visa/indonesia' },
-          { name: 'Maldives', url: '/study-visa/maldives' },
-          { name: 'Thailand', url: '/study-visa/thailand' },
-          { name: 'Vietnam', url: '/study-visa/vietnam' }
-        ]
-      },
-      {
-        name: 'Americas',
-        items: [
-          { name: 'Brazil', url: '/study-visa/brazil' },
-          { name: 'Canada', url: '/study-visa/canada' },
-          { name: 'Mexico', url: '/study-visa/mexico' },
-          { name: 'USA', url: '/study-visa/usa' }
-        ]
-      },
-      {
-        name: 'Other Regions',
-        items: [
-          { name: 'Israel', url: '/study-visa/israel' },
-          { name: 'Russia', url: '/study-visa/russia' },
-          { name: 'South Africa', url: '/study-visa/south-africa' },
-          { name: 'Turkey', url: '/study-visa/turkey' },
-          { name: 'UAE', url: '/study-visa/uae' }
-        ]
-      }
     ],
     countries: [
       { name: 'Albania', url: '/study-visa/albania' },
