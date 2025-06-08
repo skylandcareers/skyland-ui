@@ -65,8 +65,8 @@ const visaData: NavigationItem[] = [
     icon: <GraduationCap className="w-5 h-5" />,
     description: 'Study Abroad Programs and Student Visas',
     featured: [
-      { name: 'Top Universities Guide', url: '/resources/universities' },
-      { name: 'Scholarship Programs', url: '/resources/scholarships' }
+      { name: 'Top Universities Guide', url: '/study-visa/top-universities' },
+      { name: 'Scholarship Programs', url: '/study-visa/scholarships' }
     ],
     categories: [
       {

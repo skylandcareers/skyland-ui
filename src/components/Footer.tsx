@@ -19,6 +19,7 @@ const Footer = () => {
   // Quick Links Data
   const quickLinks = [
     { name: 'Home', path: '/' },
+    { name: 'Resources', path: '/resources' },
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Success Stories', path: '/success-stories' },
@@ -43,8 +44,38 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-16">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-gray-700">
+    <footer className="bg-gray-900 text-gray-300">
+      <div className="bg-gray-100 text-gray-900 py-10">
+  <div className="max-w-7xl mx-auto px-6">
+    <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">
+      Explore Our Immigration Resources
+    </h3>
+
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {[
+        { title: 'Guides & Tutorials', href: '/resources/guides' },
+        { title: 'Checklists', href: '/resources/checklists' },
+        { title: 'Templates & Samples', href: '/resources/templates' },
+        { title: 'Download Center', href: '/resources/downloads' },
+        { title: 'Government Links', href: '/resources/government-links' },
+        { title: 'Visa FAQs', href: '/resources/faqs' }, // Optional extra
+      ].map((item, idx) => (
+        <Link
+          key={idx}
+          href={item.href}
+          className="block bg-white hover:bg-gray-100 text-gray-800 border border-gray-100 p-5 rounded-xl shadow-lg transition-all duration-300"
+        >
+          <h4 className="text-lg font-semibold mb-1">{item.title}</h4>
+          <p className="text-sm text-gray-600">
+            Learn more about {item.title.toLowerCase()} to make informed decisions.
+          </p>
+        </Link>
+      ))}
+    </div>
+  </div>
+</div>
+      {/* Resources Bar */}
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-gray-700 pt-16">
         {/* Company Info */}
         <div className="space-y-4">
           <Link href="/" className="text-2xl font-bold text-white hover:text-yellow-400 transition duration-300 inline-block">
@@ -150,6 +181,10 @@ const Footer = () => {
           </ul>
         </div>
       </div>
+
+      {/* Enhanced Resources Bar */}
+
+
 
       {/* Bottom Bar */}
       <div className="bg-gray-800 py-6 px-6">

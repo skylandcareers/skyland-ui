@@ -8,8 +8,8 @@ const countryRequirements = [
   {
     country: 'USA',
     universities: [
+      { name: 'Massachusetts Institute of Technology (MIT)', requirement: '100+ iBT' },
       { name: 'Harvard University', requirement: '100+ iBT' },
-      { name: 'MIT', requirement: '100+ iBT' },
       { name: 'Stanford University', requirement: '100+ iBT' }
     ]
   },
@@ -24,9 +24,17 @@ const countryRequirements = [
   {
     country: 'UK',
     universities: [
+      { name: 'Imperial College London', requirement: '92+ iBT' },
       { name: 'University of Oxford', requirement: '100+ iBT' },
-      { name: 'University of Cambridge', requirement: '100+ iBT' },
-      { name: 'Imperial College London', requirement: '92+ iBT' }
+      { name: 'University of Cambridge', requirement: '100+ iBT' }
+    ]
+  },
+  {
+    country: 'Singapore',
+    universities: [
+      { name: 'National University of Singapore', requirement: '92+ iBT' },
+      { name: 'Nanyang Technological University', requirement: '90+ iBT' },
+      { name: 'Singapore Management University', requirement: '85+ iBT' }
     ]
   }
 ];

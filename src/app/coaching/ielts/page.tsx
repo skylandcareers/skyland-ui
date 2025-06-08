@@ -6,27 +6,27 @@ import { BookOpen, Users, Check, Globe, Award, ChevronRight } from 'lucide-react
 
 const countryRequirements = [
   {
-    country: 'Canada',
+    country: 'UK',
     universities: [
-      { name: 'University of Toronto', requirement: '6.5 with no band less than 6.0' },
-      { name: 'University of British Columbia', requirement: '6.5 with no band less than 6.0' },
-      { name: 'McGill University', requirement: '6.5 with no band less than 6.0' }
+      { name: 'Imperial College London', requirement: '7.0 with no band less than 6.5' },
+      { name: 'University of Oxford', requirement: '7.0 with no band less than 7.0' },
+      { name: 'University of Cambridge', requirement: '7.0 with no band less than 7.0' }
     ]
   },
   {
     country: 'Australia',
     universities: [
+      { name: 'Australian National University', requirement: '6.5 with no band less than 6.0' },
       { name: 'University of Melbourne', requirement: '6.5 with no band less than 6.0' },
-      { name: 'University of Sydney', requirement: '6.5 with no band less than 6.0' },
-      { name: 'Monash University', requirement: '6.5 with no band less than 6.0' }
+      { name: 'University of Sydney', requirement: '6.5 with no band less than 6.0' }
     ]
   },
   {
-    country: 'UK',
+    country: 'Canada',
     universities: [
-      { name: 'University of Oxford', requirement: '7.0 with no band less than 6.5' },
-      { name: 'University of Cambridge', requirement: '7.0 with no band less than 6.5' },
-      { name: 'Imperial College London', requirement: '7.0 with no band less than 6.5' }
+      { name: 'University of Toronto', requirement: '6.5 with no band less than 6.0' },
+      { name: 'McGill University', requirement: '6.5 with no band less than 6.0' },
+      { name: 'University of British Columbia', requirement: '6.5 with no band less than 6.0' }
     ]
   }
 ];
