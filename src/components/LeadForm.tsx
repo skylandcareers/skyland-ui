@@ -1,23 +1,24 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, Loader2 } from "lucide-react";
-import axios from "axios";
-
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Send, Loader2 } from 'lucide-react';
+import axios from 'axios';
 interface FormData {
   name: string;
   email: string;
-  phone: string;
+  contact_number: string;
+  source_url: string;
 }
 
-const apiUrl = process.env.NEXT_PUBLIC_API;
+const apiUrl = process.env.NEXT_PUBLIC_API + '/create-web-lead';
 
 const LeadForm = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
+    name: '',
+    email: '',
+    contact_number: '',
+    source_url: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,7 +28,7 @@ const LeadForm = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }));
   };
 
@@ -37,12 +38,13 @@ const LeadForm = () => {
 
     try {
       if (!apiUrl) {
-        throw new Error("API URL is not defined");
+        throw new Error('API URL is not defined');
       }
+      formData.source_url = window.location.href;
       await axios.post(apiUrl, formData);
       setSubmitted(true);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error('Error submitting form:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -50,15 +52,9 @@ const LeadForm = () => {
 
   if (submitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-green-50 p-6 rounded-xl text-center"
-      >
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-green-50 p-6 rounded-xl text-center">
         <h3 className="text-xl font-bold text-green-700 mb-2">Thank You!</h3>
-        <p className="text-green-600">
-          We&apos;ll contact you shortly to discuss your visa options.
-        </p>
+        <p className="text-green-600">We&apos;ll contact you shortly to discuss your visa options.</p>
       </motion.div>
     );
   }
@@ -71,14 +67,9 @@ const LeadForm = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h3 className="text-xl font-bold text-gray-900 mb-4">
-        Get Expert Guidance
-      </h3>
+      <h3 className="text-xl font-bold text-gray-900 mb-4">Get Expert Guidance</h3>
       <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
           Full Name *
         </label>
         <input
@@ -94,10 +85,7 @@ const LeadForm = () => {
       </div>
 
       <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
           Email Address *
         </label>
         <input
@@ -113,18 +101,15 @@ const LeadForm = () => {
       </div>
 
       <div>
-        <label
-          htmlFor="phone"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
           Phone Number *
         </label>
         <input
           type="tel"
           id="phone"
-          name="phone"
+          name="contact_number"
           required
-          value={formData.phone}
+          value={formData.contact_number}
           onChange={handleChange}
           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter your phone number"
