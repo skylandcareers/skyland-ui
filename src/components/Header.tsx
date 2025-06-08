@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { 
   Menu, 
@@ -10,7 +11,7 @@ import {
   ChevronUp, 
   Globe, 
   GraduationCap, 
-  Briefcase, 
+  Briefcase,
   Home,
   Star,
   ArrowRight,
@@ -358,10 +359,15 @@ export const Header = () => {
         {/* Main Header Row */}
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="shrink-0 text-xl sm:text-2xl font-bold text-blue-600 flex items-center">
-            <span className="bg-blue-600 text-white px-2 py-1 rounded-md mr-2">S</span>
-            <span className="hidden sm:inline">Skyland Immigration</span>
-            <span className="sm:hidden">Skyland</span>
+          <Link href="/" className="shrink-0 flex items-center">
+            <Image 
+              src="/skyland_logo.webp" 
+              alt="Skyland Immigration Logo" 
+              width={200} 
+              height={50} 
+              className="h-12 w-auto" 
+              priority
+            />
           </Link>
 
           {/* Desktop Menu and Mobile Button Container */}
