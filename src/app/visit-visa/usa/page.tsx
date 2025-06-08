@@ -88,7 +88,7 @@ const supportServices: Service[] = [
 
 const contactInfo: ContactInfo = {
   phone: "+1 XXX XXX XXXX",
-  email: "info@skylandjune.com",
+  email: "info@skylandimmigration.com",
   hours: "Mon-Fri: 9:00 AM - 5:30 PM EST"
 };
 

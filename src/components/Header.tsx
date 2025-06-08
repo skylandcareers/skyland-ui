@@ -16,7 +16,8 @@ import {
   ArrowRight,
   MapPin,
   BookOpen,
-  Users
+  Users,
+  Plane
 } from 'lucide-react';
 
 interface MenuItem {
@@ -41,7 +42,7 @@ interface ResourceMenuItem extends MenuItem {
 type NavigationItem = VisaMenuItem | ResourceMenuItem;
 
 // Enhanced visa data with categories and featured items
-const visaData: VisaMenuItem[] = [
+const visaData: NavigationItem[] = [
   {
     visa: 'PR Visa',
     icon: <Home className="w-5 h-5" />,
@@ -246,7 +247,7 @@ const visaData: VisaMenuItem[] = [
   },
   {
     visa: 'Visit Visa',
-    icon: <Globe className="w-5 h-5" />,
+    icon: <Plane className="w-5 h-5" />,
     description: 'Tourist and Business Visit Visas',
     featured: [
       { name: 'Visa Requirements', url: '/resources/visa-requirements' },
@@ -261,50 +262,12 @@ const visaData: VisaMenuItem[] = [
           { name: 'Schengen', url: '/visit-visa/schengen' },
           { name: 'Canada', url: '/visit-visa/canada' },
           { name: 'Australia', url: '/visit-visa/australia' },
-          { name: 'UAE', url: '/visit-visa/uae' }
-        ]
-      },
-      {
-        name: 'Asian Countries',
-        items: [
-          { name: 'Japan', url: '/visit-visa/japan' },
+          { name: 'UAE', url: '/visit-visa/uae' },
           { name: 'Singapore', url: '/visit-visa/singapore' },
-          { name: 'Thailand', url: '/visit-visa/thailand' },
-          { name: 'Malaysia', url: '/visit-visa/malaysia' },
-          { name: 'Vietnam', url: '/visit-visa/vietnam' },
-          { name: 'Indonesia', url: '/visit-visa/indonesia' }
+          { name: 'Russia', url: '/visit-visa/russia' }
         ]
       }
-    ],
-    countries: [
-      { name: 'Australia', url: '/visit-visa/australia' },
-      { name: 'Canada', url: '/visit-visa/canada' },
-      { name: 'France', url: '/visit-visa/france' },
-      { name: 'Germany', url: '/visit-visa/germany' },
-      { name: 'Indonesia', url: '/visit-visa/indonesia' },
-      { name: 'Italy', url: '/visit-visa/italy' },
-      { name: 'Japan', url: '/visit-visa/japan' },
-      { name: 'Malaysia', url: '/visit-visa/malaysia' },
-      { name: 'Netherlands', url: '/visit-visa/netherlands' },
-      { name: 'New Zealand', url: '/visit-visa/new-zealand' },
-      { name: 'Philippines', url: '/visit-visa/philippines' },
-      { name: 'Poland', url: '/visit-visa/poland' },
-      { name: 'Portugal', url: '/visit-visa/portugal' },
-      { name: 'Romania', url: '/visit-visa/romania' },
-      { name: 'Schengen', url: '/visit-visa/schengen' },
-      { name: 'Serbia', url: '/visit-visa/serbia' },
-      { name: 'Singapore', url: '/visit-visa/singapore' },
-      { name: 'Slovenia', url: '/visit-visa/slovenia' },
-      { name: 'Spain', url: '/visit-visa/spain' },
-      { name: 'Sweden', url: '/visit-visa/sweden' },
-      { name: 'Switzerland', url: '/visit-visa/switzerland' },
-      { name: 'Thailand', url: '/visit-visa/thailand' },
-      { name: 'Turkey', url: '/visit-visa/turkey' },
-      { name: 'UK', url: '/visit-visa/uk' },
-      { name: 'Ukraine', url: '/visit-visa/ukraine' },
-      { name: 'USA', url: '/visit-visa/usa' },
-      { name: 'Vietnam', url: '/visit-visa/vietnam' }
-    ],
+    ]
   },
   {
     visa: 'Coaching',

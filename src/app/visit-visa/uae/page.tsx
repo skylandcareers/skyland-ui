@@ -572,7 +572,7 @@ const supportServices: Service[] = [
 
 const contactInfo: ContactInfo = {
   phone: "+971 XXX XXX XXXX",
-  email: "info@skylandjune.com",
+  email: "info@skylandimmigration.com",
   hours: "Sun-Thu: 9:00 AM - 6:00 PM GST"
 };
 
