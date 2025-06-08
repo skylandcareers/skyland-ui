@@ -2,6 +2,9 @@
   "name": "skylandjune",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,6 +15,7 @@
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-slot": "^1.2.3",
     "autoprefixer": "^10.4.21",
+    "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.16.0",
