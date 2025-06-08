@@ -85,12 +85,12 @@ const Hero: React.FC<HeroProps> = ({
         {/* Right: Image */}
         <div className="flex-1">
         <Image
-          src="/skyland-immigrate.jpg"
+          src={imageUrl}
           alt="Hero Illustration"
-          width={640} // adjust based on your design (max-w-md ≈ 384px, max-w-lg ≈ 512px)
-          height={480} // optional, or adjust for aspect ratio
+          width={640}
+          height={480}
           className="w-full max-w-md md:max-w-lg mx-auto rounded-xl shadow-2xl h-auto"
-          priority // optional: preload for faster LCP
+          priority
         />
         </div>
       </div>
