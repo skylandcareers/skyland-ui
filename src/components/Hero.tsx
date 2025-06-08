@@ -16,7 +16,6 @@ interface HeroProps {
     url: string;
   };
   bgGradient?: string;
-  imageUrl?: string; // new
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -26,7 +25,6 @@ const Hero: React.FC<HeroProps> = ({
   primaryCta,
   secondaryCta,
   bgGradient = 'bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700',
-  imageUrl = '/images/hero-illustration.png',
 }) => {
   return (
     <section className={`${bgGradient} text-white relative overflow-hidden`}>
@@ -85,7 +83,7 @@ const Hero: React.FC<HeroProps> = ({
         {/* Right: Image */}
         <div className="flex-1">
         <Image
-          src={imageUrl}
+          src='/skyland-immigrate.jpg'
           alt="Hero Illustration"
           width={640}
           height={480}

@@ -23,7 +23,6 @@ export default function Home() {
       subtitle="Expert guidance, affordable pricing & hassle-free visa processing services tailored for your success."
       primaryCta={{ text: 'Get Free Assessment', url: '/contact' }}
       secondaryCta={{ text: 'Check Eligibility', url: '/eligibility' }}
-      imageUrl="/images/hero-image.png" // make sure this exists
     />
       <WhyChoose />
       <ImpactStats />
