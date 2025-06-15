@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, circOut } from 'framer-motion'; 
 import {
   HiOutlineClipboardCheck,
   HiOutlineDocumentText,
@@ -50,7 +50,6 @@ const services: ServiceItem[] = [
   },
 ];
 
-// ✅ Fixed easing value using cubic-bezier array
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i = 1) => ({
@@ -59,7 +58,7 @@ const containerVariants = {
     transition: {
       delay: i * 0.15,
       duration: 0.5,
-      ease: [0.42, 0, 0.58, 1], // Equivalent to 'easeOut'
+      ease: circOut, 
     },
   }),
 };
