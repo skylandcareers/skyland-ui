@@ -1,11 +1,18 @@
 'use client';
-declare global {
-    interface Window {
-      dataLayer: Record<string, any>[];
-    }
-  }
 
 import { useEffect } from 'react';
+
+// Define a more specific structure for dataLayer events
+interface DataLayerEvent {
+  event: string;
+  [key: string]: unknown; // Allows flexible key-value pairs without using `any`
+}
+
+declare global {
+  interface Window {
+    dataLayer: DataLayerEvent[];
+  }
+}
 
 const GTM_ID = 'GTM-T5WH5JQ';
 
