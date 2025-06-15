@@ -208,7 +208,7 @@ export default function JobPage({ params }: { params: { slug: string } }) {
 
             {submitted ? (
               <div className="text-green-600">
-                ✅ Your application has been submitted! We'll be in touch soon.
+                ✅ Your application has been submitted! We&apos;ll be in touch soon.
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
