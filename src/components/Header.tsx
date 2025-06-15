@@ -145,7 +145,8 @@ const visaData: NavigationItem[] = [
     description: 'Work Permits and Employment Visas',
     featured: [
       { name: 'Job Search Guide', url: '/resources/job-search' },
-      { name: 'Skill Assessment', url: '/resources/skill-assessment' }
+      { name: 'Skill Assessment', url: '/resources/skill-assessment' },
+      { name: 'Job Offers', url: '/workvisa/job-offers' }
     ],
     countries: [
       { name: 'Russia', url: '/work-visa/russia' },

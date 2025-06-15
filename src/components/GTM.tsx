@@ -2,10 +2,9 @@
 
 import { useEffect } from 'react';
 
-// Define a more specific structure for dataLayer events
 interface DataLayerEvent {
   event: string;
-  [key: string]: unknown; // Allows flexible key-value pairs without using `any`
+  [key: string]: unknown; 
 }
 
 declare global {
