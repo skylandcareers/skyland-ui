@@ -1,8 +1,9 @@
 'use client';
 
+import { useParams, notFound } from 'next/navigation';
 import { useState } from 'react';
-import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import type { LucideIcon } from 'lucide-react';
 import {
   Briefcase,
   MapPin,
@@ -12,80 +13,76 @@ import {
 } from 'lucide-react';
 
 const jobs = [
-    {
-      title: 'Delviery Boy',
-      slug: 'delivery-boy-in-uae',
-      country: 'UAE',
-      countrySlug: 'uae',
-      image: '/images/canada-placeholder.jpg',
-      description:
-        'Canada actively recruits international blue-collar workers for its booming infrastructure sector.',
-      location: 'Toronto, Ontario',
-      salary: 'CAD 55,000 - 75,000/year',
-      experience: '2+ years',
-      requirements: ['Valid truck driving license', 'Clean driving record', 'Basic English'],
-      benefits: ['Visa Sponsorship', 'Medical Insurance', 'Paid Leave'],
-      visaType: 'Work Visa',
-      visaValidity: '2 years',
-      workPermitType: 'Open',
-    },
-    {
-      title: 'Welder',
-      slug: 'welder-in-canada',
-      country: 'Canada',
-      countrySlug: 'canada',
-      image: '/images/canada-placeholder.jpg',
-      description:
-        'Canada offers excellent opportunities for skilled welders in its growing industrial and infrastructure sectors.',
-      location: 'Calgary, Alberta',
-      salary: 'CAD 50,000 - 70,000/year',
-      experience: '3+ years',
-      requirements: ['Welding certification', 'Blueprint reading', 'Basic English'],
-      benefits: ['Relocation Support', 'Health Insurance', 'Tool Allowance'],
-      visaType: 'Skilled Worker Visa',
-      visaValidity: '3 years',
-      workPermitType: 'Closed',
-    },
-    {
-      title: 'Plumber',
-      slug: 'plumber-in-australia',
-      country: 'Australia',
-      countrySlug: 'australia',
-      image: '/images/australia-placeholder.jpg',
-      description:
-        'Australia is in need of certified plumbers to support residential and commercial construction across major cities.',
-      location: 'Sydney, NSW',
-      salary: 'AUD 60,000 - 85,000/year',
-      experience: '2+ years',
-      requirements: ['Plumbing certification', 'Valid license', 'Conversational English'],
-      benefits: ['Paid Time Off', 'Subsidized Housing', 'Work-Life Balance'],
-      visaType: 'Temporary Skill Shortage Visa',
-      visaValidity: '4 years',
-      workPermitType: 'Open',
-    },
-    {
-      title: 'Electrician',
-      slug: 'electrician-in-germany',
-      country: 'Germany',
-      countrySlug: 'germany',
-      image: '/images/germany-placeholder.jpg',
-      description:
-        'Germany is actively hiring electricians for industrial automation and green energy projects.',
-      location: 'Berlin, Germany',
-      salary: '€45,000 - €60,000/year',
-      experience: '3+ years',
-      requirements: ['Certified Electrician', 'German A2 or English B1', 'Work Experience'],
-      benefits: ['Public Health Insurance', 'Annual Bonus', 'Language Support'],
-      visaType: 'EU Blue Card',
-      visaValidity: '4 years',
-      workPermitType: 'Open',
-    },
-  ];
-  
+  {
+    title: 'Delviery Boy',
+    slug: 'delivery-boy-in-uae',
+    country: 'UAE',
+    image: '/images/canada-placeholder.jpg',
+    description:
+      'Canada actively recruits international blue-collar workers for its booming infrastructure sector.',
+    location: 'Toronto, Ontario',
+    salary: 'CAD 55,000 - 75,000/year',
+    experience: '2+ years',
+    requirements: ['Valid truck driving license', 'Clean driving record', 'Basic English'],
+    benefits: ['Visa Sponsorship', 'Medical Insurance', 'Paid Leave'],
+    visaType: 'Work Visa',
+    visaValidity: '2 years',
+    workPermitType: 'Open',
+  },
+  {
+    title: 'Welder',
+    slug: 'welder-in-canada',
+    country: 'Canada',
+    image: '/images/canada-placeholder.jpg',
+    description:
+      'Canada offers excellent opportunities for skilled welders in its growing industrial and infrastructure sectors.',
+    location: 'Calgary, Alberta',
+    salary: 'CAD 50,000 - 70,000/year',
+    experience: '3+ years',
+    requirements: ['Welding certification', 'Blueprint reading', 'Basic English'],
+    benefits: ['Relocation Support', 'Health Insurance', 'Tool Allowance'],
+    visaType: 'Skilled Worker Visa',
+    visaValidity: '3 years',
+    workPermitType: 'Closed',
+  },
+  {
+    title: 'Plumber',
+    slug: 'plumber-in-australia',
+    country: 'Australia',
+    image: '/images/australia-placeholder.jpg',
+    description:
+      'Australia is in need of certified plumbers to support residential and commercial construction across major cities.',
+    location: 'Sydney, NSW',
+    salary: 'AUD 60,000 - 85,000/year',
+    experience: '2+ years',
+    requirements: ['Plumbing certification', 'Valid license', 'Conversational English'],
+    benefits: ['Paid Time Off', 'Subsidized Housing', 'Work-Life Balance'],
+    visaType: 'Temporary Skill Shortage Visa',
+    visaValidity: '4 years',
+    workPermitType: 'Open',
+  },
+  {
+    title: 'Electrician',
+    slug: 'electrician-in-germany',
+    country: 'Germany',
+    image: '/images/germany-placeholder.jpg',
+    description:
+      'Germany is actively hiring electricians for industrial automation and green energy projects.',
+    location: 'Berlin, Germany',
+    salary: '€45,000 - €60,000/year',
+    experience: '3+ years',
+    requirements: ['Certified Electrician', 'German A2 or English B1', 'Work Experience'],
+    benefits: ['Public Health Insurance', 'Annual Bonus', 'Language Support'],
+    visaType: 'EU Blue Card',
+    visaValidity: '4 years',
+    workPermitType: 'Open',
+  },
+];
 
-export default function JobPage({ params }: { params: { slug: string } }) {
-  const job = jobs.find((j) => j.slug === params.slug);
+export default function JobPage() {
+  const { slug } = useParams() as { slug: string };
 
+  const job = jobs.find((j) => j.slug === slug);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -129,56 +126,19 @@ export default function JobPage({ params }: { params: { slug: string } }) {
 
       <section className="space-y-6 mb-10">
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="flex items-center gap-3">
-            <MapPin className="text-blue-600 w-5 h-5" />
-            <span><strong>Location:</strong> {job.location}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <DollarSign className="text-green-600 w-5 h-5" />
-            <span><strong>Salary:</strong> {job.salary}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <Briefcase className="text-yellow-600 w-5 h-5" />
-            <span><strong>Experience:</strong> {job.experience}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="text-purple-600 w-5 h-5" />
-            <span><strong>Visa Support:</strong> Yes</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="text-blue-500 w-5 h-5" />
-            <span><strong>Visa Type:</strong> {job.visaType}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="text-blue-500 w-5 h-5" />
-            <span><strong>Visa Validity:</strong> {job.visaValidity}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <ShieldCheck className="text-blue-500 w-5 h-5" />
-            <span><strong>Work Permit:</strong> {job.workPermitType} Permit</span>
-          </div>
+          <Info icon={MapPin} label="Location" value={job.location} />
+          <Info icon={DollarSign} label="Salary" value={job.salary} />
+          <Info icon={Briefcase} label="Experience" value={job.experience} />
+          <Info icon={ShieldCheck} label="Visa Support" value="Yes" />
+          <Info icon={ShieldCheck} label="Visa Type" value={job.visaType} />
+          <Info icon={ShieldCheck} label="Visa Validity" value={job.visaValidity} />
+          <Info icon={ShieldCheck} label="Work Permit" value={`${job.workPermitType} Permit`} />
         </div>
 
         <div className="flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/2">
-                <h3 className="text-lg font-semibold mb-2">Requirements</h3>
-                <ul className="list-disc list-inside text-gray-800 space-y-1">
-                {job.requirements.map((req, idx) => (
-                    <li key={idx}>{req}</li>
-                ))}
-                </ul>
-            </div>
-
-            <div className="md:w-1/2">
-                <h3 className="text-lg font-semibold mb-2">Benefits</h3>
-                <ul className="list-disc list-inside text-gray-800 space-y-1">
-                {job.benefits.map((b, idx) => (
-                    <li key={idx}>{b}</li>
-                ))}
-                </ul>
-            </div>
+          <List title="Requirements" items={job.requirements} />
+          <List title="Benefits" items={job.benefits} />
         </div>
-
       </section>
 
       <div className="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-md mb-8">
@@ -242,7 +202,6 @@ export default function JobPage({ params }: { params: { slug: string } }) {
                 <input
                   type="date"
                   name="dob"
-                  placeholder="Date of Birth"
                   required
                   className="w-full border border-gray-300 rounded-md p-2"
                   value={formData.dob}
@@ -259,6 +218,28 @@ export default function JobPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function Info({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string })  {
+  return (
+    <div className="flex items-center gap-3">
+      <Icon className="text-blue-500 w-5 h-5" />
+      <span><strong>{label}:</strong> {value}</span>
+    </div>
+  );
+}
+
+function List({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="md:w-1/2">
+      <h3 className="text-lg font-semibold mb-2">{title}</h3>
+      <ul className="list-disc list-inside text-gray-800 space-y-1">
+        {items.map((item, idx) => (
+          <li key={idx}>{item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
