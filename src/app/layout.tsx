@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Topbar } from '@/components/Topbar';
-import  Banner from '@/components/Banner';
 import Footer from '@/components/Footer';
 import GTM from '@/components/GTM';
 
@@ -30,10 +29,6 @@ export default function RootLayout({
           ></iframe>
         </noscript>
         <Topbar phone="+91-9032420020" email="info@skylandimmigration.com" hours="Mon-Fri 9:00-17:00" />
-        <Banner 
-          title="Welcome to Skyland Immigration" 
-          cta={{ text: "Get Started", url: "/contact" }}
-        />
         <Header />
         {children}
         <Footer />
