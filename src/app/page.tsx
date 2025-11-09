@@ -21,8 +21,8 @@ export default function Home() {
       title="Immigrate to your dream country with "
       highlight="Skyland Immigration"
       subtitle="Expert guidance, affordable pricing & hassle-free visa processing services tailored for your success."
-      primaryCta={{ text: 'Get Free Assessment', url: '/contact' }}
-      secondaryCta={{ text: 'Check Eligibility', url: '/eligibility' }}
+      primaryCta={{ text: 'Get Free Assessment', url: '/free-assessment' }}
+      secondaryCta={{ text: 'Check Eligibility', url: '/check-eligibility' }}
     />
       <WhyChoose />
       <ImpactStats />
