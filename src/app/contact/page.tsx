@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { submitContact } from '@/actions/contact';
 import { FaPaperPlane, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaQuestionCircle, FaTools, FaComments } from 'react-icons/fa';
 
 const ContactUs = () => {
@@ -57,10 +58,23 @@ const ContactUs = () => {
     setStatus('sending');
 
     try {
-      await new Promise(res => setTimeout(res, 1500));
-      setStatus('success');
-      setForm({ name: '', email: '', phone: '', subject: '', message: '', consent: false });
-      setErrors({});
+      const result = await submitContact({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        subject: form.subject,
+        message: form.message,
+        source_url: window.location.href,
+      });
+
+      if (result.success) {
+        setStatus('success');
+        setForm({ name: '', email: '', phone: '', subject: '', message: '', consent: false });
+        setErrors({});
+      } else {
+        console.error(result.error);
+        setStatus('error');
+      }
     } catch {
       setStatus('error');
     }
@@ -84,7 +98,7 @@ const ContactUs = () => {
             <h2 className="text-2xl font-semibold text-blue-700 mb-6 flex items-center gap-3">
               <FaPaperPlane /> Contact Info
             </h2>
-            
+
             <div className="flex items-center gap-6">
               <div className="bg-blue-100 text-blue-700 p-4 rounded-full text-2xl shadow-md">
                 <FaPhoneAlt />
@@ -314,21 +328,21 @@ const ContactUs = () => {
           <h3 className="text-2xl font-semibold mb-8 text-gray-900 text-center">Need Help?</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-              { 
-                label: 'Frequently Asked Questions', 
-                href: '/faq', 
+              {
+                label: 'Frequently Asked Questions',
+                href: '/faq',
                 icon: <FaQuestionCircle className="text-3xl text-blue-600" />,
                 description: 'Find answers to common questions'
               },
-              { 
-                label: 'Support Center', 
-                href: '/support', 
+              {
+                label: 'Support Center',
+                href: '/support',
                 icon: <FaTools className="text-3xl text-blue-600" />,
                 description: 'Troubleshooting guides and resources'
               },
-              { 
-                label: 'Live Chat', 
-                href: '/contact', 
+              {
+                label: 'Live Chat',
+                href: '/contact',
                 icon: <FaComments className="text-3xl text-blue-600" />,
                 description: 'Instant help from our team'
               },

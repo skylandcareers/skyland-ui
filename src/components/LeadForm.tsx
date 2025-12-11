@@ -11,7 +11,7 @@ interface FormData {
   source_url: string;
 }
 
-const apiUrl = process.env.NEXT_PUBLIC_API + '/create-web-lead';
+const apiUrl = '/api/contact';
 
 const LeadForm = () => {
   const [formData, setFormData] = useState<FormData>({
