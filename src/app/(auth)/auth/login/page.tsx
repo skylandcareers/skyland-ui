@@ -9,8 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Header } from '@/components/Header';
-import Footer from '@/components/Footer';
 
 function LoginForm() {
     const [formData, setFormData] = useState({
@@ -94,7 +92,7 @@ function LoginForm() {
                             required
                         />
                     </div>
-                    <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 font-semibold" disabled={isSubmitting}>
+                    <Button type="submit" className="w-full text-white bg-blue-500 hover:bg-blue-600 font-semibold" disabled={isSubmitting}>
                         {isSubmitting ? 'Signing in...' : 'Sign In'}
                     </Button>
                 </form>
@@ -114,10 +112,12 @@ function LoginForm() {
 
 export default function Login() {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <Header />
-            <LoginForm />
-            <Footer />
-        </Suspense>
+        <>
+            <Suspense fallback={<div>Loading...</div>}>
+
+                <LoginForm />
+
+            </Suspense>
+        </>
     );
 }

@@ -92,7 +92,7 @@ export default function Register() {
                             required
                         />
                     </div>
-                    <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 font-semibold" disabled={isSubmitting}>
+                    <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 font-semibold text-white" disabled={isSubmitting}>
                         {isSubmitting ? 'Registering...' : 'Create Account'}
                     </Button>
                 </form>
