@@ -5,7 +5,13 @@ import Contact from '@/models/Contact';
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, email, contact_number, source_url } = body;
+        const {
+            name, email, contact_number, source_url, subject, message,
+            // Eligibility Fields
+            jobCategory, country, education, desiredSalary,
+            experienceYears, hasJobOffer, passportMonths,
+            eligibilityStatus, eligibilityScore
+        } = body;
 
         if (!name || !email || !contact_number) {
             return NextResponse.json(
@@ -22,7 +28,18 @@ export async function POST(req: Request) {
             email,
             phone: contact_number,
             source_url,
-            // subject and message are optional now
+            subject,
+            message,
+            // Eligibility Fields
+            jobCategory,
+            country,
+            education,
+            desiredSalary,
+            experienceYears,
+            hasJobOffer,
+            passportMonths,
+            eligibilityStatus,
+            eligibilityScore
         });
 
         return NextResponse.json(

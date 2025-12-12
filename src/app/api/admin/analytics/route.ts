@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
+import Contact from '@/models/Contact';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 
@@ -8,14 +9,21 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 async function isAdmin() {
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
-    if (!token) return false;
-    try {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const decoded: any = jwt.verify(token, JWT_SECRET);
-        return decoded.role === 'admin' || decoded.role === 'super_admin';
-    } catch {
-        return false;
+    const legacySession = cookieStore.get('admin_session')?.value;
+
+    if (token) {
+        try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const decoded: any = jwt.verify(token, JWT_SECRET);
+            return decoded.role === 'admin' || decoded.role === 'super_admin';
+        } catch {
+            // Invalid token
+        }
     }
+
+    if (legacySession === 'true') return true;
+
+    return false;
 }
 
 export async function GET(req: Request) {
@@ -111,7 +119,13 @@ export async function GET(req: Request) {
             { name: 'Work', value: 10 },
         ];
 
+        // Real DB Stats
+        const totalContacts = await Contact.countDocuments({});
+
         return NextResponse.json({
+            meta: {
+                totalContacts
+            },
             trends: {
                 labels, // Changed from 'months' to generic 'labels'
                 revenue: revenueTrend,

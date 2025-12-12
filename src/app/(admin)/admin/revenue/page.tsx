@@ -14,20 +14,34 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 export default function RevenuePage() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [data, setData] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
     const [period, setPeriod] = useState('month');
 
-    useEffect(() => {
-        setLoading(true);
-        axios.get(`/api/admin/analytics?period=${period}`)
-            .then(res => setData(res.data))
-            .catch(err => console.error(err))
-            .finally(() => setLoading(false));
-    }, [period]);
-
-    if (loading) return <div className="p-8">Loading Revenue Data...</div>;
-    if (!data) return <div className="p-8">Error loading data</div>;
+    // STATIC DATA implementation as requested
+    const data = {
+        trends: {
+            labels: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+            revenue: [12000, 19000, 15000, 22000, 28000, 35000],
+            refunds: [500, 800, 300, 1200, 400, 900],
+            days: Array.from({ length: 30 }, (_, i) => (i + 1).toString()),
+            dailySales: Array.from({ length: 30 }, () => Math.floor(Math.random() * 2000) + 500)
+        },
+        distribution: {
+            revenueByService: [
+                { name: 'PR Visa', value: 45000 },
+                { name: 'Student Visa', value: 30000 },
+                { name: 'Tourist/Visitor', value: 15000 },
+                { name: 'Work Permit', value: 25000 },
+                { name: 'Business Visa', value: 8000 },
+            ]
+        },
+        revenueByCountry: [
+            { name: 'India', value: 65 },
+            { name: 'UAE', value: 25 },
+            { name: 'UK', value: 15 },
+            { name: 'Canada', value: 12 },
+            { name: 'USA', value: 8 },
+        ]
+    };
 
     const chartData = data.trends.labels.map((label: string, i: number) => ({
         name: label,

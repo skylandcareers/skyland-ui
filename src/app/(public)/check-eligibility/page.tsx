@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 // ---------- Types ----------
 interface CountryRule {
@@ -28,7 +29,7 @@ type EducationLevel = typeof EDUCATION_LEVELS[number];
 
 const JOB_CATEGORIES = [
   'Warehouse / Logistics',
-  'Hotel / Housekeeping', 
+  'Hotel / Housekeeping',
   'Cleaning / Facilities',
   'Delivery / Driver',
   'Construction / Labour'
@@ -136,11 +137,11 @@ function educationToRank(level: EducationLevel): number {
 function getRequiredEducationRank(country: CountryKey): number {
   const rules = countryRules[country];
   if (!rules) return EDUCATION_LEVELS.indexOf('Diploma / 12th');
-  
+
   if (rules.educationRequired.includes('No mandatory')) return 0;
   if (rules.educationRequired.includes('Basic schooling')) return EDUCATION_LEVELS.indexOf('High School / 10th');
   if (rules.educationRequired.includes('10th / 12th')) return EDUCATION_LEVELS.indexOf('Diploma / 12th');
-  
+
   return EDUCATION_LEVELS.indexOf('Diploma / 12th'); // default
 }
 
@@ -231,22 +232,20 @@ function computeEligibility(form: FormState): EligibilityResult {
 // ---------- UI Components ----------
 function ProgressBar({ step, totalSteps }: { step: number; totalSteps: number }) {
   const steps = ['Job Type', 'Location', 'Qualifications', 'Review', 'Contact'];
-  
+
   return (
     <div className="mb-8">
       <div className="flex justify-between mb-3">
         {steps.map((label, i) => (
           <div key={i} className="flex flex-col items-center">
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-              step > i + 1 ? 'bg-green-500 text-white' :
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${step > i + 1 ? 'bg-green-500 text-white' :
               step === i + 1 ? 'bg-blue-600 text-white' :
-              'bg-gray-200 text-gray-500'
-            }`}>
+                'bg-gray-200 text-gray-500'
+              }`}>
               {step > i + 1 ? '✓' : i + 1}
             </div>
-            <span className={`text-xs mt-2 text-center ${
-              step >= i + 1 ? 'text-blue-600 font-medium' : 'text-gray-400'
-            }`}>
+            <span className={`text-xs mt-2 text-center ${step >= i + 1 ? 'text-blue-600 font-medium' : 'text-gray-400'
+              }`}>
               {label}
             </span>
           </div>
@@ -256,10 +255,9 @@ function ProgressBar({ step, totalSteps }: { step: number; totalSteps: number })
         {Array.from({ length: totalSteps }, (_, i) => (
           <div
             key={i}
-            className={`h-1 flex-1 rounded-full transition-all duration-300 ${
-              step > i + 1 ? 'bg-green-500' :
+            className={`h-1 flex-1 rounded-full transition-all duration-300 ${step > i + 1 ? 'bg-green-500' :
               step === i + 1 ? 'bg-blue-600' : 'bg-gray-200'
-            }`}
+              }`}
           />
         ))}
       </div>
@@ -296,9 +294,9 @@ function CountryInfoCard({ rules }: { rules: CountryRule }) {
   );
 }
 
-function InputField({ label, children, required, error }: { 
-  label: string; 
-  children: React.ReactNode; 
+function InputField({ label, children, required, error }: {
+  label: string;
+  children: React.ReactNode;
   required?: boolean;
   error?: string;
 }) {
@@ -332,7 +330,7 @@ export default function CheckEligibilityPage() {
 
   const [result, setResult] = useState<EligibilityResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [formErrors, setFormErrors] = useState<{phone?: string; email?: string}>({});
+  const [formErrors, setFormErrors] = useState<{ phone?: string; email?: string }>({});
 
   const availableCountries = jobCategoryToCountries[form.jobCategory] || [];
 
@@ -347,7 +345,7 @@ export default function CheckEligibilityPage() {
   const next = async (): Promise<void> => {
     // Validate contact info on step 5
     if (step === 5) {
-      const errors: {phone?: string; email?: string} = {};
+      const errors: { phone?: string; email?: string } = {};
       if (!validatePhone(form.phone)) {
         errors.phone = 'Please enter a valid phone number (10-15 digits)';
       }
@@ -362,11 +360,36 @@ export default function CheckEligibilityPage() {
         setFormErrors(errors);
         return;
       }
-      
+
       setIsLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 800));
       const res = computeEligibility(form);
       setResult(res);
+
+      try {
+        await axios.post('/api/contact', {
+          name: form.name,
+          email: form.email,
+          contact_number: form.phone,
+          source_url: window.location.href,
+          subject: 'Eligibility Check Result',
+          message: `Eligibility Status: ${res.status}. Score: ${res.score}. Job Category: ${form.jobCategory}. Country: ${form.country}.`,
+          // Eligibility Fields
+          jobCategory: form.jobCategory,
+          country: form.country,
+          education: form.education,
+          desiredSalary: form.desiredSalary,
+          experienceYears: form.experienceYears,
+          hasJobOffer: form.hasJobOffer,
+          passportMonths: form.passportMonths,
+          eligibilityStatus: res.status,
+          eligibilityScore: res.score
+        });
+      } catch (error) {
+        console.error('Failed to save eligibility result:', error);
+        // We probably still want to show the result to the user even if saving failed,
+        // or maybe show a warning. For now, we'll log it.
+      }
+
       setIsLoading(false);
     }
     setStep((s) => Math.min(6, s + 1));
@@ -381,7 +404,7 @@ export default function CheckEligibilityPage() {
     const titles = {
       1: "What type of work are you looking for?",
       2: "Where would you like to work?",
-      3: "Your Qualifications & Experience", 
+      3: "Your Qualifications & Experience",
       4: "Review Your Details",
       5: "Almost There - Contact Information",
       6: "Your Eligibility Results"
@@ -400,7 +423,7 @@ export default function CheckEligibilityPage() {
               Blue‑collar & semi‑skilled jobs only
             </span>
           </div>
-          
+
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Work Visa Eligibility Check
           </h1>
@@ -559,27 +582,27 @@ export default function CheckEligibilityPage() {
                       <div className="text-sm text-gray-500">Job Type</div>
                       <div className="font-medium">{form.jobCategory}</div>
                     </div>
-                    
+
                     <div className="p-4 border border-gray-200 rounded-xl">
                       <div className="text-sm text-gray-500">Destination Country</div>
                       <div className="font-medium">{rules.displayName}</div>
                     </div>
-                    
+
                     <div className="p-4 border border-gray-200 rounded-xl">
                       <div className="text-sm text-gray-500">Education</div>
                       <div className="font-medium">{form.education}</div>
                     </div>
-                    
+
                     <div className="p-4 border border-gray-200 rounded-xl">
                       <div className="text-sm text-gray-500">Experience</div>
                       <div className="font-medium">{form.experienceYears} years</div>
                     </div>
-                    
+
                     <div className="p-4 border border-gray-200 rounded-xl">
                       <div className="text-sm text-gray-500">Desired Salary</div>
                       <div className="font-medium">{form.desiredSalary.toLocaleString()} EUR</div>
                     </div>
-                    
+
                     <div className="p-4 border border-gray-200 rounded-xl">
                       <div className="text-sm text-gray-500">Passport Validity</div>
                       <div className="font-medium">
@@ -587,11 +610,11 @@ export default function CheckEligibilityPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl">
                     <p className="text-sm text-blue-700">
-      💡 <strong>Next:</strong> Enter your contact details to see your personalized eligibility results
-    </p>
+                      💡 <strong>Next:</strong> Enter your contact details to see your personalized eligibility results
+                    </p>
                   </div>
                 </div>
               )}
@@ -628,7 +651,7 @@ export default function CheckEligibilityPage() {
                       placeholder="+91 12345 67890"
                     />
                   </InputField>
-                  
+
                   <InputField label="Email Address" required error={formErrors.email}>
                     <input
                       type="email"
@@ -648,19 +671,18 @@ export default function CheckEligibilityPage() {
               {step === 6 && result && !isLoading && (
                 <div className="space-y-6">
                   {/* Result Header */}
-                  <div className={`p-6 rounded-xl border-2 text-center ${
-                    result.status === 'Likely Eligible' ? 'bg-green-50 border-green-200' :
+                  <div className={`p-6 rounded-xl border-2 text-center ${result.status === 'Likely Eligible' ? 'bg-green-50 border-green-200' :
                     result.status === 'Possibly Eligible' ? 'bg-yellow-50 border-yellow-200' :
-                    'bg-red-50 border-red-200'
-                  }`}>
+                      'bg-red-50 border-red-200'
+                    }`}>
                     <div className="text-4xl mb-3">
                       {result.status === 'Likely Eligible' ? '🎉' :
-                       result.status === 'Possibly Eligible' ? '🤔' : '💡'}
+                        result.status === 'Possibly Eligible' ? '🤔' : '💡'}
                     </div>
                     <h3 className="text-2xl font-bold mb-2">
                       {result.status === 'Likely Eligible' ? 'Likely Eligible' :
-                       result.status === 'Possibly Eligible' ? 'Possibly Eligible' :
-                       'Needs Improvement'}
+                        result.status === 'Possibly Eligible' ? 'Possibly Eligible' :
+                          'Needs Improvement'}
                     </h3>
                     {typeof result.score === 'number' && (
                       <div className="inline-flex items-center gap-2 bg-white/80 px-4 py-2 rounded-full">
@@ -684,11 +706,10 @@ export default function CheckEligibilityPage() {
                       <div className="space-y-3">
                         {result.reasons.map((reason, i) => (
                           <div key={i} className="flex items-start gap-3 p-4 bg-white border rounded-xl hover:shadow-sm transition-shadow">
-                            <div className={`w-2 h-2 rounded-full mt-2 ${
-                              reason.includes('meets') || reason.includes('sufficient') || reason.includes('improves') 
-                                ? 'bg-green-500' 
-                                : 'bg-yellow-500'
-                            }`}></div>
+                            <div className={`w-2 h-2 rounded-full mt-2 ${reason.includes('meets') || reason.includes('sufficient') || reason.includes('improves')
+                              ? 'bg-green-500'
+                              : 'bg-yellow-500'
+                              }`}></div>
                             <p className="text-gray-700 flex-1">{reason}</p>
                           </div>
                         ))}
@@ -759,15 +780,15 @@ export default function CheckEligibilityPage() {
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                    <a 
-                      href="tel:+919032420020" 
+                    <a
+                      href="tel:+919032420020"
                       className="flex-1 text-center px-6 py-4 border-2 border-gray-300 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
                     >
                       📞 Call Now
                     </a>
-                    <a 
-                      href="https://wa.me/919032420020" 
-                      target="_blank" 
+                    <a
+                      href="https://wa.me/919032420020"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 text-center px-6 py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl"
                     >
@@ -789,14 +810,14 @@ export default function CheckEligibilityPage() {
             {/* Navigation Buttons */}
             {step < 6 && step > 1 && (
               <div className="flex justify-between pt-8 mt-8 border-t border-gray-200">
-                <button 
+                <button
                   onClick={back}
                   className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
                 >
                   ← Back
                 </button>
-                
-                <button 
+
+                <button
                   onClick={next}
                   disabled={(step === 5 && (!form.name || !form.phone || !form.email))}
                   className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
@@ -818,14 +839,14 @@ export default function CheckEligibilityPage() {
             {/* Results Navigation */}
             {step === 6 && !isLoading && (
               <div className="flex justify-between pt-8 mt-8 border-t border-gray-200">
-                <button 
+                <button
                   onClick={() => { setStep(1); setResult(null); }}
                   className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
                 >
                   ↻ Start Over
                 </button>
-                
-                <button 
+
+                <button
                   onClick={() => setStep(4)}
                   className="px-6 py-3 bg-gray-600 text-white rounded-xl hover:bg-gray-700 transition-all duration-200 font-medium"
                 >

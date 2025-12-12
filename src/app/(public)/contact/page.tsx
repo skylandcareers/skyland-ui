@@ -35,6 +35,17 @@ const ContactUs = () => {
     if (!form.subject) newErrors.subject = 'Please select a subject';
     if (!form.message.trim()) newErrors.message = 'Message is required';
     if (!form.consent) newErrors.consent = 'You must accept the privacy policy';
+
+    // Phone validation
+    if (!form.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else {
+      const cleaned = form.phone.replace(/\D/g, '');
+      if (cleaned.length < 10 || cleaned.length > 15) {
+        newErrors.phone = 'Please enter a valid phone number (10-15 digits)';
+      }
+    }
+
     return newErrors;
   }
 
@@ -192,7 +203,7 @@ const ContactUs = () => {
 
             {/* Phone */}
             <label htmlFor="phone" className="block mb-2 font-medium text-gray-700">
-              Phone Number
+              Phone Number *
             </label>
             <input
               type="tel"
@@ -200,9 +211,18 @@ const ContactUs = () => {
               name="phone"
               value={form.phone}
               onChange={handleChange}
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? 'phone-error' : undefined}
+              required
               placeholder="+91 9876543210"
-              className="w-full mb-5 px-4 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className={`w-full mb-2 px-4 py-3 border rounded-2xl focus:outline-none focus:ring-2
+                ${errors.phone ? 'border-red-500 focus:ring-red-400' : 'border-gray-300 focus:ring-blue-400'}`}
             />
+            {errors.phone && (
+              <p className="text-red-600 mb-4 text-sm" id="phone-error">
+                {errors.phone}
+              </p>
+            )}
 
             {/* Subject */}
             <label htmlFor="subject" className="block mb-2 font-medium text-gray-700">

@@ -25,13 +25,29 @@ export default function LeadsPage() {
             .finally(() => setLoading(false));
     }, [period]); // Fixed indent
 
-    if (loading) return <div className="p-8 text-center text-gray-500">Refreshing Dashboard...</div>;
-    if (!data) return <div className="p-8 text-center text-red-500">Failed to load data</div>;
+    // Default mock data to render UI structure immediately
+    const defaultData = {
+        trends: { labels: [], leads: [] },
+        distribution: {
+            leadsByStatus: [],
+            leadsByVisaType: [],
+            revenueByCountry: [],
+            leadsByCounsellor: []
+        }
+    };
 
-    const chartData = data.trends.labels.map((label: string, i: number) => ({
+    const displayData = data || defaultData;
+    const chartData = (displayData.trends.labels || []).map((label: string, i: number) => ({
         name: label,
-        leads: data.trends.leads?.[i] || 0
+        leads: displayData.trends.leads?.[i] || 0
     }));
+
+    // Ensure we have arrays even if API returns partial data
+    const safeDist = displayData.distribution || {};
+    safeDist.leadsByStatus = safeDist.leadsByStatus || [];
+    safeDist.leadsByVisaType = safeDist.leadsByVisaType || [];
+    safeDist.revenueByCountry = safeDist.revenueByCountry || [];
+    safeDist.leadsByCounsellor = safeDist.leadsByCounsellor || [];
 
     return (
         <div className="min-h-screen bg-gray-100 p-8">
@@ -41,6 +57,7 @@ export default function LeadsPage() {
                 <div className="flex flex-col md:flex-row justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                     <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
                         <FaUsers className="text-blue-600" /> Leads Intelligence
+                        {loading && <span className="text-sm font-normal text-gray-400 ml-2 animate-pulse">(Updating...)</span>}
                     </h1>
                     <div className="flex items-center gap-2 mt-4 md:mt-0">
                         <FaCalendarAlt className="text-gray-400" />
@@ -60,14 +77,14 @@ export default function LeadsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <KpiCard
                         title="Total Contacts"
-                        value="4,200"
+                        value={displayData.meta?.totalContacts?.toLocaleString() || '0'}
                         trend="Live" trendUp
                         icon={<FaUsers size={24} />}
                         color="bg-indigo-600"
                     />
                     <KpiCard
                         title="New Leads"
-                        value={data.trends.leads.reduce((a: number, b: number) => a + b, 0)}
+                        value={displayData.trends?.leads?.reduce((a: number, b: number) => a + b, 0) || 0}
                         trend="Based on selection" trendUp
                         icon={<FaUserPlus size={24} />}
                         color="bg-blue-600"
@@ -96,7 +113,7 @@ export default function LeadsPage() {
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
                                     <Pie
-                                        data={data.distribution.leadsByStatus}
+                                        data={safeDist.leadsByStatus}
                                         cx="50%"
                                         cy="50%"
                                         innerRadius={60}
@@ -104,7 +121,7 @@ export default function LeadsPage() {
                                         paddingAngle={5}
                                         dataKey="value"
                                     >
-                                        {data.distribution.leadsByStatus.map((entry: { name: string; value: number; color?: string }, index: number) => (
+                                        {safeDist.leadsByStatus.map((entry: { name: string; value: number; color?: string }, index: number) => (
                                             <Cell key={`cell-${index}`} fill={entry.color || COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>
@@ -122,14 +139,14 @@ export default function LeadsPage() {
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
                                     <Pie
-                                        data={data.distribution.leadsByVisaType}
+                                        data={safeDist.leadsByVisaType}
                                         cx="50%"
                                         cy="50%"
                                         outerRadius={80}
                                         dataKey="value"
                                         label={({ name, percent }: { name?: string; percent?: number }) => `${name || ''} ${((percent || 0) * 100).toFixed(0)}%`}
                                     >
-                                        {data.distribution.leadsByVisaType.map((entry: { name: string; value: number }, index: number) => (
+                                        {safeDist.leadsByVisaType.map((entry: { name: string; value: number }, index: number) => (
                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>
@@ -148,7 +165,7 @@ export default function LeadsPage() {
                         <h3 className="text-lg font-bold text-gray-800 mb-6 border-b pb-2">Leads by Country</h3>
                         <div className="h-64">
                             <ResponsiveContainer width="100%" height="100%">
-                                <BarChart layout="vertical" data={data.distribution.revenueByCountry}>
+                                <BarChart layout="vertical" data={safeDist.revenueByCountry}>
                                     <CartesianGrid strokeDasharray="3 3" horizontal={false} />
                                     <XAxis type="number" />
                                     <YAxis dataKey="name" type="category" width={80} />
@@ -164,7 +181,7 @@ export default function LeadsPage() {
                         <h3 className="text-lg font-bold text-gray-800 mb-6 border-b pb-2">Performance by Counsellor</h3>
                         <div className="h-64">
                             <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={data.distribution.leadsByCounsellor}>
+                                <BarChart data={safeDist.leadsByCounsellor}>
                                     <CartesianGrid strokeDasharray="3 3" vertical={false} />
                                     <XAxis dataKey="name" />
                                     <YAxis />

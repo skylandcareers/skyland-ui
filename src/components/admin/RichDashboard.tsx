@@ -11,9 +11,15 @@ import {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function RichDashboard({ data }: { data: any }) {
-    if (!data) return <div className="p-8 text-center text-red-500">No data available</div>;
+    // Default structure to ensure UI renders even on failure/loading
+    const safeData = data || {
+        overview: { revenue: 0, revenueGrowth: 0, users: 0, contacts: 0 },
+        sales: { leadsNew: 0, pipelineValue: 0, conversionRate: 0 },
+        marketing: { traffic: 0, subscribers: 0, campaigns: 0 },
+        ops: { systemStatus: 'Unknown', articles: 0, categories: 0, tags: 0 }
+    };
 
-    const { overview, sales, marketing, ops } = data;
+    const { overview = {}, sales = {}, marketing = {}, ops = {} } = safeData;
 
     const Card = ({ title, value, subtext, icon, color, trend }: { title: string; value: string | number; subtext?: string; icon: React.ReactNode; color: string; trend?: number }) => (
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start justify-between hover:shadow-md transition-shadow">
