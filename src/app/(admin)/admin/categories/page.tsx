@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FaTrash, FaPlus } from 'react-icons/fa';
 
 export default function CategoriesPage() {
-    const [categories, setCategories] = useState<any[]>([]);
+    const [categories, setCategories] = useState<{ _id: string; name: string; slug: string; count: number }[]>([]);
     const [newName, setNewName] = useState('');
 
     useEffect(() => { fetchCategories(); }, []);

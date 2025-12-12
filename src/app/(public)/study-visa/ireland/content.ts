@@ -1,4 +1,88 @@
-export const irelandStudyVisaContent = {
+
+export interface Benefit {
+  title: string;
+  description: string;
+}
+
+export interface VisaType {
+  title: string;
+  description: string;
+  requirements: string[];
+  benefits: string[];
+}
+
+export interface University {
+  name: string;
+  location: string;
+  ranking: string;
+  specialties: string[];
+}
+
+export interface ApplicationStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface FAQSection {
+  [key: string]: FAQ[];
+}
+
+export interface VisaRequirementItem {
+  title: string;
+  description: string;
+}
+
+export interface VisaRequirements {
+  acceptance: VisaRequirementItem;
+  financialProof: VisaRequirementItem;
+  englishProficiency: VisaRequirementItem;
+  insurance: VisaRequirementItem;
+}
+
+export interface DocumentRequirementItem {
+  title: string;
+  description: string;
+}
+
+export interface DocumentRequirements {
+  mandatory: DocumentRequirementItem[];
+  additional: DocumentRequirementItem[];
+}
+
+export interface IrelandStudyVisaContent {
+  mainBenefits: Benefit[];
+  visaRequirements: VisaRequirements;
+  visaTypes: {
+    [key: string]: VisaType;
+  };
+  universities: University[];
+  applicationProcess: ApplicationStep[];
+  documentRequirements: DocumentRequirements;
+  faqs: FAQSection;
+  costs: {
+    tuitionFees: {
+      undergraduate: string;
+      postgraduate: string;
+      phd: string;
+    };
+    livingExpenses: {
+      dublin: string;
+      otherCities: string;
+    };
+    visaFees: {
+      application: string;
+      registration: string;
+    };
+  };
+}
+
+export const irelandStudyVisaContent: IrelandStudyVisaContent = {
   mainBenefits: [
     {
       title: "Post-Study Work Permit",
@@ -213,4 +297,4 @@ export const irelandStudyVisaContent = {
       specialties: ["Technology", "Marine Science", "Arts"]
     }
   ]
-}; 
+};

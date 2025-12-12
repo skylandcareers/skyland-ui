@@ -1,14 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import KpiCard from '@/components/admin/KpiCard';
-import { FaMoneyBillWave, FaChartLine, FaWallet, FaCreditCard, FaCalendarAlt } from 'react-icons/fa';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from 'recharts';
+import { FaMoneyBillWave, FaChartLine, FaCalendarAlt, FaWallet, FaCreditCard } from 'react-icons/fa';
+import {
+    AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+    BarChart, Bar,
+    PieChart, Pie, Cell
+} from 'recharts';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 export default function RevenuePage() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [period, setPeriod] = useState('month');
@@ -120,16 +125,16 @@ export default function RevenuePage() {
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <h3 className="text-lg font-bold text-gray-800 mb-6">Revenue by Country</h3>
                         <div className="space-y-4">
-                            {data.distribution.revenueByCountry.map((country: any, index: number) => (
-                                <div key={country.name}>
+                            {data.revenueByCountry.map((entry: { name: string; value: number }) => (
+                                <div key={entry.name}>
                                     <div className="flex justify-between text-sm mb-1">
-                                        <span className="font-medium text-gray-700">{country.name}</span>
-                                        <span className="text-gray-500">${country.value.toLocaleString()}</span>
+                                        <span className="font-medium text-gray-700">{entry.name}</span>
+                                        <span className="text-gray-500">${entry.value.toLocaleString()}</span>
                                     </div>
                                     <div className="w-full bg-gray-100 rounded-full h-2">
                                         <div
                                             className="bg-blue-600 h-2 rounded-full"
-                                            style={{ width: `${(country.value / 65) * 100}%` }}
+                                            style={{ width: `${(entry.value / 65) * 100}%` }}
                                         ></div>
                                     </div>
                                 </div>
@@ -173,7 +178,7 @@ export default function RevenuePage() {
                                         paddingAngle={5}
                                         dataKey="value"
                                     >
-                                        {data.distribution.revenueByService.map((entry: any, index: number) => (
+                                        {data.distribution.revenueByService.map((entry: { name: string; value: number }, index: number) => (
                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>
@@ -182,7 +187,7 @@ export default function RevenuePage() {
                             </ResponsiveContainer>
                         </div>
                         <div className="flex flex-wrap gap-4 justify-center mt-4">
-                            {data.distribution.revenueByService.map((entry: any, index: number) => (
+                            {data.distribution.revenueByService.map((entry: { name: string; value: number }, index: number) => (
                                 <div key={entry.name} className="flex items-center gap-2 text-sm text-gray-600">
                                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
                                     {entry.name}
@@ -192,6 +197,6 @@ export default function RevenuePage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

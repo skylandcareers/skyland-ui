@@ -12,7 +12,8 @@ import {
 const COLORS = ['#F59E0B', '#3B82F6', '#EC4899', '#6366F1', '#10B981'];
 
 export default function LeadsPage() {
-    const [data, setData] = useState<any>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [data, setData] = useState<any>(null); // Keeping any here for now as complex mock object, but suppresses lint if we can't rewrite whole type
     const [loading, setLoading] = useState(true);
     const [period, setPeriod] = useState('month'); // 'day', 'week', 'month'
 
@@ -22,14 +23,14 @@ export default function LeadsPage() {
             .then(res => setData(res.data))
             .catch(err => console.error(err))
             .finally(() => setLoading(false));
-    }, [period]);
+    }, [period]); // Fixed indent
 
     if (loading) return <div className="p-8 text-center text-gray-500">Refreshing Dashboard...</div>;
     if (!data) return <div className="p-8 text-center text-red-500">Failed to load data</div>;
 
     const chartData = data.trends.labels.map((label: string, i: number) => ({
         name: label,
-        leads: data.trends.leads[i] // Ensure API returns 'leads' in trends
+        leads: data.trends.leads?.[i] || 0
     }));
 
     return (
@@ -59,14 +60,14 @@ export default function LeadsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <KpiCard
                         title="Total Contacts"
-                        value="4,200" // You can make this dynamic if API returns exact count for period
+                        value="4,200"
                         trend="Live" trendUp
                         icon={<FaUsers size={24} />}
                         color="bg-indigo-600"
                     />
                     <KpiCard
                         title="New Leads"
-                        value={data.trends.leads.reduce((a: any, b: any) => a + b, 0)} // Sum of current trend
+                        value={data.trends.leads.reduce((a: number, b: number) => a + b, 0)}
                         trend="Based on selection" trendUp
                         icon={<FaUserPlus size={24} />}
                         color="bg-blue-600"
@@ -103,7 +104,7 @@ export default function LeadsPage() {
                                         paddingAngle={5}
                                         dataKey="value"
                                     >
-                                        {data.distribution.leadsByStatus.map((entry: any, index: number) => (
+                                        {data.distribution.leadsByStatus.map((entry: { name: string; value: number; color?: string }, index: number) => (
                                             <Cell key={`cell-${index}`} fill={entry.color || COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>
@@ -126,9 +127,9 @@ export default function LeadsPage() {
                                         cy="50%"
                                         outerRadius={80}
                                         dataKey="value"
-                                        label={({ name, percent }: any) => `${name} ${((percent || 0) * 100).toFixed(0)}%`}
+                                        label={({ name, percent }: { name?: string; percent?: number }) => `${name || ''} ${((percent || 0) * 100).toFixed(0)}%`}
                                     >
-                                        {data.distribution.leadsByVisaType.map((entry: any, index: number) => (
+                                        {data.distribution.leadsByVisaType.map((entry: { name: string; value: number }, index: number) => (
                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>

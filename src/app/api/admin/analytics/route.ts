@@ -1,16 +1,16 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
-import Contact from '@/models/Contact';
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_do_not_use_in_production';
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 
 async function isAdmin() {
     const cookieStore = await cookies();
     const token = cookieStore.get('auth_token')?.value;
     if (!token) return false;
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decoded: any = jwt.verify(token, JWT_SECRET);
         return decoded.role === 'admin' || decoded.role === 'super_admin';
     } catch {
@@ -30,18 +30,17 @@ export async function GET(req: Request) {
         const period = searchParams.get('period') || 'month'; // 'day', 'week', 'month'
 
         // 1. Generate Labels based on Period
-        let labels = [];
-        let count = 0;
+        const labels = [];
+        let multiplier = 100;
 
         if (period === 'day') {
-            count = 24; // Hours
+            multiplier = 1;
             for (let i = 0; i < 24; i++) labels.push(`${i}:00`);
         } else if (period === 'week') {
-            count = 7; // Days
+            multiplier = 10;
             const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
             for (let i = 0; i < 7; i++) labels.push(days[i]);
         } else {
-            count = 6; // Months (Default)
             for (let i = 5; i >= 0; i--) {
                 const d = new Date();
                 d.setMonth(d.getMonth() - i);
@@ -49,14 +48,12 @@ export async function GET(req: Request) {
             }
         }
 
-        // 2. Mock Trend Data (Adjust magnitude based on period)
-        const multiplier = period === 'day' ? 1 : (period === 'week' ? 10 : 100);
-
+        // 2. Mock Trend Data
         const revenueTrend = labels.map(() => Math.floor(Math.random() * 500 * multiplier) + (100 * multiplier));
         const leadsTrend = labels.map(() => Math.floor(Math.random() * 5 * multiplier) + (1 * multiplier));
         const refundsTrend = labels.map(() => Math.floor(Math.random() * 20 * multiplier) + (5 * multiplier));
 
-        // 3. Daily Sales (Last 30 Days) - kept static for now or can filter too
+        // 3. Daily Sales (Last 30 Days)
         const days = [];
         const dailySales = [];
         for (let i = 29; i >= 0; i--) {
@@ -133,7 +130,7 @@ export async function GET(req: Request) {
             }
         });
 
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }

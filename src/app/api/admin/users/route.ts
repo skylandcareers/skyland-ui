@@ -11,6 +11,7 @@ async function isSuperAdmin() {
     const token = cookieStore.get('auth_token')?.value;
     if (!token) return false;
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decoded: any = jwt.verify(token, JWT_SECRET);
         return decoded.role === 'super_admin';
     } catch {
@@ -23,6 +24,7 @@ async function isAdmin() {
     const token = cookieStore.get('auth_token')?.value;
     if (!token) return false;
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decoded: any = jwt.verify(token, JWT_SECRET);
         return decoded.role === 'admin' || decoded.role === 'super_admin';
     } catch {
@@ -40,7 +42,7 @@ export async function GET() {
         // Admins can see list, Super Admins can see everyone
         const users = await User.find({}).select('-password').sort({ createdAt: -1 });
         return NextResponse.json(users);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch users' }, { status: 500 });
     }
 }
@@ -62,7 +64,7 @@ export async function DELETE(req: Request) {
         await User.findByIdAndDelete(id);
 
         return NextResponse.json({ message: 'User deleted' });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to delete user' }, { status: 500 });
     }
 }

@@ -16,6 +16,7 @@ async function isAdmin() {
     const token = cookieStore.get('auth_token')?.value;
     if (!token) return false;
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decoded: any = jwt.verify(token, JWT_SECRET);
         return decoded.role === 'admin' || decoded.role === 'super_admin';
     } catch {
@@ -36,8 +37,8 @@ export async function GET(req: Request) {
         const period = searchParams.get('period') || 'month'; // 'day', 'week', 'month'
 
         // Calculate date ranges based on period
-        const now = new Date();
-        let startDate = new Date();
+        // Calculate date ranges based on period
+        const startDate = new Date();
 
         if (period === 'day') {
             startDate.setHours(0, 0, 0, 0); // Start of today
@@ -59,7 +60,7 @@ export async function GET(req: Request) {
             articleCount,
             categoryCount,
             tagCount,
-            newUsersPeriod,
+            ,
             newContactsPeriod
         ] = await Promise.all([
             User.countDocuments(),

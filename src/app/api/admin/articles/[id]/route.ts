@@ -11,6 +11,7 @@ async function isAdmin() {
     const token = cookieStore.get('auth_token')?.value;
     if (!token) return false;
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decoded: any = jwt.verify(token, JWT_SECRET);
         return decoded.role === 'admin' || decoded.role === 'super_admin';
     } catch {
@@ -18,18 +19,20 @@ async function isAdmin() {
     }
 }
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     try {
         await dbConnect();
         const article = await Article.findById(params.id);
         if (!article) return NextResponse.json({ error: 'Not found' }, { status: 404 });
         return NextResponse.json(article);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     try {
         if (!(await isAdmin())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
@@ -41,12 +44,13 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
         if (!article) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
         return NextResponse.json(article);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to update' }, { status: 500 });
     }
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     try {
         if (!(await isAdmin())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
@@ -56,7 +60,7 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
         if (!article) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
         return NextResponse.json({ message: 'Deleted' });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to delete' }, { status: 500 });
     }
 }

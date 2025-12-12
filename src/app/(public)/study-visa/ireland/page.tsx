@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  CheckCircle2, 
+import {
+  CheckCircle2,
   ChevronDown,
   ChevronUp,
   School,
@@ -21,73 +21,23 @@ import {
   Mail,
   Home,
 } from 'lucide-react';
-import { irelandStudyVisaContent } from '@/app/study-visa/ireland/content';
+import {
+  irelandStudyVisaContent,
+  IrelandStudyVisaContent,
+  Benefit,
+  VisaType,
+  University,
+  ApplicationStep,
+  FAQ,
+  FAQSection
+} from './content';
 import LeadForm from '@/components/LeadForm';
 
-interface FAQ {
-  question: string;
-  answer: string;
-}
-
-interface FAQSection {
-  [key: string]: FAQ[];
-}
-
-interface Benefit {
-  title: string;
-  description: string;
-}
-
-interface VisaType {
-  title: string;
-  description: string;
-  requirements: string[];
-  benefits: string[];
-}
-
-interface University {
-  name: string;
-  location: string;
-  ranking: string;
-  specialties: string[];
-}
-
-interface ApplicationStep {
-  step: number;
-  title: string;
-  description: string;
-}
-
-interface IrelandStudyVisaContent {
-  mainBenefits: Benefit[];
-  visaTypes: {
-    [key: string]: VisaType;
-  };
-  universities: University[];
-  applicationProcess: ApplicationStep[];
-  faqs: FAQSection;
-  costs: {
-    tuitionFees: {
-      undergraduate: string;
-      postgraduate: string;
-      phd: string;
-    };
-    livingExpenses: {
-      dublin: string;
-      otherCities: string;
-    };
-    visaFees: {
-      application: string;
-      registration: string;
-    };
-  };
-}
-
 const contactInfo = {
-    phone: "+91-9032420000",
-    email: "info@skylandimmigration.com",
-    hours: "Mon-Fri: 9:00 AM - 5:30 PM GMT"
-  };
+  phone: "+91-9032420000",
+  email: "info@skylandimmigration.com",
+  hours: "Mon-Fri: 9:00 AM - 5:30 PM GMT"
+};
 const IrelandStudyVisaPage = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState('general');
@@ -100,7 +50,7 @@ const IrelandStudyVisaPage = () => {
       <section className="bg-gradient-to-r from-blue-500 to-blue-600">
         <div className="max-w-7xl mx-auto px-4 py-8 md:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
-            <motion.div 
+            <motion.div
               className="space-y-4 md:space-y-7 text-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -110,7 +60,7 @@ const IrelandStudyVisaPage = () => {
                 Study in <span className="text-yellow-300">Ireland</span> - Your Gateway to European Education
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
-                Get comprehensive guidance for your Irish student visa application with our 98% success rate. 
+                Get comprehensive guidance for your Irish student visa application with our 98% success rate.
                 Includes post-study work opportunities and PR pathways.
               </p>
               <div className="space-y-4 bg-blue-500 p-5 rounded-xl">
@@ -131,7 +81,7 @@ const IrelandStudyVisaPage = () => {
                 </a>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -205,7 +155,7 @@ const IrelandStudyVisaPage = () => {
               >
                 <h3 className="text-xl font-bold text-blue-600 mb-3">{visa.title}</h3>
                 <p className="text-gray-600 mb-4">{visa.description}</p>
-                
+
                 <div className="mb-4">
                   <h4 className="font-semibold text-gray-900 mb-2">Requirements:</h4>
                   <ul className="space-y-2">
@@ -343,18 +293,17 @@ const IrelandStudyVisaPage = () => {
         {/* FAQs */}
         <section className="py-8 md:py-14">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
-          
+
           {/* FAQ Tabs */}
           <div className="flex flex-wrap gap-4 mb-6">
             {Object.keys(content.faqs).map((tab: string) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  activeTab === tab
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeTab === tab
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>

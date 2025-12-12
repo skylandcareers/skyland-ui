@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import axios from 'axios';
-import { Send, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
 export default function NewsletterForm() {
     const [email, setEmail] = useState('');

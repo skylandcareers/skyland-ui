@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaUser, FaTrash, FaPhone, FaShieldAlt } from 'react-icons/fa';
+import { FaUser, FaTrash, FaPhone } from 'react-icons/fa';
 
 interface IUser {
     _id: string;
@@ -27,7 +27,7 @@ export default function UsersList() {
             const res = await axios.get('/api/admin/users');
             setUsers(res.data);
             setError('');
-        } catch (err) {
+        } catch {
             setError('Failed to load users');
         } finally {
             setLoading(false);
@@ -39,7 +39,7 @@ export default function UsersList() {
         try {
             await axios.delete(`/api/admin/users?id=${id}`);
             fetchUsers();
-        } catch (err) {
+        } catch {
             alert('Failed to delete user');
         }
     };

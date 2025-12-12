@@ -11,6 +11,7 @@ async function isAdmin() {
     const token = cookieStore.get('auth_token')?.value;
     if (!token) return false;
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decoded: any = jwt.verify(token, JWT_SECRET);
         return decoded.role === 'admin' || decoded.role === 'super_admin';
     } catch {
@@ -58,8 +59,8 @@ export async function GET() {
         const subscribers = await Newsletter.find({}).sort({ subscribedAt: -1 });
         return NextResponse.json(subscribers);
 
-    } catch (error) {
-        console.error('Error fetching newsletter subscribers:', error);
+    } catch {
+        console.error('Error fetching newsletter subscribers');
         return NextResponse.json(
             { error: 'Failed to fetch subscribers' },
             { status: 500 }

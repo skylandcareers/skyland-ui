@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -19,11 +19,7 @@ export default function ContactList() {
     const [loading, setLoading] = useState(true);
     const router = useRouter();
 
-    useEffect(() => {
-        fetchContacts();
-    }, []);
-
-    const fetchContacts = async () => {
+    const fetchContacts = useCallback(async () => {
         try {
             const response = await axios.get('/api/admin/contacts');
             setContacts(response.data);
@@ -36,7 +32,11 @@ export default function ContactList() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [router]);
+
+    useEffect(() => {
+        fetchContacts();
+    }, [fetchContacts]);
 
     const handleDelete = async (id: string) => {
         if (!confirm('Are you sure you want to delete this contact?')) return;

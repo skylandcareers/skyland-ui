@@ -11,6 +11,7 @@ async function isAdmin() {
     const token = cookieStore.get('auth_token')?.value;
     if (!token) return false;
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decoded: any = jwt.verify(token, JWT_SECRET);
         return decoded.role === 'admin' || decoded.role === 'super_admin';
     } catch {
@@ -23,7 +24,7 @@ export async function GET() {
         await dbConnect();
         const categories = await Category.find({}).sort({ createdAt: -1 });
         return NextResponse.json(categories);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }
@@ -39,7 +40,7 @@ export async function POST(req: Request) {
 
         const category = await Category.create({ ...body, slug });
         return NextResponse.json(category, { status: 201 });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }
@@ -52,7 +53,7 @@ export async function DELETE(req: Request) {
         await dbConnect();
         await Category.findByIdAndDelete(id);
         return NextResponse.json({ message: 'Deleted' });
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed' }, { status: 500 });
     }
 }

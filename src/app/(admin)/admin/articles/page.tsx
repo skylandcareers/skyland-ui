@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import { FaPlus, FaEdit, FaTrash, FaEye } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 
 export default function ArticlesPage() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [articles, setArticles] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -17,8 +18,8 @@ export default function ArticlesPage() {
         try {
             const res = await axios.get('/api/admin/articles');
             setArticles(res.data);
-        } catch (err) {
-            console.error(err);
+        } catch {
+            console.error('Failed to fetch articles');
         } finally {
             setLoading(false);
         }
@@ -29,7 +30,7 @@ export default function ArticlesPage() {
         try {
             await axios.delete(`/api/admin/articles/${id}`);
             fetchArticles();
-        } catch (err) {
+        } catch {
             alert('Failed to delete');
         }
     };

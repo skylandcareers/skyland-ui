@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function UserDashboard() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [user, setUser] = useState<any>(null);
     const router = useRouter();
 
@@ -36,7 +38,7 @@ export default function UserDashboard() {
                     <div className="text-center py-8 text-gray-500 bg-gray-50 rounded border border-dashed border-gray-300">
                         You haven&apos;t submitted any visa applications yet.
                         <br />
-                        <a href="/" className="text-blue-600 hover:underline mt-2 inline-block">Browse Services</a>
+                        <Link href="/" className="text-blue-600 hover:underline mt-2 inline-block">Browse Services</Link>
                     </div>
                 </div>
             </div>

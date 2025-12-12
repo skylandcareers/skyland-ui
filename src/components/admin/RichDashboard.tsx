@@ -7,16 +7,15 @@ import {
     FaArrowUp, FaArrowDown
 } from 'react-icons/fa';
 
-interface RichDashboardProps {
-    data: any;
-}
 
-export default function RichDashboard({ data }: RichDashboardProps) {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function RichDashboard({ data }: { data: any }) {
     if (!data) return <div className="p-8 text-center text-red-500">No data available</div>;
 
     const { overview, sales, marketing, ops } = data;
 
-    const Card = ({ title, value, subtext, icon, color, trend }: any) => (
+    const Card = ({ title, value, subtext, icon, color, trend }: { title: string; value: string | number; subtext?: string; icon: React.ReactNode; color: string; trend?: number }) => (
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start justify-between hover:shadow-md transition-shadow">
             <div>
                 <p className="text-sm font-semibold text-gray-500 mb-1 uppercase tracking-wide">{title}</p>

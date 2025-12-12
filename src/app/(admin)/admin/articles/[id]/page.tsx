@@ -3,17 +3,20 @@
 import { useEffect, useState } from 'react';
 import ArticleForm from '@/components/admin/ArticleForm';
 import axios from 'axios';
+import { useParams } from 'next/navigation';
 
-export default function EditArticlePage({ params }: { params: { id: string } }) {
+export default function EditArticlePage() {
+    const params = useParams();
     const [article, setArticle] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        if (!params?.id) return;
         axios.get(`/api/admin/articles/${params.id}`)
             .then(res => setArticle(res.data))
             .catch(err => console.error(err))
             .finally(() => setLoading(false));
-    }, [params.id]);
+    }, [params?.id]);
 
     if (loading) return <div className="p-8">Loading...</div>;
     if (!article) return <div className="p-8">Article not found</div>;

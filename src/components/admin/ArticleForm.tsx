@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 interface ArticleFormProps {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     initialData?: any;
     isEdit?: boolean;
 }
@@ -13,8 +14,8 @@ interface ArticleFormProps {
 export default function ArticleForm({ initialData, isEdit }: ArticleFormProps) {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const [categories, setCategories] = useState<any[]>([]);
-    const [tags, setTags] = useState<any[]>([]);
+    const [categories, setCategories] = useState<{ _id: string; name: string }[]>([]);
+    const [tags, setTags] = useState<{ _id: string; name: string }[]>([]);
 
     const [formData, setFormData] = useState({
         title: '',
@@ -58,12 +59,12 @@ export default function ArticleForm({ initialData, isEdit }: ArticleFormProps) {
         setLoading(true);
         try {
             if (isEdit) {
-                await axios.put(`/api/admin/articles/${initialData._id}`, formData);
+                await axios.put(`/api/admin/articles/${initialData?._id}`, formData);
             } else {
                 await axios.post('/api/admin/articles', formData);
             }
             router.push('/admin/articles');
-        } catch (error) {
+        } catch {
             alert('Failed to save article');
         } finally {
             setLoading(false);

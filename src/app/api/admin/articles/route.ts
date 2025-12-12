@@ -11,6 +11,7 @@ async function isAdmin() {
     const token = cookieStore.get('auth_token')?.value;
     if (!token) return false;
     try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const decoded: any = jwt.verify(token, JWT_SECRET);
         return decoded.role === 'admin' || decoded.role === 'super_admin';
     } catch {
@@ -27,7 +28,7 @@ export async function GET() {
             .populate('tags', 'name')
             .sort({ createdAt: -1 });
         return NextResponse.json(articles);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: 'Failed to fetch articles' }, { status: 500 });
     }
 }
