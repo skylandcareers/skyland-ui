@@ -24,13 +24,14 @@ async function isAdmin() {
     return false;
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     try {
         if (!(await isAdmin())) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
         await dbConnect();
-        const { id } = await params;
+        const { id } = params;
         const body = await req.json();
 
         const job = await Job.findByIdAndUpdate(id, body, { new: true, runValidators: true });
@@ -43,13 +44,14 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     }
 }
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     try {
         if (!(await isAdmin())) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
         await dbConnect();
-        const { id } = await params; // Await params in Next.js 15+ if needed, safe to do
+        const { id } = params;
 
         const job = await Job.findByIdAndDelete(id);
         if (!job) {

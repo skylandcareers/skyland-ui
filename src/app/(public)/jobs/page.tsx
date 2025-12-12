@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from '@/components/Header'; // Assuming header is needed or already in layout
+// import Navbar from '@/components/Header'; // Header is in layout
 import JobsHero from '@/components/jobs/JobsHero';
 import CountrySlider from '@/components/jobs/CountrySlider';
 import JobFilters from '@/components/jobs/JobFilters';
