@@ -14,45 +14,48 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 export default function RevenuePage() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [data, setData] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
     const [period, setPeriod] = useState('month');
 
-    // STATIC DATA implementation as requested
-    const data = {
-        trends: {
-            labels: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
-            revenue: [12000, 19000, 15000, 22000, 28000, 35000],
-            refunds: [500, 800, 300, 1200, 400, 900],
-            days: Array.from({ length: 30 }, (_, i) => (i + 1).toString()),
-            dailySales: Array.from({ length: 30 }, () => Math.floor(Math.random() * 2000) + 500)
-        },
-        distribution: {
-            revenueByService: [
-                { name: 'PR Visa', value: 45000 },
-                { name: 'Student Visa', value: 30000 },
-                { name: 'Tourist/Visitor', value: 15000 },
-                { name: 'Work Permit', value: 25000 },
-                { name: 'Business Visa', value: 8000 },
-            ]
-        },
-        revenueByCountry: [
-            { name: 'India', value: 65 },
-            { name: 'UAE', value: 25 },
-            { name: 'UK', value: 15 },
-            { name: 'Canada', value: 12 },
-            { name: 'USA', value: 8 },
-        ]
+    useEffect(() => {
+        setLoading(true);
+        axios.get(`/api/admin/analytics?period=${period}`)
+            .then(res => setData(res.data))
+            .catch(err => console.error(err))
+            .finally(() => setLoading(false));
+    }, [period]);
+
+    // Default structure to ensure render even during load
+    const defaultData = {
+        trends: { labels: [], revenue: [], refunds: [], days: [], dailySales: [] },
+        distribution: { revenueByService: [] },
+        revenueByCountry: [] // API returns this nested in distribution usually, but we'll map carefully
     };
 
-    const chartData = data.trends.labels.map((label: string, i: number) => ({
+    const safeData = data || defaultData;
+    // Handle API structure vs Legacy structure mapping if needed
+    // API returns revenueByCountry inside distribution object
+    const revenueByCountry = safeData.distribution?.revenueByCountry || [];
+    const revenueByService = safeData.distribution?.revenueByService || [];
+
+    const chartData = (safeData.trends?.labels || []).map((label: string, i: number) => ({
         name: label,
-        revenue: data.trends.revenue[i],
-        refunds: data.trends.refunds[i]
+        revenue: safeData.trends?.revenue?.[i] || 0,
+        refunds: safeData.trends?.refunds?.[i] || 0
     }));
 
-    const dailyData = data.trends.days.map((day: string, i: number) => ({
+    const dailyData = (safeData.trends?.days || []).map((day: string, i: number) => ({
         day: day,
-        sales: data.trends.dailySales[i]
+        sales: safeData.trends?.dailySales?.[i] || 0
     }));
+
+    // Calculate Totals for Cards
+    const totalRevenue = (safeData.trends?.revenue || []).reduce((a: number, b: number) => a + b, 0);
+    const totalRefunds = (safeData.trends?.refunds || []).reduce((a: number, b: number) => a + b, 0);
+    const avgDailySales = dailyData.length > 0
+        ? Math.round(dailyData.reduce((a: number, b: { sales: number }) => a + b.sales, 0) / dailyData.length)
+        : 0;
 
     return (
         <div className="min-h-screen bg-gray-100 p-8">
@@ -62,6 +65,7 @@ export default function RevenuePage() {
                 <div className="flex flex-col md:flex-row justify-between items-center bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                     <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
                         <FaMoneyBillWave className="text-green-600" /> Revenue Analytics
+                        {loading && <span className="text-sm font-normal text-gray-400 ml-2 animate-pulse">(Updating...)</span>}
                     </h1>
                     <div className="flex items-center gap-2 mt-4 md:mt-0">
                         <FaCalendarAlt className="text-gray-400" />
@@ -81,28 +85,28 @@ export default function RevenuePage() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <KpiCard
                         title="Total Revenue"
-                        value={`$${period === 'day' ? '4,500' : '124,500'}`}  // Mock dynamic-ish feel
-                        trend="12% vs last period" trendUp
+                        value={`$${totalRevenue.toLocaleString()}`}
+                        trend="Based on selection" trendUp
                         icon={<FaMoneyBillWave size={24} />}
                         color="bg-green-500"
                     />
                     <KpiCard
                         title="Daily Avg Sales"
-                        value="$1,500"
-                        trend="8% surge" trendUp
+                        value={`$${avgDailySales.toLocaleString()}`}
+                        trend="Calculated avg" trendUp
                         icon={<FaChartLine size={24} />}
                         color="bg-blue-500"
                     />
                     <KpiCard
                         title="Total Refunds"
-                        value="$3,200"
+                        value={`$${totalRefunds.toLocaleString()}`}
                         trend="2% decrease" trendUp={true}
                         icon={<FaWallet size={24} />}
                         color="bg-red-500"
                     />
                     <KpiCard
                         title="Outstanding"
-                        value="$12,000"
+                        value="$12,000" // Still mocked as API lacks this
                         icon={<FaCreditCard size={24} />}
                         color="bg-orange-500"
                     />
@@ -139,7 +143,7 @@ export default function RevenuePage() {
                     <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                         <h3 className="text-lg font-bold text-gray-800 mb-6">Revenue by Country</h3>
                         <div className="space-y-4">
-                            {data.revenueByCountry.map((entry: { name: string; value: number }) => (
+                            {revenueByCountry.map((entry: { name: string; value: number }) => (
                                 <div key={entry.name}>
                                     <div className="flex justify-between text-sm mb-1">
                                         <span className="font-medium text-gray-700">{entry.name}</span>
@@ -183,7 +187,7 @@ export default function RevenuePage() {
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
                                     <Pie
-                                        data={data.distribution.revenueByService}
+                                        data={revenueByService}
                                         cx="50%"
                                         cy="50%"
                                         innerRadius={60}
@@ -192,7 +196,7 @@ export default function RevenuePage() {
                                         paddingAngle={5}
                                         dataKey="value"
                                     >
-                                        {data.distribution.revenueByService.map((entry: { name: string; value: number }, index: number) => (
+                                        {revenueByService.map((entry: { name: string; value: number }, index: number) => (
                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>
@@ -201,7 +205,7 @@ export default function RevenuePage() {
                             </ResponsiveContainer>
                         </div>
                         <div className="flex flex-wrap gap-4 justify-center mt-4">
-                            {data.distribution.revenueByService.map((entry: { name: string; value: number }, index: number) => (
+                            {revenueByService.map((entry: { name: string; value: number }, index: number) => (
                                 <div key={entry.name} className="flex items-center gap-2 text-sm text-gray-600">
                                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }}></div>
                                     {entry.name}
