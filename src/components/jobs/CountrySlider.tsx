@@ -21,12 +21,12 @@ export default function CountrySlider({ onSelectCountry }: { onSelectCountry: (c
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollRef.current) {
-            const { current } = scrollRef.current;
+            const container = scrollRef.current;
             const scrollAmount = 300;
             if (direction === 'left') {
-                current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             } else {
-                current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             }
         }
     };
