@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaUsers, FaEnvelopeOpenText, FaSignOutAlt, FaTachometerAlt, FaAddressBook, FaNewspaper, FaTags, FaLayerGroup, FaMoneyBillWave, FaChartLine, FaBriefcase, FaPlus } from 'react-icons/fa';
+import { FaUsers, FaEnvelopeOpenText, FaSignOutAlt, FaTachometerAlt, FaAddressBook, FaNewspaper, FaTags, FaLayerGroup, FaMoneyBillWave, FaChartLine, FaBriefcase, FaPlus, FaCheckCircle } from 'react-icons/fa';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -21,10 +21,12 @@ export default function Sidebar() {
 
     const navItems = [
         { name: 'Dashboard', path: '/admin/dashboard', icon: <FaTachometerAlt /> },
+        { name: 'Applications', path: '/admin/applications', icon: <FaBriefcase /> }, // New
+        { name: 'Assessments', path: '/admin/assessments', icon: <FaCheckCircle /> }, // New
         { name: 'Revenue', path: '/admin/revenue', icon: <FaMoneyBillWave /> },
         { name: 'Sales Entry', path: '/admin/sales', icon: <FaPlus /> },
         { name: 'Leads Analytics', path: '/admin/leads', icon: <FaChartLine /> },
-        { name: 'Jobs', path: '/admin/jobs', icon: <FaBriefcase /> }, // Added Jobs link
+        { name: 'Jobs', path: '/admin/jobs', icon: <FaBriefcase /> },
         { name: 'Contacts', path: '/admin/contacts', icon: <FaAddressBook /> },
         { name: 'Users', path: '/admin/users', icon: <FaUsers /> },
         { name: 'Newsletter', path: '/admin/newsletter', icon: <FaEnvelopeOpenText /> },

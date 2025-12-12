@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { FaCheckCircle, FaUser, FaEnvelope, FaPhone, FaGlobe, FaGraduationCap, FaBriefcase, FaPassport, FaMoneyBillWave } from 'react-icons/fa';
+import FileUpload from '@/components/FileUpload';
 
 export default function FreeAssessmentPage() {
   const [step, setStep] = useState(1);
@@ -179,10 +180,16 @@ export default function FreeAssessmentPage() {
                       <input type="text" name="desiredSalary" value={formData.desiredSalary} onChange={handleChange} className="pl-10 w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. 5000 USD" />
                     </div>
                   </div>
-
                   <div className="flex items-center gap-2 py-2">
                     <input type="checkbox" id="hasJobOffer" name="hasJobOffer" checked={formData.hasJobOffer} onChange={handleChange} className="w-5 h-5 text-blue-600 rounded" />
                     <label htmlFor="hasJobOffer" className="text-gray-700">I already have a job offer abroad</label>
+                  </div>
+
+                  <div className="mt-4">
+                    <FileUpload
+                      label="Upload CV / Documents (Optional)"
+                      onUploadComplete={(url) => setFormData(prev => ({ ...prev, resumeUrl: url }))}
+                    />
                   </div>
 
                   <div className="flex gap-4 mt-6">

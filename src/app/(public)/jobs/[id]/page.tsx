@@ -4,6 +4,7 @@ import { useState, useEffect, use } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 import { FaMapMarkerAlt, FaBriefcase, FaMoneyBillWave, FaClock, FaCheckCircle, FaArrowLeft, FaShare } from 'react-icons/fa';
+import FileUpload from '@/components/FileUpload';
 
 interface Job {
     _id: string;
@@ -34,7 +35,7 @@ export default function JobDetailsPage({ params }: { params: Promise<{ id: strin
 
     // Application Form State
     const [showModal, setShowModal] = useState(false);
-    const [formData, setFormData] = useState({ name: '', phone: '', email: '' });
+    const [formData, setFormData] = useState<{ name: string; phone: string; email: string; resumeUrl?: string }>({ name: '', phone: '', email: '', resumeUrl: '' });
     const [submitting, setSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
 
@@ -239,6 +240,13 @@ export default function JobDetailsPage({ params }: { params: Promise<{ id: strin
                                             value={formData.email}
                                             onChange={e => setFormData({ ...formData, email: e.target.value })}
                                             className="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                        />
+                                    </div>
+
+                                    <div className="mt-2">
+                                        <FileUpload
+                                            label="Upload CV / Resume (Optional)"
+                                            onUploadComplete={(url) => setFormData(prev => ({ ...prev, resumeUrl: url }))}
                                         />
                                     </div>
 

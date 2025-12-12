@@ -8,6 +8,7 @@ export interface IJobApplication extends Document {
     name: string;
     phone: string;
     email?: string;
+    resumeUrl?: string;
     status: 'Pending' | 'Reviewed' | 'Shortlisted' | 'Rejected' | 'Hired';
     createdAt: Date;
 }
@@ -36,6 +37,10 @@ const JobApplicationSchema: Schema = new Schema({
     email: {
         type: String,
         trim: true
+    },
+    resumeUrl: {
+        type: String,
+        required: false
     },
     status: {
         type: String,
