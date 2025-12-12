@@ -21,6 +21,7 @@ export interface IContact extends Document {
     status?: 'New' | 'Contacted' | 'In Progress' | 'Converted' | 'Lost';
     priority?: 'Low' | 'Medium' | 'High';
     notes?: string;
+    revenue?: number; // Added for Sales Entry
     lastContactedAt?: Date;
     assignedTo?: string | any; // Type 'any' to handle populated user object
 
@@ -79,6 +80,10 @@ const ContactSchema: Schema = new Schema({
     notes: {
         type: String,
         required: false,
+    },
+    revenue: {
+        type: Number,
+        default: 0
     },
     lastContactedAt: {
         type: Date,
