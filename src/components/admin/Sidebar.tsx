@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaUsers, FaEnvelopeOpenText, FaSignOutAlt, FaTachometerAlt } from 'react-icons/fa';
+import { FaUsers, FaEnvelopeOpenText, FaSignOutAlt, FaTachometerAlt, FaAddressBook, FaNewspaper, FaTags, FaLayerGroup, FaMoneyBillWave, FaChartLine } from 'react-icons/fa';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 
@@ -13,7 +13,7 @@ export default function Sidebar() {
     const handleLogout = async () => {
         try {
             await axios.post('/api/auth/logout');
-            router.push('/login');
+            router.push('/auth/login');
         } catch (error) {
             console.error('Logout failed', error);
         }
@@ -21,9 +21,14 @@ export default function Sidebar() {
 
     const navItems = [
         { name: 'Dashboard', path: '/admin/dashboard', icon: <FaTachometerAlt /> },
-        // You can break down contacts/newsletters into separate pages if desired, 
-        // but for now they are tabs in dashboard. 
-        // Adding dummy links if we want to expand later.
+        { name: 'Revenue', path: '/admin/revenue', icon: <FaMoneyBillWave /> },
+        { name: 'Leads Analytics', path: '/admin/leads', icon: <FaChartLine /> },
+        { name: 'Contacts', path: '/admin/contacts', icon: <FaAddressBook /> },
+        { name: 'Users', path: '/admin/users', icon: <FaUsers /> },
+        { name: 'Newsletter', path: '/admin/newsletter', icon: <FaEnvelopeOpenText /> },
+        { name: 'Articles', path: '/admin/articles', icon: <FaNewspaper /> },
+        { name: 'Categories', path: '/admin/categories', icon: <FaLayerGroup /> },
+        { name: 'Tags', path: '/admin/tags', icon: <FaTags /> },
     ];
 
     return (
@@ -37,8 +42,8 @@ export default function Sidebar() {
                         key={item.path}
                         href={item.path}
                         className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${pathname === item.path
-                                ? 'bg-blue-600 text-white'
-                                : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                            ? 'bg-blue-600 text-white'
+                            : 'text-gray-400 hover:bg-gray-800 hover:text-white'
                             }`}
                     >
                         {item.icon}

@@ -2,10 +2,20 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Newsletter from '@/models/Newsletter';
 import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_do_not_use_in_production';
 
 async function isAdmin() {
     const cookieStore = await cookies();
-    return cookieStore.get('admin_session')?.value === 'true';
+    const token = cookieStore.get('auth_token')?.value;
+    if (!token) return false;
+    try {
+        const decoded: any = jwt.verify(token, JWT_SECRET);
+        return decoded.role === 'admin' || decoded.role === 'super_admin';
+    } catch {
+        return false;
+    }
 }
 
 export async function POST(req: Request) {

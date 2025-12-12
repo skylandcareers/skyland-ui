@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
     // Protect Admin Routes
-    if (pathname.startsWith('/admin') && pathname !== '/admin' && pathname !== '/admin/login') {
+    if (pathname.startsWith('/admin')) {
         // For now, just checking if token exists. 
         // In a real app, you might decode JWT here or call an API to verify role.
         // But middleware edge runtime has limitations with some JWT libs.
@@ -16,14 +16,14 @@ export function middleware(request: NextRequest) {
             const simpleAdmin = request.cookies.get('admin_session')?.value;
             if (simpleAdmin === 'true') return NextResponse.next();
 
-            return NextResponse.redirect(new URL('/login', request.url));
+            return NextResponse.redirect(new URL('/auth/login', request.url));
         }
     }
 
     // Protect User Dashboard
     if (pathname.startsWith('/dashboard')) {
         if (!token) {
-            return NextResponse.redirect(new URL('/login', request.url));
+            return NextResponse.redirect(new URL('/auth/login', request.url));
         }
     }
 

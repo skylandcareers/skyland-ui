@@ -13,12 +13,12 @@ export default function UserDashboard() {
         axios.get('/api/auth/me')
             .then(res => {
                 if (!res.data.user) {
-                    router.push('/login');
+                    router.push('/auth/login');
                 } else {
                     setUser(res.data.user);
                 }
             })
-            .catch(() => router.push('/login'));
+            .catch(() => router.push('/auth/login'));
     }, [router]);
 
     if (!user) return <div className="p-8 text-center">Loading...</div>;

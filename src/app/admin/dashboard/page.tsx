@@ -1,36 +1,51 @@
 'use client';
-import { useState } from 'react';
-import ContactList from '@/components/admin/ContactList';
-import NewsletterList from '@/components/admin/NewsletterList';
+
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import RichDashboard from '@/components/admin/RichDashboard';
+import { FaCalendarAlt } from 'react-icons/fa';
 
 export default function AdminDashboard() {
-    const [activeTab, setActiveTab] = useState<'contacts' | 'newsletter'>('contacts');
+    const [period, setPeriod] = useState('month');
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        axios.get(`/api/admin/stats?period=${period}`)
+            .then(res => setData(res.data))
+            .catch(err => console.error(err))
+            .finally(() => setLoading(false));
+    }, [period]);
 
     return (
         <div className="min-h-screen bg-gray-100 p-8">
-            <div className="max-w-6xl mx-auto">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-8 flex flex-col md:flex-row justify-between items-end">
+                    <div>
+                        <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
+                        <p className="text-gray-500 mt-1">Holistic view of business performance.</p>
+                    </div>
+
+                    <div className="flex items-center gap-2 mt-4 md:mt-0 bg-white p-2 rounded-lg shadow-sm border border-gray-200">
+                        <FaCalendarAlt className="text-gray-400" />
+                        <select
+                            value={period}
+                            onChange={(e) => setPeriod(e.target.value)}
+                            className="bg-transparent text-gray-700 text-sm font-medium outline-none cursor-pointer"
+                        >
+                            <option value="day">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div className="mb-6 flex space-x-4 border-b border-gray-200">
-                    <button
-                        className={`py-2 px-4 font-semibold ${activeTab === 'contacts' ? 'border-b-2 border-blue-500 text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
-                        onClick={() => setActiveTab('contacts')}
-                    >
-                        Contacts
-                    </button>
-                    <button
-                        className={`py-2 px-4 font-semibold ${activeTab === 'newsletter' ? 'border-b-2 border-blue-500 text-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
-                        onClick={() => setActiveTab('newsletter')}
-                    >
-                        Newsletter Subscribers
-                    </button>
-                </div>
-
-                <div>
-                    {activeTab === 'contacts' ? <ContactList /> : <NewsletterList />}
-                </div>
+                {loading ? (
+                    <div className="p-12 text-center text-gray-500 animate-pulse">Updating metrics...</div>
+                ) : (
+                    <RichDashboard data={data} />
+                )}
             </div>
         </div>
     );

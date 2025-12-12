@@ -2,10 +2,20 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Contact from '@/models/Contact';
 import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_do_not_use_in_production';
 
 async function isAuthenticated() {
     const cookieStore = await cookies();
-    return cookieStore.get('admin_session')?.value === 'true';
+    const token = cookieStore.get('auth_token')?.value;
+    if (!token) return false;
+    try {
+        jwt.verify(token, JWT_SECRET);
+        return true;
+    } catch {
+        return false;
+    }
 }
 
 export async function GET() {
