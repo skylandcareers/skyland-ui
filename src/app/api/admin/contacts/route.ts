@@ -102,15 +102,15 @@ export async function PATCH(req: Request) {
                 // Import dynamically to avoid top-level issues if lib missing? No, static is fine.
                 const { sendEmail } = await import('@/lib/email');
 
-                await sendEmail(
-                    newOwner.email,
-                    `New Lead Assignment: ${contact.name}`,
-                    `<p>Hello ${newOwner.name},</p>
+                await sendEmail({
+                    to: newOwner.email,
+                    subject: `New Lead Assignment: ${contact.name}`,
+                    html: `<p>Hello ${newOwner.name},</p>
                      <p>You have been assigned a new lead.</p>
                      <p><strong>Name:</strong> ${contact.name}</p>
                      <p><strong>Status:</strong> ${contact.status}</p>
                      <p>Please log in to the dashboard to review.</p>`
-                );
+                });
             }
         }
 

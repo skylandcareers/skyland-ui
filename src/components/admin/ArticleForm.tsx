@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import RichTextEditor from '../RichTextEditor';
 
 interface ArticleFormProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -113,13 +114,15 @@ export default function ArticleForm({ initialData, isEdit }: ArticleFormProps) {
             </div>
 
             <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Content (Markdown/HTML)</label>
-                <textarea
-                    className="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none h-64 font-mono text-sm"
-                    value={formData.content}
-                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                    required
-                />
+                <label className="text-sm font-semibold text-gray-700">Content</label>
+                <div className="prose-sm">
+                    {/* Lazy load if needed to avoid SSR issues with some editors */}
+                    <RichTextEditor
+                        value={formData.content}
+                        onChange={(val) => setFormData({ ...formData, content: val })}
+                        placeholder="Article content..."
+                    />
+                </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaPlus, FaBriefcase, FaEdit, FaTrash, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import RichTextEditor from '@/components/RichTextEditor';
 
 interface Job {
     _id: string;
@@ -221,14 +222,15 @@ export default function JobsPage() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Description (Markdown/HTML)</label>
-                                <textarea
-                                    required
-                                    rows={10}
-                                    value={formData.description}
-                                    onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500 outline-none font-mono text-sm"
-                                ></textarea>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                <div className="prose-sm">
+                                    {/* Using lazy import or standard import. Need to ensure RichTextEditor is imported. */}
+                                    <RichTextEditor
+                                        value={formData.description}
+                                        onChange={(val) => setFormData({ ...formData, description: val })}
+                                        placeholder="Job description..."
+                                    />
+                                </div>
                             </div>
                             <div className="flex items-center gap-2">
                                 <input

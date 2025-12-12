@@ -31,6 +31,38 @@ export async function POST(req: Request) {
             userId: userId || undefined
         });
 
+        // Send Email Notifications (Async - don't await blocking response)
+        const { sendEmail } = await import('@/lib/email');
+        const adminEmail = process.env.ADMIN_EMAIL || 'admin@skylandimmigration.com';
+
+        // 1. Notify Admin
+        await sendEmail({
+            to: adminEmail,
+            subject: `New Job Application: ${body.name}`,
+            html: `
+                <h2>New Job Application Received</h2>
+                <p><strong>Applicant:</strong> ${body.name}</p>
+                <p><strong>Job ID:</strong> ${body.jobId}</p>
+                <p><strong>Phone:</strong> ${body.phone}</p>
+                <p><strong>Email:</strong> ${body.email}</p>
+                ${body.resumeUrl ? `<p><a href="${body.resumeUrl}">View Resume</a></p>` : ''}
+            `
+        });
+
+        // 2. Notify User (if email provided)
+        if (body.email) {
+            await sendEmail({
+                to: body.email,
+                subject: 'Application Received - Skyland Immigration',
+                html: `
+                    <h2>Application Received</h2>
+                    <p>Dear ${body.name},</p>
+                    <p>Thank you for applying for the position. We have received your application and will review it shortly.</p>
+                    <p>Best regards,<br>Skyland Immigration Team</p>
+                `
+            });
+        }
+
         return NextResponse.json(application, { status: 201 });
     } catch (error) {
         console.error('Application error:', error);
