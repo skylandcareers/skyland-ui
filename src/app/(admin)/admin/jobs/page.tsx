@@ -7,6 +7,7 @@ import { FaPlus, FaBriefcase, FaEdit, FaTrash, FaCheckCircle, FaTimesCircle } fr
 interface Job {
     _id: string;
     title: string;
+    country: string;
     location: string;
     type: string;
     salaryRange: string;
@@ -22,6 +23,7 @@ export default function JobsPage() {
 
     const [formData, setFormData] = useState({
         title: '',
+        country: '',
         location: '',
         type: 'Full-time',
         salaryRange: '',
@@ -75,6 +77,7 @@ export default function JobsPage() {
             setEditingJob(job);
             setFormData({
                 title: job.title,
+                country: job.country || '',
                 location: job.location,
                 type: job.type,
                 salaryRange: job.salaryRange || '',
@@ -85,6 +88,7 @@ export default function JobsPage() {
             setEditingJob(null);
             setFormData({
                 title: '',
+                country: '',
                 location: '',
                 type: 'Full-time',
                 salaryRange: '',
@@ -128,7 +132,7 @@ export default function JobsPage() {
                                             {job.isActive ? 'Active' : 'Inactive'}
                                         </span>
                                     </div>
-                                    <p className="text-gray-500 text-sm mt-1">{job.location} • {job.type} • {job.salaryRange}</p>
+                                    <p className="text-gray-500 text-sm mt-1">{job.country} • {job.location} • {job.type} • {job.salaryRange}</p>
                                 </div>
                                 <div className="flex items-center gap-3">
                                     <button
@@ -171,6 +175,16 @@ export default function JobsPage() {
                                     className="w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
                                 />
                             </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Country</label>
+                                <input
+                                    type="text"
+                                    required
+                                    value={formData.country}
+                                    onChange={e => setFormData({ ...formData, country: e.target.value })}
+                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                />
+                            </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
@@ -207,13 +221,13 @@ export default function JobsPage() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Description (Markdown/HTML)</label>
                                 <textarea
                                     required
-                                    rows={4}
+                                    rows={10}
                                     value={formData.description}
                                     onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500 outline-none font-mono text-sm"
                                 ></textarea>
                             </div>
                             <div className="flex items-center gap-2">

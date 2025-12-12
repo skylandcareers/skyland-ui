@@ -2,6 +2,7 @@ import mongoose, { Schema, Document, Model } from 'mongoose';
 
 export interface IJob extends Document {
     title: string;
+    country: string; // Added field
     location: string;
     type: 'Full-time' | 'Part-time' | 'Contract' | 'Internship';
     salaryRange?: string; // e.g. "50k - 70k"
@@ -15,6 +16,11 @@ const JobSchema: Schema = new Schema({
     title: {
         type: String,
         required: [true, 'Job title is required'],
+        trim: true
+    },
+    country: {
+        type: String,
+        required: [true, 'Country is required'],
         trim: true
     },
     location: {
