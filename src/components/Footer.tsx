@@ -160,11 +160,11 @@ const Footer = () => {
                 <FaPhoneAlt className="text-yellow-400 text-sm" />
               </div>
               <div>
-                <a href="tel:+919999999999" className="text-sm text-gray-400 hover:text-yellow-400 transition duration-300 block">
-                  +91 6300191853
+                <a href="tel:+916300191853" className="text-sm text-gray-400 hover:text-yellow-400 transition duration-300 block">
+                  +916300191853
                 </a>
-                <a href="tel:+914040404040" className="text-sm text-gray-400 hover:text-yellow-400 transition duration-300 block">
-                  +91 9032420020
+                <a href="tel:+919490136138" className="text-sm text-gray-400 hover:text-yellow-400 transition duration-300 block">
+                  +919490136138
                 </a>
               </div>
             </li>
@@ -173,10 +173,10 @@ const Footer = () => {
                 <FaEnvelope className="text-yellow-400 text-sm" />
               </div>
               <a
-                href="mailto:info@skylandimmigration.com"
+                href="mailto:saiteja.b@skylandcareers.com"
                 className="text-sm text-gray-400 hover:text-yellow-400 transition duration-300"
               >
-                info@skylandimmigration.com
+                saiteja.b@skylandcareers.com
               </a>
             </li>
           </ul>

@@ -144,8 +144,8 @@ export default function TermsAndConditions() {
             Skyland Immigration Private Limited<br />
             4th Floor Vasavi MPM Grand, Ameerpet, Yella Reddy Guda, Hyderabad, Telangana - 500073
             <br />
-            Phone: +91-9032420020<br />
-            Email: info@skylandimmigration.com
+            Phone: +91-6300191853<br />
+            Email: saiteja.b@skylandcareers.com
           </p>
         </div>
       </div>

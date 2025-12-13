@@ -20,7 +20,7 @@ import type { SingaporeStudyVisaContent } from './content.d';
 
 const contactInfo = {
   phone: "+91-9032420000",
-  email: "info@skylandimmigration.com",
+  email: "saiteja.b@skylandcareers.com",
   hours: "Mon-Fri: 9:00 AM - 5:30 PM GMT"
 };
 
@@ -40,7 +40,7 @@ const SingaporeStudyVisaPage = () => {
                 Study in <span className="text-yellow-300">Singapore</span> with Guaranteed Internship
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
-                Get a 1-year diploma with paid internship opportunity after 6 months. 
+                Get a 1-year diploma with paid internship opportunity after 6 months.
                 Fast-track your career with practical industry experience in Singapore.
               </p>
               <div className="space-y-4 bg-blue-500 p-5 rounded-xl">
@@ -194,11 +194,10 @@ const SingaporeStudyVisaPage = () => {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    activeTab === tab
+                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${activeTab === tab
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
+                    }`}
                 >
                   {tab.charAt(0).toUpperCase() + tab.slice(1)}
                 </button>
@@ -215,9 +214,8 @@ const SingaporeStudyVisaPage = () => {
                 >
                   <span className="font-medium text-gray-900">{faq.question}</span>
                   <ArrowRight
-                    className={`w-5 h-5 text-gray-500 transition-transform ${
-                      openFaqIndex === index ? 'rotate-90' : ''
-                    }`}
+                    className={`w-5 h-5 text-gray-500 transition-transform ${openFaqIndex === index ? 'rotate-90' : ''
+                      }`}
                   />
                 </button>
                 {openFaqIndex === index && (

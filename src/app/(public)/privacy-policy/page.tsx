@@ -98,8 +98,8 @@ export default function PrivacyPolicy() {
           <h2 className="text-xl font-semibold mt-8 mb-2">Contact Us</h2>
           <p className="mb-8">
             If you have any questions or concerns about this Privacy Policy, please contact us at: <br />
-            <strong>Email:</strong> support@skylandimmigration.com <br />
-            <strong>Phone:</strong> +91-9032420020
+            <strong>Email:</strong> support@skylandcareers.com <br />
+            <strong>Phone:</strong> +91-6300191853
           </p>
         </div>
       </div>

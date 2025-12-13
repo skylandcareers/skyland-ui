@@ -781,13 +781,13 @@ export default function CheckEligibilityPage() {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 pt-4">
                     <a
-                      href="tel:+919032420020"
+                      href="tel:+916300191853"
                       className="flex-1 text-center px-6 py-4 border-2 border-gray-300 rounded-xl hover:bg-gray-50 transition-all duration-200 font-medium"
                     >
                       📞 Call Now
                     </a>
                     <a
-                      href="https://wa.me/919032420020"
+                      href="https://wa.me/916300191853"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 text-center px-6 py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl"

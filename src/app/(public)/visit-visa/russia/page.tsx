@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  CheckCircle2, 
-  Phone, 
+import {
+  CheckCircle2,
+  Phone,
   Mail,
   Clock,
   ChevronDown,
@@ -73,7 +73,7 @@ const RussiaVisitVisaPage = () => {
 
   const contactInfo = {
     phone: "+91-9032420000",
-    email: "info@skylandimmigration.com",
+    email: "saiteja.b@skylandcareers.com",
     hours: "Mon-Fri: 9:00 AM - 5:30 PM GMT"
   };
 

@@ -572,7 +572,7 @@ const supportServices: Service[] = [
 
 const contactInfo: ContactInfo = {
   phone: "+971 XXX XXX XXXX",
-  email: "info@skylandimmigration.com",
+  email: "saiteja.b@skylandcareers.com",
   hours: "Sun-Thu: 9:00 AM - 6:00 PM GST"
 };
 
@@ -605,7 +605,7 @@ const renderVisaTypeContent = (visa: VisaType) => {
     <>
       <h3 className="text-xl font-bold text-blue-600 mb-3">{visa.title}</h3>
       <p className="text-gray-600 mb-4">{visa.description}</p>
-      
+
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="bg-blue-50 p-3 rounded-lg">
           <p className="text-sm font-medium text-blue-800">Duration</p>
@@ -616,7 +616,7 @@ const renderVisaTypeContent = (visa: VisaType) => {
           <p className="text-blue-600 font-semibold">{visa.validity}</p>
         </div>
       </div>
-      
+
       {visa.permittedActivities && (
         <div className="mb-4">
           <h4 className="font-semibold text-gray-900 mb-2">Permitted Activities:</h4>
@@ -630,7 +630,7 @@ const renderVisaTypeContent = (visa: VisaType) => {
           </ul>
         </div>
       )}
-      
+
       {visa.prohibitedActivities && (
         <div>
           <h4 className="font-semibold text-gray-900 mb-2">Prohibited Activities:</h4>
@@ -669,7 +669,7 @@ const UaeVisitVisaPage = () => {
                 Made Simple
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
-                Fast, reliable UAE visa processing with expert guidance. Get your tourist or visit visa 
+                Fast, reliable UAE visa processing with expert guidance. Get your tourist or visit visa
                 approved quickly with our 99% success rate and comprehensive support.
               </p>
               <div className="space-y-4 bg-blue-500/30 p-5 rounded-xl">
@@ -701,7 +701,7 @@ const UaeVisitVisaPage = () => {
                 </a>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -851,14 +851,14 @@ const UaeVisitVisaPage = () => {
                 Follow our comprehensive step-by-step guide to ensure a successful UAE visa application. Each stage is carefully designed to help you navigate the process smoothly.
               </p>
             </div>
-            
+
             <div className="relative">
               {/* Timeline Line */}
               <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-blue-200" />
-              
+
               <div className="space-y-16">
                 {uaeVisaContent.application.steps.map((step, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     className="relative"
                     initial={{ opacity: 0, y: 20 }}
@@ -869,19 +869,19 @@ const UaeVisitVisaPage = () => {
                     <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-blue-500 text-white items-center justify-center font-bold text-xl shadow-lg z-10">
                       {step.number}
                     </div>
-                    
+
                     {/* Content Card */}
                     <div className={`md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'} bg-white rounded-xl shadow-xl p-6`}>
                       {/* Mobile Step Number */}
                       <div className="md:hidden w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg mb-4">
                         {step.number}
                       </div>
-                      
+
                       <div className="mb-6">
                         <h3 className="text-xl font-bold text-blue-600 mb-3">{step.title}</h3>
                         <p className="text-gray-600 leading-relaxed">{step.details}</p>
                       </div>
-                      
+
                       <div className="space-y-4">
                         {/* Required Documents/Actions */}
                         <div className="bg-blue-50 p-4 rounded-lg">
@@ -944,7 +944,7 @@ const UaeVisitVisaPage = () => {
                             ))}
                           </ul>
                         </div>
-                        
+
                         {/* Tips Section */}
                         {step.tips && (
                           <div className="bg-blue-50 p-4 rounded-lg">
@@ -959,7 +959,7 @@ const UaeVisitVisaPage = () => {
                             </ul>
                           </div>
                         )}
-                        
+
                         {/* Step-specific Additional Information */}
                         {step.number === 1 && (
                           <div className="mt-4 p-4 bg-yellow-50 rounded-lg">
@@ -1317,9 +1317,8 @@ const UaeVisitVisaPage = () => {
                       >
                         <span className="font-medium text-gray-900">{faq.question}</span>
                         <ChevronDown
-                          className={`w-5 h-5 text-gray-500 transform transition-transform ${
-                            openFaqIndex === faqIndex ? 'rotate-180' : ''
-                          }`}
+                          className={`w-5 h-5 text-gray-500 transform transition-transform ${openFaqIndex === faqIndex ? 'rotate-180' : ''
+                            }`}
                         />
                       </button>
                       <AnimatePresence>

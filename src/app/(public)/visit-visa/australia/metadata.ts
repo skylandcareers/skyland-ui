@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Australian Visit Visa Services | Skyland Immigration',
     description: 'Expert guidance for Australian visitor visa applications. Get help with tourist, family, and business visitor streams (Subclass 600). High success rate with personalized support.',
-    url: 'https://skylandimmigration.com/visit-visa/australia',
+    url: 'https://skylandcareers.com/visit-visa/australia',
     siteName: 'Skyland Immigration',
     locale: 'en_AU',
     type: 'website',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description: 'Expert guidance for Australian visitor visa applications. Get help with tourist, family, and business visitor streams (Subclass 600). High success rate with personalized support.',
   },
   alternates: {
-    canonical: 'https://skylandimmigration.com/visit-visa/australia'
+    canonical: 'https://skylandcareers.com/visit-visa/australia'
   },
   verification: {
     google: 'google-site-verification-code',

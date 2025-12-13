@@ -63,8 +63,8 @@ export default function CareersPage() {
       <section className="text-center mt-12">
         <p className="text-gray-700">
           Don&apos;t see a role that fits? Send your resume to{" "}
-          <a href="mailto:careers@skylandimmigration.com" className="text-blue-600 hover:underline">
-            careers@skylandimmigration.com
+          <a href="mailto:careers@skylandcareers.com" className="text-blue-600 hover:underline">
+            careers@skylandcareers.com
           </a>{" "}
           and we&apos;ll keep you in mind!
         </p>

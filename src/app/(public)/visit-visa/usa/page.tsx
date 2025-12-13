@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  CheckCircle2, 
-  Phone, 
+import {
+  CheckCircle2,
+  Phone,
   Mail,
   Clock,
   ChevronDown,
@@ -25,7 +25,7 @@ import {
   XCircle,
   Info
 } from 'lucide-react';
-import { 
+import {
   usaVisitVisaContent
 } from './content';
 import LeadForm from '@/components/LeadForm';
@@ -88,30 +88,30 @@ const supportServices: Service[] = [
 
 const contactInfo: ContactInfo = {
   phone: "+1 XXX XXX XXXX",
-  email: "info@skylandimmigration.com",
+  email: "saiteja.b@skylandcareers.com",
   hours: "Mon-Fri: 9:00 AM - 5:30 PM EST"
 };
 
 const quickStats: QuickStat[] = [
-  { 
-    icon: <Timer className="w-6 h-6" />, 
-    label: "Processing Time", 
-    value: "3-5 weeks" 
+  {
+    icon: <Timer className="w-6 h-6" />,
+    label: "Processing Time",
+    value: "3-5 weeks"
   },
-  { 
-    icon: <DollarSign className="w-6 h-6" />, 
-    label: "Visa Fee", 
-    value: "$185" 
+  {
+    icon: <DollarSign className="w-6 h-6" />,
+    label: "Visa Fee",
+    value: "$185"
   },
-  { 
-    icon: <Globe className="w-6 h-6" />, 
-    label: "Validity", 
-    value: "10 years" 
+  {
+    icon: <Globe className="w-6 h-6" />,
+    label: "Validity",
+    value: "10 years"
   },
-  { 
-    icon: <FileText className="w-6 h-6" />, 
-    label: "Entry Type", 
-    value: "Multiple" 
+  {
+    icon: <FileText className="w-6 h-6" />,
+    label: "Entry Type",
+    value: "Multiple"
   }
 ];
 
@@ -121,7 +121,7 @@ const renderVisaTypeContent = (visa: VisaType) => {
     <>
       <h3 className="text-xl font-bold text-blue-600 mb-3">{visa.title}</h3>
       <p className="text-gray-600 mb-4">{visa.description}</p>
-      
+
       {visa.permittedActivities && (
         <div className="mb-4">
           <h4 className="font-semibold text-gray-900 mb-2">Permitted Activities:</h4>
@@ -162,7 +162,7 @@ const USVisitVisaPage = () => {
       <section className="bg-gradient-to-r from-blue-600 to-blue-700">
         <div className="max-w-7xl mx-auto px-4 py-8 md:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
-            <motion.div 
+            <motion.div
               className="space-y-4 md:space-y-7 text-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -174,7 +174,7 @@ const USVisitVisaPage = () => {
                 Starts Here
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
-                Expert guidance on B1/B2 visa applications, document preparation, and interview success. 
+                Expert guidance on B1/B2 visa applications, document preparation, and interview success.
                 98% success rate with personalized support throughout your application process.
               </p>
               <div className="space-y-4 bg-blue-500/30 p-5 rounded-xl">
@@ -192,21 +192,21 @@ const USVisitVisaPage = () => {
                 </div>
               </div>
               <div className="flex items-center gap-5 pt-3">
-                <button 
+                <button
                   className="inline-flex items-center gap-2 bg-yellow-400 text-blue-900 px-6 py-2.5 rounded-lg font-medium hover:bg-yellow-300 transition-colors text-base"
                 >
                   Calculate Points
-                <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" />
                 </button>
-                <a 
-                  href="#timeline" 
+                <a
+                  href="#timeline"
                   className="text-yellow-400 font-medium hover:text-yellow-300 transition-colors text-base"
                 >
                   View Process Timeline
                 </a>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -445,7 +445,7 @@ const USVisitVisaPage = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Application Process</h2>
           <div className="space-y-4">
             {visaContent.application.steps.map((step, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className="flex items-start gap-4 bg-white rounded-lg p-6 shadow-lg"
                 initial={{ opacity: 0, y: 20 }}

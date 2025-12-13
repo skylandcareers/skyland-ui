@@ -9,10 +9,10 @@ export default function PublicLayout({
 }) {
   return (
     <>
-        <Topbar phone="+91-9032420020" email="info@skylandimmigration.com" hours="Mon-Fri 9:00-17:00" />
-        <Header />
-        <main>{children}</main>
-        <Footer />
+      <Topbar phone="+91-6300191853" email="saiteja.b@skylandcareers.com" hours="Mon-Fri 9:00-17:00" />
+      <Header />
+      <main>{children}</main>
+      <Footer />
     </>
   );
 }

@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  CheckCircle2, 
-  Phone, 
+import {
+  CheckCircle2,
+  Phone,
   X,
   FileText,
   DollarSign,
@@ -116,30 +116,30 @@ const supportServices: Service[] = [
 
 const contactInfo: ContactInfo = {
   phone: "+91-9032420000",
-  email: "info@skylandimmigration.com",
+  email: "saiteja.b@skylandcareers.com",
   hours: "Mon-Fri: 9:00 AM - 5:30 PM AEST"
 };
 
 const quickStats: QuickStat[] = [
-  { 
-    icon: <Timer className="w-6 h-6" />, 
-    label: "Processing Time", 
-    value: "20-25 days" 
+  {
+    icon: <Timer className="w-6 h-6" />,
+    label: "Processing Time",
+    value: "20-25 days"
   },
-  { 
-    icon: <DollarSign className="w-6 h-6" />, 
-    label: "Visa Fee", 
-    value: "AUD 145" 
+  {
+    icon: <DollarSign className="w-6 h-6" />,
+    label: "Visa Fee",
+    value: "AUD 145"
   },
-  { 
-    icon: <Globe className="w-6 h-6" />, 
-    label: "Stay Duration", 
-    value: "Up to 12 months" 
+  {
+    icon: <Globe className="w-6 h-6" />,
+    label: "Stay Duration",
+    value: "Up to 12 months"
   },
-  { 
-    icon: <FileText className="w-6 h-6" />, 
-    label: "Entry Type", 
-    value: "Multiple" 
+  {
+    icon: <FileText className="w-6 h-6" />,
+    label: "Entry Type",
+    value: "Multiple"
   }
 ];
 
@@ -478,7 +478,7 @@ const AustraliaVisitVisaPage = () => {
   const [selectedVisaType, setSelectedVisaType] = useState<keyof typeof visaContent.visaTypes>('tourist');
   const [showEligibilityCalculator, setShowEligibilityCalculator] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
-  const [openFaqs, setOpenFaqs] = useState<{[key: string]: boolean}>({});
+  const [openFaqs, setOpenFaqs] = useState<{ [key: string]: boolean }>({});
 
   // Eligibility Calculator Modal
   const EligibilityCalculator = () => (
@@ -558,11 +558,10 @@ const AustraliaVisitVisaPage = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 min-w-[120px] py-3 px-4 text-sm font-medium ${
-                activeTab === tab
+              className={`flex-1 min-w-[120px] py-3 px-4 text-sm font-medium ${activeTab === tab
                   ? 'text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600'
-              }`}
+                }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
@@ -574,7 +573,7 @@ const AustraliaVisitVisaPage = () => {
       <section className="bg-gradient-to-r from-blue-600 to-blue-700">
         <div className="max-w-7xl mx-auto px-4 py-8 md:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
-            <motion.div 
+            <motion.div
               className="space-y-4 md:space-y-7 text-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -586,7 +585,7 @@ const AustraliaVisitVisaPage = () => {
                 Starts Here
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
-                Expert guidance on tourist, business, and family visitor visas. 
+                Expert guidance on tourist, business, and family visitor visas.
                 98% success rate with personalized support throughout your application process.
               </p>
               <div className="space-y-4 bg-blue-500/30 p-5 rounded-xl">
@@ -604,22 +603,22 @@ const AustraliaVisitVisaPage = () => {
                 </div>
               </div>
               <div className="flex items-center gap-5 pt-3">
-                <button 
+                <button
                   onClick={() => setShowEligibilityCalculator(true)}
                   className="inline-flex items-center gap-2 bg-yellow-400 text-blue-900 px-6 py-2.5 rounded-lg font-medium hover:bg-yellow-300 transition-colors text-base"
                 >
                   Check Eligibility
                   <ArrowRight className="w-4 h-4" />
                 </button>
-                <a 
-                  href="#process" 
+                <a
+                  href="#process"
                   className="text-yellow-400 font-medium hover:text-yellow-300 transition-colors text-base"
                 >
                   View Application Process
                 </a>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -679,9 +678,8 @@ const AustraliaVisitVisaPage = () => {
             {Object.entries(visaContent.visaTypes).map(([key, visa]) => (
               <motion.div
                 key={key}
-                className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all ${
-                  selectedVisaType === key ? 'ring-2 ring-blue-500' : ''
-                }`}
+                className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all ${selectedVisaType === key ? 'ring-2 ring-blue-500' : ''
+                  }`}
                 onClick={() => setSelectedVisaType(key as keyof typeof visaContent.visaTypes)}
                 whileHover={{ scale: 1.02 }}
               >
@@ -702,16 +700,16 @@ const AustraliaVisitVisaPage = () => {
                   {visa.prohibitedActivities && (
                     <div>
                       <h4 className="font-medium text-gray-900 mb-2">Prohibited Activities</h4>
-                    <ul className="space-y-2">
-                      {visa.prohibitedActivities.map((activity, index) => (
-                        <li key={index} className="flex items-start gap-2 text-gray-600">
-                          <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                          <span>{activity}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                      <ul className="space-y-2">
+                        {visa.prohibitedActivities.map((activity, index) => (
+                          <li key={index} className="flex items-start gap-2 text-gray-600">
+                            <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+                            <span>{activity}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -834,7 +832,7 @@ const AustraliaVisitVisaPage = () => {
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
             Find answers to common questions about Australian visit visas
           </p>
-          
+
           <div className="space-y-8">
             {faqCategories.map((category, categoryIndex) => (
               <div key={categoryIndex} className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -851,13 +849,13 @@ const AustraliaVisitVisaPage = () => {
                           onClick={() => toggleFaq(categoryIndex, faqIndex)}
                         >
                           <h4 className="text-lg font-medium text-gray-900 pr-8">{faq.question}</h4>
-                          <ChevronDown 
+                          <ChevronDown
                             className={`w-5 h-5 text-gray-500 transition-transform ${isOpen ? 'transform rotate-180' : ''}`}
                           />
                         </button>
                         <motion.div
                           initial={false}
-                          animate={{ 
+                          animate={{
                             height: isOpen ? 'auto' : 0,
                             opacity: isOpen ? 1 : 0
                           }}
@@ -885,7 +883,7 @@ const AustraliaVisitVisaPage = () => {
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
             Hear from people who successfully obtained their Australian visit visas through our guidance
           </p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonialVideos.map((video) => (
               <motion.div
@@ -1103,7 +1101,7 @@ const AustraliaVisitVisaPage = () => {
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-blue-200" />
-            
+
             {/* Timeline Items */}
             <div className="space-y-12">
               {[
@@ -1150,18 +1148,16 @@ const AustraliaVisitVisaPage = () => {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className={`flex items-start gap-8 ${
-                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                  }`}
+                  className={`flex items-start gap-8 ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                    }`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
                 >
                   <div className="flex-1">
-                    <div className={`bg-white rounded-xl p-6 shadow-lg ${
-                      index % 2 === 0 ? "text-left" : "text-right"
-                    }`}>
+                    <div className={`bg-white rounded-xl p-6 shadow-lg ${index % 2 === 0 ? "text-left" : "text-right"
+                      }`}>
                       <div className="flex items-center gap-2 mb-3">
                         <div className="bg-blue-100 p-2 rounded-lg">
                           <Clock className="w-6 h-6 text-blue-600" />

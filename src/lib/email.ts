@@ -8,7 +8,7 @@ const ses = new SESClient({
     },
 });
 
-const SENDER_EMAIL = process.env.SES_FROM_EMAIL || 'noreply@skylandimmigration.com'; // Must be verified in SES
+const SENDER_EMAIL = process.env.SES_FROM_EMAIL || 'noreply@skylandcareers.com'; // Must be verified in SES
 
 interface EmailParams {
     to: string | string[];

@@ -116,7 +116,7 @@ const ContactUs = () => {
               </div>
               <div>
                 <h2 className="text-xl font-semibold text-gray-900">Phone</h2>
-                <p className="text-gray-700">+91-9032420020</p>
+                <p className="text-gray-700">+91-6300191853</p>
                 <p className="text-gray-500 text-sm">Mon-Fri, 9AM - 6PM</p>
               </div>
             </div>
@@ -127,7 +127,7 @@ const ContactUs = () => {
               </div>
               <div>
                 <h2 className="text-xl font-semibold text-gray-900">Email</h2>
-                <p className="text-gray-700">info@skylandimmigration.com</p>
+                <p className="text-gray-700">saiteja.b@skylandcareers.com</p>
                 <p className="text-gray-500 text-sm">We reply within 24 hours</p>
               </div>
             </div>

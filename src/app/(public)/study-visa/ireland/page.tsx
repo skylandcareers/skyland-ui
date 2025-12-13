@@ -35,7 +35,7 @@ import LeadForm from '@/components/LeadForm';
 
 const contactInfo = {
   phone: "+91-9032420000",
-  email: "info@skylandimmigration.com",
+  email: "saiteja.b@skylandcareers.com",
   hours: "Mon-Fri: 9:00 AM - 5:30 PM GMT"
 };
 const IrelandStudyVisaPage = () => {

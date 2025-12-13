@@ -63,19 +63,19 @@ const CallToAction: React.FC<CallToActionProps> = ({
 
           {contactInfo && (
             <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-sm sm:text-base">
-              <a 
-                href="tel:+919032420020" 
+              <a
+                href="tel:+916300191853"
                 className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"
               >
                 <Phone className="w-5 h-5" />
                 +91 90324 20020
               </a>
-              <a 
-                href="mailto:info@skylandimmigration.com" 
+              <a
+                href="mailto:saiteja.b@skylandcareers.com"
                 className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                info@skylandimmigration.com
+                saiteja.b@skylandcareers.com
               </a>
             </div>
           )}

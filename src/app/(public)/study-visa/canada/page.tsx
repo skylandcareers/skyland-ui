@@ -17,7 +17,7 @@ import LeadForm from '@/components/LeadForm';
 
 const contactInfo = {
   phone: "+91-9032420000",
-  email: "info@skylandimmigration.com",
+  email: "saiteja.b@skylandcareers.com",
   hours: "Mon-Fri: 9:00 AM - 5:30 PM GMT"
 };
 
@@ -195,7 +195,7 @@ export default function CanadaStudyVisaPage() {
 
       {/* Application Process */}
       <SectionWrapper id="apply">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Application Process</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Application Process</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {content.applicationSteps.map((step, index) => (
             <div key={index} className="bg-white p-6 rounded-xl shadow-md relative">

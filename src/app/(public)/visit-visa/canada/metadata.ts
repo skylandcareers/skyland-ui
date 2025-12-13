@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Canadian Visit Visa Services | Skyland Immigration',
     description: 'Expert guidance for Canadian visitor visa applications. Get help with tourist, family, and business visitor streams (Subclass 600). High success rate with personalized support.',
-    url: 'https://skylandimmigration.com/visit-visa/canada',
+    url: 'https://skylandcareers.com/visit-visa/canada',
     siteName: 'Skyland Immigration',
     locale: 'en_CA',
     type: 'website',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     description: 'Expert guidance for Canadian visitor visa applications. Get help with tourist, family, and business visitor streams (Subclass 600). High success rate with personalized support.',
   },
   alternates: {
-    canonical: 'https://skylandimmigration.com/visit-visa/canada'
+    canonical: 'https://skylandcareers.com/visit-visa/canada'
   },
   verification: {
     google: 'google-site-verification-code',

@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  CheckCircle2, 
-  Calendar, 
-  GraduationCap, 
-  Briefcase, 
-  Languages, 
+import {
+  CheckCircle2,
+  Calendar,
+  GraduationCap,
+  Briefcase,
+  Languages,
   FileText,
   DollarSign,
   Globe,
@@ -30,13 +30,13 @@ import {
   Activity,
   GraduationCap as Education
 } from 'lucide-react';
-import { 
-  australiaPRContent, 
-  prVisaFAQs, 
+import {
+  australiaPRContent,
+  prVisaFAQs,
   prVisaTimeline,
   cityComparisons,
   jobMarketStats,
-  lifestyleGuide 
+  lifestyleGuide
 } from './content';
 import LeadForm from '@/components/LeadForm';
 
@@ -165,7 +165,7 @@ const supportServices: Service[] = [
 
 const contactInfo: ContactInfo = {
   phone: "+61 2 XXXX XXXX",
-  email: "info@skylandimmigration.com",
+  email: "saiteja.b@skylandcareers.com",
   hours: "Mon-Fri: 9:00 AM - 6:00 PM AEST"
 };
 
@@ -209,13 +209,13 @@ const typedLifestyleGuide: LifestyleGuide = lifestyleGuide;
 // Add a new section for Progress Tracking
 const ProgressTracker = () => {
   const [progress, setProgress] = useState(0);
-  
+
   return (
     <div className="bg-white rounded-lg p-6 shadow-lg mb-8">
       <h3 className="text-xl font-bold text-gray-900 mb-4">Track Your Progress</h3>
       <div className="space-y-4">
         <div className="w-full bg-gray-200 rounded-full h-2.5">
-          <div 
+          <div
             className="bg-blue-600 h-2.5 rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           ></div>
@@ -251,11 +251,10 @@ const AustraliaPRPage = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 min-w-[120px] py-3 px-4 text-sm font-medium ${
-                activeTab === tab
+              className={`flex-1 min-w-[120px] py-3 px-4 text-sm font-medium ${activeTab === tab
                   ? 'text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600'
-              }`}
+                }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
@@ -267,7 +266,7 @@ const AustraliaPRPage = () => {
       <section className="bg-gradient-to-r from-blue-600 to-blue-700">
         <div className="max-w-7xl mx-auto px-4 py-8 md:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
-            <motion.div 
+            <motion.div
               className="space-y-4 md:space-y-7 text-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -279,7 +278,7 @@ const AustraliaPRPage = () => {
                 Starts Here
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
-                Get expert guidance on PR pathways, points calculator, and visa requirements. 
+                Get expert guidance on PR pathways, points calculator, and visa requirements.
                 98% success rate with personalized support throughout your application process.
               </p>
               <div className="space-y-4 bg-blue-500/30 p-5 rounded-xl">
@@ -297,22 +296,22 @@ const AustraliaPRPage = () => {
                 </div>
               </div>
               <div className="flex items-center gap-5 pt-3">
-                <button 
+                <button
                   onClick={() => setShowPointsCalculator(true)}
                   className="inline-flex items-center gap-2 bg-yellow-400 text-blue-900 px-6 py-2.5 rounded-lg font-medium hover:bg-yellow-300 transition-colors text-base"
                 >
                   Calculate Points
                   <ArrowRight className="w-4 h-4" />
                 </button>
-                <a 
-                  href="#timeline" 
+                <a
+                  href="#timeline"
                   className="text-yellow-400 font-medium hover:text-yellow-300 transition-colors text-base"
                 >
                   View Process Timeline
                 </a>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -331,21 +330,21 @@ const AustraliaPRPage = () => {
         <section className="py-8 md:py-14">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
-              { 
-                icon: <Timer className="w-6 h-6" />, 
-                label: "Processing Time", 
-                value: australiaPRContent.processingTimes.timeframes.skillIndependent 
+              {
+                icon: <Timer className="w-6 h-6" />,
+                label: "Processing Time",
+                value: australiaPRContent.processingTimes.timeframes.skillIndependent
               },
-              { 
-                icon: <DollarSign className="w-6 h-6" />, 
-                label: "Visa Cost", 
-                value: australiaPRContent.visaCosts.baseApplicationFee 
+              {
+                icon: <DollarSign className="w-6 h-6" />,
+                label: "Visa Cost",
+                value: australiaPRContent.visaCosts.baseApplicationFee
               },
               { icon: <Globe className="w-6 h-6" />, label: "Success Rate", value: "98%" },
-              { 
-                icon: <FileText className="w-6 h-6" />, 
-                label: "Points Required", 
-                value: "65 points" 
+              {
+                icon: <FileText className="w-6 h-6" />,
+                label: "Points Required",
+                value: "65 points"
               }
             ].map((stat, index) => (
               <motion.div
@@ -397,7 +396,7 @@ const AustraliaPRPage = () => {
         {activeTab === 'lifestyle' && (
           <section className="py-8 md:py-14">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">Detailed Living Guide</h2>
-            
+
             {/* Housing Section */}
             <div className="bg-white rounded-lg p-6 shadow-lg mb-6">
               <div className="flex items-center gap-3 mb-6">
@@ -418,7 +417,7 @@ const AustraliaPRPage = () => {
                         </div>
                       ))}
                     </div>
-                    
+
                     <div>
                       <p className="text-sm text-gray-500 mb-2">Requirements</p>
                       <div className="space-y-1">
@@ -663,7 +662,7 @@ const AustraliaPRPage = () => {
         {/* Job Market Insights Section */}
         <section className="py-14">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Job Market Insights</h2>
-          
+
           {/* High Demand Sectors */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             {jobMarketStats.highDemandSectors.map((sector, index) => (
@@ -847,7 +846,7 @@ const AustraliaPRPage = () => {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Eligibility Requirements</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {Object.entries(australiaPRContent.visaRequirements).map(([key, requirement], index) => (
-                  <motion.div 
+                  <motion.div
                     key={key}
                     className="bg-white rounded-lg p-4 shadow-lg hover:shadow transition-shadow border border-gray-200 hover:border-gray-300"
                     initial={{ opacity: 0, x: -20 }}
@@ -872,7 +871,7 @@ const AustraliaPRPage = () => {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Application Process</h2>
               <div className="space-y-4">
                 {australiaPRContent.applicationProcess.map((step, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     className="flex items-start gap-4 bg-white rounded-lg p-4 shadow-lg border border-gray-200 hover:border-gray-300"
                     initial={{ opacity: 0, y: 20 }}
@@ -938,14 +937,14 @@ const AustraliaPRPage = () => {
           {/* Right Column - Sidebar */}
           <div className="space-y-8">
             {/* CTA Card */}
-            <motion.div 
+            <motion.div
               className="bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-lg p-6 shadow-lg hover:shadow-md"
               whileHover={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <h3 className="text-xl font-bold mb-3">Ready to Start Your Journey?</h3>
               <p className="text-base text-blue-100 mb-4">Get expert guidance on your Australia PR visa application</p>
-              <button 
+              <button
                 onClick={() => setShowPointsCalculator(true)}
                 className="w-full bg-white text-blue-600 font-medium py-2.5 px-4 rounded-lg text-base hover:bg-blue-50 transition-colors"
               >

@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  CheckCircle2, 
-  Phone, 
+import {
+  CheckCircle2,
+  Phone,
   Mail,
   Clock,
   ChevronDown,
@@ -591,7 +591,7 @@ const SingaporeVisitVisaPage = () => {
 
   const contactInfo = {
     phone: "+91-9032420000",
-    email: "info@skylandimmigration.com",
+    email: "saiteja.b@skylandcareers.com",
     hours: "Mon-Fri: 9:00 AM - 5:30 PM GMT"
   };
 
@@ -623,7 +623,7 @@ const SingaporeVisitVisaPage = () => {
                 </li>
               </ul>
               <div className="flex gap-4 mt-8">
-                <button 
+                <button
                   className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
                   onClick={() => {
                     const element = document.getElementById('visa-types');
@@ -632,7 +632,7 @@ const SingaporeVisitVisaPage = () => {
                 >
                   Explore Visa Types
                 </button>
-                <button 
+                <button
                   className="bg-yellow-400 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors"
                   onClick={() => {
                     const element = document.getElementById('contact-form');
@@ -687,11 +687,10 @@ const SingaporeVisitVisaPage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {visaTypes.map((type) => (
-              <div 
+              <div
                 key={type.id}
-                className={`bg-white rounded-xl p-6 shadow-lg cursor-pointer transition-all ${
-                  selectedVisaType === type.id ? 'ring-2 ring-blue-500' : ''
-                }`}
+                className={`bg-white rounded-xl p-6 shadow-lg cursor-pointer transition-all ${selectedVisaType === type.id ? 'ring-2 ring-blue-500' : ''
+                  }`}
                 onClick={() => setSelectedVisaType(type.id)}
               >
                 <h3 className="text-xl font-bold text-blue-600 mb-3">{type.title}</h3>

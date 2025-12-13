@@ -2,9 +2,9 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  CheckCircle2, 
-  Phone, 
+import {
+  CheckCircle2,
+  Phone,
   Mail,
   Clock,
   ChevronDown,
@@ -28,7 +28,7 @@ import {
   Fingerprint,
   ClipboardCheck
 } from 'lucide-react';
-import { 
+import {
   ukVisitVisaContent
 } from './content';
 import LeadForm from '@/components/LeadForm';
@@ -86,30 +86,30 @@ const supportServices: Service[] = [
 
 const contactInfo: ContactInfo = {
   phone: "+91-9032420000",
-  email: "info@skylandimmigration.com",
+  email: "saiteja.b@skylandcareers.com",
   hours: "Mon-Fri: 9:00 AM - 5:30 PM GMT"
 };
 
 const quickStats: QuickStat[] = [
-  { 
-    icon: <Timer className="w-6 h-6" />, 
-    label: "Processing Time", 
-    value: "3 weeks" 
+  {
+    icon: <Timer className="w-6 h-6" />,
+    label: "Processing Time",
+    value: "3 weeks"
   },
-  { 
-    icon: <DollarSign className="w-6 h-6" />, 
-    label: "Visa Fee", 
-    value: "£100" 
+  {
+    icon: <DollarSign className="w-6 h-6" />,
+    label: "Visa Fee",
+    value: "£100"
   },
-  { 
-    icon: <Globe className="w-6 h-6" />, 
-    label: "Stay Duration", 
-    value: "6 months" 
+  {
+    icon: <Globe className="w-6 h-6" />,
+    label: "Stay Duration",
+    value: "6 months"
   },
-  { 
-    icon: <FileText className="w-6 h-6" />, 
-    label: "Entry Type", 
-    value: "Multiple" 
+  {
+    icon: <FileText className="w-6 h-6" />,
+    label: "Entry Type",
+    value: "Multiple"
   }
 ];
 
@@ -119,7 +119,7 @@ const renderVisaTypeContent = (visa: VisaType) => {
     <>
       <h3 className="text-xl font-bold text-blue-600 mb-3">{visa.title}</h3>
       <p className="text-gray-600 mb-4">{visa.description}</p>
-      
+
       {visa.permittedActivities && (
         <div className="mb-4">
           <h4 className="font-semibold text-gray-900 mb-2">Permitted Activities:</h4>
@@ -161,7 +161,7 @@ const UKVisitVisaPage = () => {
       <section className="bg-gradient-to-r from-blue-600 to-blue-700">
         <div className="max-w-7xl mx-auto px-4 py-8 md:py-14">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 items-center">
-            <motion.div 
+            <motion.div
               className="space-y-4 md:space-y-7 text-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -173,7 +173,7 @@ const UKVisitVisaPage = () => {
                 Starts Here
               </h1>
               <p className="text-lg text-blue-100 leading-relaxed">
-                Expert guidance on UK Standard Visitor visa applications, document preparation, and application success. 
+                Expert guidance on UK Standard Visitor visa applications, document preparation, and application success.
                 98% success rate with personalized support throughout your application process.
               </p>
               <div className="space-y-4 bg-blue-500/30 p-5 rounded-xl">
@@ -191,21 +191,21 @@ const UKVisitVisaPage = () => {
                 </div>
               </div>
               <div className="flex items-center gap-5 pt-3">
-                <button 
+                <button
                   className="inline-flex items-center gap-2 bg-yellow-400 text-blue-900 px-6 py-2.5 rounded-lg font-medium hover:bg-yellow-300 transition-colors text-base"
                 >
                   Get Started
                   <ArrowRight className="w-4 h-4" />
                 </button>
-                <a 
-                  href="#timeline" 
+                <a
+                  href="#timeline"
                   className="text-yellow-400 font-medium hover:text-yellow-300 transition-colors text-base"
                 >
                   View Process Timeline
                 </a>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -330,11 +330,10 @@ const UKVisitVisaPage = () => {
               {visaContent.documentRequirements.map((category) => (
                 <button
                   key={category.category.toLowerCase().replace(/\s+/g, '')}
-                  className={`px-4 py-2 rounded-lg whitespace-nowrap ${
-                    activeTab === category.category.toLowerCase().replace(/\s+/g, '') 
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
+                  className={`px-4 py-2 rounded-lg whitespace-nowrap ${activeTab === category.category.toLowerCase().replace(/\s+/g, '')
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
                   onClick={() => setActiveTab(category.category.toLowerCase().replace(/\s+/g, ''))}
                 >
                   {category.category}
@@ -497,7 +496,7 @@ const UKVisitVisaPage = () => {
         {/* Accommodation Section */}
         <section className="py-8 md:py-14">
           <h2 className="text-2xl font-bold text-gray-900 mb-8">Accommodation Guidelines</h2>
-          
+
           {/* Accommodation Types */}
           <div className="flex flex-col gap-8">
             {visaContent.accommodation.types.map((type) => (
@@ -510,7 +509,7 @@ const UKVisitVisaPage = () => {
                       <h3 className="text-xl font-bold text-gray-900">{type.type}</h3>
                     </div>
                     <p className="text-gray-600 mb-6">{type.description}</p>
-                    
+
                     {/* Essential Requirements */}
                     <div className="mb-6">
                       <h4 className="font-medium text-gray-900 mb-3">Essential Requirements</h4>

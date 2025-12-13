@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
         // Send Email Notifications (Async - don't await blocking response)
         const { sendEmail } = await import('@/lib/email');
-        const adminEmail = process.env.ADMIN_EMAIL || 'admin@skylandimmigration.com';
+        const adminEmail = process.env.ADMIN_EMAIL || 'admin@skylandcareers.com';
 
         // 1. Notify Admin
         await sendEmail({

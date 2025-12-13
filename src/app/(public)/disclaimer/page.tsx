@@ -20,7 +20,7 @@ export default function Disclaimer() {
       <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-4 sm:px-8 md:px-20 py-10">
         <div className="max-w-5xl mx-auto space-y-6 leading-relaxed">
           <p>
-            The term <strong>user</strong> refers to the visitor browsing this site and <strong>Skyland</strong> refers to Skyland Career Services Pvt Ltd. The <strong>site</strong> refers to www.skylandimmigration.com, owned and monitored by Skyland. By using this site, you agree to abide by these terms and conditions.
+            The term <strong>user</strong> refers to the visitor browsing this site and <strong>Skyland</strong> refers to Skyland Career Services Pvt Ltd. The <strong>site</strong> refers to www.skylandcareers.com, owned and monitored by Skyland. By using this site, you agree to abide by these terms and conditions.
           </p>
 
           <p>
@@ -84,8 +84,8 @@ export default function Disclaimer() {
           <h2 className="text-xl font-semibold mt-8 mb-2">Contact Information</h2>
           <p>
             4th Floor Vasavi MPM Grand, Ameerpet, Yella Reddy Guda, Hyderabad, Telangana - 500073<br />
-            Phone: +91-9032420020<br />
-            Email: info@skylandimmigration.com
+            Phone: +91-6300191853<br />
+            Email: saiteja.b@skylandcareers.com
           </p>
         </div>
       </div>

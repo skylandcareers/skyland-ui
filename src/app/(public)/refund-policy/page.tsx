@@ -21,7 +21,7 @@ export default function RefundPolicy() {
       <div className="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-4 sm:px-8 md:px-20 py-10">
         <div className="max-w-5xl mx-auto space-y-6">
           <p>
-            At Skyland Immigration, we are committed to providing excellent immigration consultancy services. 
+            At Skyland Immigration, we are committed to providing excellent immigration consultancy services.
             However, due to the nature of our services, please review our refund policy carefully before making any payments.
           </p>
 
@@ -48,7 +48,7 @@ export default function RefundPolicy() {
 
           <h2 className="text-xl font-semibold mt-8 mb-2">3. Refund Request Procedure</h2>
           <p>
-            To request a refund, please contact us at <strong>support@skylandimmigration.com</strong> with:
+            To request a refund, please contact us at <strong>support@skylandcareers.com</strong> with:
           </p>
           <ul className="list-disc list-inside ml-6">
             <li>Your full name and contact information.</li>
@@ -121,8 +121,8 @@ export default function RefundPolicy() {
             If you have any questions or concerns about our refund policy or terms, please reach out to us:
           </p>
           <p>
-            Email: <strong>support@skylandimmigration.com</strong><br />
-            Phone: +91-9032420020
+            Email: <strong>support@skylandcareers.com</strong><br />
+            Phone: +91-6300191853
           </p>
         </div>
       </div>
